@@ -6,9 +6,9 @@ Library                 SeleniumLibrary
 Library                 ExcelLibrary
 Library                 BuiltIn
 Library                 Collections
-library                 String
-library                 ImageHorizonLibrary
-Test Teardown          Close Browser
+Library                 String
+Library                 ImageHorizonLibrary
+Test Teardown           Close Browser
 
 *** Variables ***
 ${Excel_Path}           ../TestData
@@ -101,8 +101,8 @@ Data Entry
     Page Should Contain Element                       ${Body_Status}
     Click Element           ${Body_Status}
 
-    Input Text    ${Title}    ${3rd_Category}${Type}مدل${Temp1}
-    Input Text    ${Description}     ${3rd_Category}${Type}مدل${Temp1}
+    Input Text              ${Title}                  ${3rd_Category}${Type}مدل${Temp1}
+    Input Text              ${Description}            ${3rd_Category}${Type}مدل${Temp1}
 
     ${Temp}                 Evaluate                  random.randint(100000000,300000000)
     Input Text              ${Price}                  ${Temp}
