@@ -9,9 +9,9 @@ Library           SeleniumLibrary
 *** Variables ***
 ${SERVER}         www.sheypoor.com
 ${BROWSER}        firefox
-${DELAY}          0
-${VALID USER}     
-${VALID PASSWORD}    
+${DELAY}          1
+${VALID USER}
+${VALID PASSWORD}
 ${HOMEPAGE URL}   https://${SERVER}/
 
 *** Keywords ***
