@@ -9,7 +9,7 @@ Library           SeleniumLibrary
 *** Variables ***
 ${SERVER}         www.sheypoor.com
 ${BROWSER}        firefox
-${DELAY}          1
+# ${DELAY}          1
 ${VALID USER}
 ${VALID PASSWORD}
 ${HOMEPAGE URL}   https://${SERVER}/
@@ -18,7 +18,7 @@ ${HOMEPAGE URL}   https://${SERVER}/
 Open Browser To Home Page
     Open Browser    ${HOMEPAGE URL}    ${BROWSER}
     Maximize Browser Window
-    Set Selenium Speed    ${DELAY}
+    # Set Selenium Speed    ${DELAY}
     Home Page Should Be Open
 
 Home Page Should Be Open
