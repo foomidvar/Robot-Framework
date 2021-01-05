@@ -7,7 +7,7 @@ Library                 ExcelLibrary
 Library                 BuiltIn
 Library                 Collections
 Library                 String
-# Test Teardown           Close Browser
+Test Teardown           Close Browser
 
 *** Variables ***
 ${Excel_Path}           ../TestData
@@ -36,15 +36,16 @@ ${Title}                 id:item-form-title
 ${Description}           id:item-form-description
 ${Price}                 id=item-form-price
 ${Location}              css:[data-popup="popup-locations"]
-${Location_Search}       //*[@id="popup-locations"]/div/div[2]/form/p/span/input
+${Location_Search}       //input[starts-with(@placeholder,'جستجو در')]
 ${Ostan}                 class:t-province-8
 ${City}                  class:t-city-301
 ${District}              class:t-district-933
 ${Images}                name:qqfile
-${Register}              //*[@id="item-form"]/div/div[2]/form/p[2]/button
-# //*[contains(text(),"ثبت آگهی")]
+${Register}              //form/p/button[contains(@type,'submit') and contains(.,'ثبت آگهی')]
 ${Mobile}                id:username
+${Next}                  //button[contains(@type,'submit') and contains(.,'بعدی')]
 ${Code}                  id:code
+${Verification}          //button[contains(@type,'submit') and contains(.,'تائید و ثبت نهایی آگهی')]
 
 *** Test Cases ***
 Regiter new advertising
@@ -135,11 +136,11 @@ Add Images
 Enter Mobile Number And Verification Code
     Wait Until Page Contains    اطلاعات شما
     Input Text              ${Mobile}                 09001111111
-    Click Button            //*[@id="session"]/div/form/p[5]/button
+    Click Button            ${Next}
 
     Wait Until Page Contains    کد چهار رقمی پیامک شده به 09001111111 را وارد کنید.
     Input Text              ${Code}                     1111
-    Click Button            //*[@id="session"]/div/form/p[2]/button
+    Click Button            ${Verification}
 
     Page Should Contain    کد تایید صحیح نمی باشد
 
