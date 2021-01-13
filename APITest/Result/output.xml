@@ -1,21 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 3.2.2 (Python 3.6.8 on win32)" generated="20210112 16:38:26.639" rpa="false">
+<robot generator="Robot 3.2.2 (Python 3.6.8 on win32)" generated="20210113 14:27:43.817" rpa="false">
 <suite id="s1" name="Config" source="D:\Robot Framework\APITest\TesCases\Config.robot">
-<test id="s1-t1" name="Test Config API">
-<kw name="Send Request">
-<kw name="${v} IN [ @{API_Versions} ]" type="for">
-<kw name="${v} = v5.9.0" type="foritem">
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
+<test id="s1-t1" name="Test Different Versions of the CONFIG_API on all Platforms">
+<kw name="Set Log Level" library="BuiltIn" type="setup">
+<doc>Sets the log threshold to the specified level and returns the old level.</doc>
 <arguments>
-<arg>\nAPI Version is: ${v}</arg>
+<arg>TRACE</arg>
 </arguments>
-<status status="PASS" starttime="20210112 16:38:27.477" endtime="20210112 16:38:27.500"></status>
+<msg timestamp="20210113 14:27:44.684" level="TRACE">Arguments: [ 'TRACE' ]</msg>
+<msg timestamp="20210113 14:27:44.684" level="INFO">Log level changed from TRACE to TRACE.</msg>
+<msg timestamp="20210113 14:27:44.684" level="TRACE">Return: 'TRACE'</msg>
+<status status="PASS" starttime="20210113 14:27:44.684" endtime="20210113 14:27:44.685"></status>
 </kw>
-<kw name="Set Headers Value">
+<kw name="Retrieve Versions,Set Headers And Send Request">
+<msg timestamp="20210113 14:27:44.686" level="TRACE">Arguments: [  ]</msg>
+<kw name="${version} IN [ @{API_Versions} ]" type="for">
+<kw name="${version} = v5.9.0" type="foritem">
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${version}</arg>
+</arguments>
+<msg timestamp="20210113 14:27:44.687" level="TRACE">Arguments: [ '${version}' ]</msg>
+<msg timestamp="20210113 14:27:44.688" level="INFO">${version} = v5.9.0</msg>
+<msg timestamp="20210113 14:27:44.688" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210113 14:27:44.687" endtime="20210113 14:27:44.688"></status>
+</kw>
+<kw name="Set Headers Value For">
 <arguments>
 <arg>Android</arg>
 </arguments>
+<msg timestamp="20210113 14:27:44.689" level="TRACE">Arguments: [ ${Platform}='Android' ]</msg>
 <kw name="${key} IN [ @{${Platform}.keys()} ]" type="for">
 <kw name="${key} = X-AGENT-TYPE" type="foritem">
 <kw name="Get From Dictionary" library="Collections">
@@ -27,8 +42,10 @@
 <assign>
 <var>${value}</var>
 </assign>
-<msg timestamp="20210112 16:38:27.504" level="INFO">${value} = Android App</msg>
-<status status="PASS" starttime="20210112 16:38:27.503" endtime="20210112 16:38:27.504"></status>
+<msg timestamp="20210113 14:27:44.691" level="TRACE">Arguments: [ {'App-Version': '5.9.0', 'X-AGENT-TYPE': 'Android App'} | 'X-AGENT-TYPE' ]</msg>
+<msg timestamp="20210113 14:27:44.691" level="TRACE">Return: 'Android App'</msg>
+<msg timestamp="20210113 14:27:44.691" level="INFO">${value} = Android App</msg>
+<status status="PASS" starttime="20210113 14:27:44.690" endtime="20210113 14:27:44.691"></status>
 </kw>
 <kw name="Set Headers" library="REST">
 <tags>
@@ -38,71 +55,363 @@
 <arguments>
 <arg>{"key":"value"}</arg>
 </arguments>
-<status status="PASS" starttime="20210112 16:38:27.504" endtime="20210112 16:38:27.505"></status>
+<msg timestamp="20210113 14:27:44.691" level="TRACE">Arguments: [ '{"key":"value"}' ]</msg>
+<msg timestamp="20210113 14:27:44.692" level="TRACE">Return: {'Accept': 'application/json, */*',
+ 'Content-Type': 'application/json',
+ 'User-Agent': 'RESTinstance/1.0.2',
+ 'key': 'value'}</msg>
+<status status="PASS" starttime="20210113 14:27:44.691" endtime="20210113 14:27:44.692"></status>
 </kw>
-<status status="PASS" starttime="20210112 16:38:27.502" endtime="20210112 16:38:27.505"></status>
-</kw>
-<kw name="${key} = App-Version" type="foritem">
-<kw name="Get From Dictionary" library="Collections">
-<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<kw name="Set Task Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current task.</doc>
 <arguments>
-<arg>${${Platform}}</arg>
-<arg>${key}</arg>
+<arg>${Platform}</arg>
 </arguments>
-<assign>
-<var>${value}</var>
-</assign>
-<msg timestamp="20210112 16:38:27.506" level="INFO">${value} = 5.9.0</msg>
-<status status="PASS" starttime="20210112 16:38:27.505" endtime="20210112 16:38:27.506"></status>
+<msg timestamp="20210113 14:27:44.693" level="TRACE">Arguments: [ '${Platform}' ]</msg>
+<msg timestamp="20210113 14:27:44.694" level="INFO">${Platform} = Android</msg>
+<msg timestamp="20210113 14:27:44.694" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210113 14:27:44.692" endtime="20210113 14:27:44.694"></status>
 </kw>
-<kw name="Set Headers" library="REST">
-<tags>
-<tag>settings</tag>
-</tags>
-<doc>*Sets new request headers or updates the existing.*</doc>
+<kw name="Return From Keyword" library="BuiltIn">
+<doc>Returns from the enclosing user keyword.</doc>
 <arguments>
-<arg>{"key":"value"}</arg>
+<arg>${Platform}</arg>
 </arguments>
-<status status="PASS" starttime="20210112 16:38:27.506" endtime="20210112 16:38:27.506"></status>
+<msg timestamp="20210113 14:27:44.694" level="TRACE">Arguments: [ '${Platform}' ]</msg>
+<msg timestamp="20210113 14:27:44.694" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20210113 14:27:44.694" endtime="20210113 14:27:44.694"></status>
 </kw>
-<status status="PASS" starttime="20210112 16:38:27.505" endtime="20210112 16:38:27.507"></status>
+<status status="PASS" starttime="20210113 14:27:44.690" endtime="20210113 14:27:44.694"></status>
 </kw>
-<status status="PASS" starttime="20210112 16:38:27.501" endtime="20210112 16:38:27.507"></status>
+<status status="PASS" starttime="20210113 14:27:44.689" endtime="20210113 14:27:44.694"></status>
 </kw>
-<status status="PASS" starttime="20210112 16:38:27.500" endtime="20210112 16:38:27.507"></status>
+<msg timestamp="20210113 14:27:44.695" level="TRACE">Return: 'Android'</msg>
+<status status="PASS" starttime="20210113 14:27:44.688" endtime="20210113 14:27:44.695"></status>
 </kw>
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
-<arguments>
-<arg>\nTest Running On The Platform: Android</arg>
-</arguments>
-<status status="PASS" starttime="20210112 16:38:27.507" endtime="20210112 16:38:27.530"></status>
-</kw>
+<kw name="Send Get Request">
+<msg timestamp="20210113 14:27:44.695" level="TRACE">Arguments: [  ]</msg>
 <kw name="Get" library="REST">
 <tags>
 <tag>http</tag>
 </tags>
 <doc>*Sends a GET request to the endpoint.*</doc>
 <arguments>
-<arg>${v}${EndPoint}</arg>
+<arg>${version}${EndPoint}</arg>
 </arguments>
-<assign>
-<var>${req}</var>
-</assign>
-<msg timestamp="20210112 16:38:28.892" level="INFO">${req} = {'seconds': 0.233613, 'status': 200, 'body': {'listing': {'filter': {'withImage': True, 'withImageException': [43633, 43632, 44100, 44116, 44101, 44102, 44103, 44104, 44105, 44106, 44107, 44108, 43631...</msg>
-<status status="PASS" starttime="20210112 16:38:27.531" endtime="20210112 16:38:28.892"></status>
+<msg timestamp="20210113 14:27:44.696" level="TRACE">Arguments: [ 'v5.9.0/general/config' ]</msg>
+<msg timestamp="20210113 14:27:44.701" level="DEBUG">Starting new HTTPS connection (1): www.sheypoor.com:443</msg>
+<msg timestamp="20210113 14:27:45.167" level="DEBUG">https://www.sheypoor.com:443 "GET /api/v5.9.0/general/config HTTP/1.1" 200 571</msg>
+<msg timestamp="20210113 14:27:45.266" level="TRACE">Return: {'body': {'contact': {'email': 'info@sheypoor.com',
+                      'internationalTel': '+982154587',
+                      'tel': '02154587'},
+          'features': {'advertisement': False,
+                       'all-iran-feature': True,
+                       'bump': True,
+                       'car-hide-price': False,
+                       'car-show-price-range': False,
+                       'carBodyInsurance': False,
+                       'carCertification': False,
+                       'carCertificationBuyer': False,
+                       'carCertificationUi': True,
+                       'carSearch': False,
+                       'chat': False,
+                       'cod': False,
+                       'consultant': True,
+                       'dot-ir': False,
+                       'hamshahri': False,
+                       'hidePrice': True,
+                       'leads': False,
+                       'leads-views': False,
+                       'leasing': False,
+                       'newChat': True,
+                       'notifications': False,
+                       'outOfIran': False,
+                       'package-more-view': False,
+                       'paid-features': True,
+                       'paid-features-bumps': True,
+                       'paid-tag': True,
+                       'performance-log': True,
+                       'post-moderation': False,
+                       'priceTag': False,
+                       'priceTagBI': False,
+                       'real-estate-hide-price': True,
+                       'real-estate-hide-price-rent': True,
+                       'real-estate-show-price-range': False,
+                       'resume-bank': False,
+                       'savedSearch': True,
+                       'secure-purchase': True,
+                       'secure-purchase-delivery': True,
+                       'shop-in-serp': True,
+                       'shop-secure-purchase-in-post-listing': False,
+                       'thirdPartyInsurance': False,
+                       'user-rating': False,
+                       'user-secure-purchase-in-post-listing': False,
+                       'video': True,
+                       'views': True,
+                       'visibility': False,
+                       'weblink': True},
+          'listing': {'filter': {'withImage': True,
+                                 'withImageException': [43633,
+                                                        43632,
+                                                        44100,
+                                                        44116,
+                                                        44101,
+                                                        44102,
+                                                        44103,
+                                                        44104,
+                                                        44105,
+                                                        44106,
+                                                        44107,
+                                                        44108,
+                                                        43631,
+                                                        43637,
+                                                        43634,
+                                                        43635,
+                                                        43618]},
+                      'new': {'maxPrice': 1000000000000}},
+          'notifications': [],
+          'priceControl': []},
+ 'headers': {'Accept-Ranges': 'bytes',
+             'Age': '0',
+             'Cache-Control': 'public, max-age=60',
+             'Connection': 'keep-alive',
+             'Content-Encoding': 'gzip',
+             'Content-Length': '571',
+             'Content-Type': 'application/json; charset=UTF-8',
+             'Date': 'Wed, 13 Jan 2021 10:57:44 GMT',
+             'Expires': 'Wed, 13 Jan 2021 10:58:44 GMT',
+             'Last-Modified': 'Wed, 13 Jan 2021 10:57:44 GMT',
+             'Server': 'nginx/1.16.1',
+             'Strict-Transport-Security': 'max-age=172800; includeSubDomains',
+             'X-Cache': 'MISS'},
+ 'seconds': 0.46811,
+ 'status': 200}</msg>
+<status status="PASS" starttime="20210113 14:27:44.696" endtime="20210113 14:27:45.268"></status>
 </kw>
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
+<msg timestamp="20210113 14:27:45.268" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210113 14:27:44.695" endtime="20210113 14:27:45.268"></status>
+</kw>
+<kw name="Validate Response">
+<msg timestamp="20210113 14:27:45.268" level="TRACE">Arguments: [  ]</msg>
+<kw name="Clear Expectations" library="REST">
+<tags>
+<tag>expectations</tag>
+</tags>
+<doc>*Resets the expectations for both request and response.*</doc>
+<msg timestamp="20210113 14:27:45.269" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20210113 14:27:45.269" level="TRACE">Return: {'$schema': 'http://json-schema.org/draft-07/schema#',
+ 'default': True,
+ 'description': None,
+ 'examples': [],
+ 'properties': {'request': {'properties': {}, 'type': 'object'},
+                'response': {'properties': {}, 'type': 'object'}},
+ 'title': 'https://www.sheypoor.com/api',
+ 'type': 'object'}</msg>
+<status status="PASS" starttime="20210113 14:27:45.269" endtime="20210113 14:27:45.269"></status>
+</kw>
+<kw name="Output" library="REST">
+<tags>
+<tag>I/O</tag>
+</tags>
+<doc>*Outputs JSON to terminal or a file.*</doc>
 <arguments>
-<arg>${req} for version ${v}</arg>
+<arg>response</arg>
+<arg>body</arg>
 </arguments>
-<status status="PASS" starttime="20210112 16:38:28.892" endtime="20210112 16:38:28.898"></status>
+<msg timestamp="20210113 14:27:45.269" level="TRACE">Arguments: [ 'response' | 'body' ]</msg>
+<msg timestamp="20210113 14:27:45.311" level="TRACE">Return: {'body': {'contact': {'email': 'info@sheypoor.com',
+                      'internationalTel': '+982154587',
+                      'tel': '02154587'},
+          'features': {'advertisement': False,
+                       'all-iran-feature': True,
+                       'bump': True,
+                       'car-hide-price': False,
+                       'car-show-price-range': False,
+                       'carBodyInsurance': False,
+                       'carCertification': False,
+                       'carCertificationBuyer': False,
+                       'carCertificationUi': True,
+                       'carSearch': False,
+                       'chat': False,
+                       'cod': False,
+                       'consultant': True,
+                       'dot-ir': False,
+                       'hamshahri': False,
+                       'hidePrice': True,
+                       'leads': False,
+                       'leads-views': False,
+                       'leasing': False,
+                       'newChat': True,
+                       'notifications': False,
+                       'outOfIran': False,
+                       'package-more-view': False,
+                       'paid-features': True,
+                       'paid-features-bumps': True,
+                       'paid-tag': True,
+                       'performance-log': True,
+                       'post-moderation': False,
+                       'priceTag': False,
+                       'priceTagBI': False,
+                       'real-estate-hide-price': True,
+                       'real-estate-hide-price-rent': True,
+                       'real-estate-show-price-range': False,
+                       'resume-bank': False,
+                       'savedSearch': True,
+                       'secure-purchase': True,
+                       'secure-purchase-delivery': True,
+                       'shop-in-serp': True,
+                       'shop-secure-purchase-in-post-listing': False,
+                       'thirdPartyInsurance': False,
+                       'user-rating': False,
+                       'user-secure-purchase-in-post-listing': False,
+                       'video': True,
+                       'views': True,
+                       'visibility': False,
+                       'weblink': True},
+          'listing': {'filter': {'withImage': True,
+                                 'withImageException': [43633,
+                                                        43632,
+                                                        44100,
+                                                        44116,
+                                                        44101,
+                                                        44102,
+                                                        44103,
+                                                        44104,
+                                                        44105,
+                                                        44106,
+                                                        44107,
+                                                        44108,
+                                                        43631,
+                                                        43637,
+                                                        43634,
+                                                        43635,
+                                                        43618]},
+                      'new': {'maxPrice': 1000000000000}},
+          'notifications': [],
+          'priceControl': []},
+ 'headers': {'Accept-Ranges': 'bytes',
+             'Age': '0',
+             'Cache-Control': 'public, max-age=60',
+             'Connection': 'keep-alive',
+             'Content-Encoding': 'gzip',
+             'Content-Length': '571',
+             'Content-Type': 'application/json; charset=UTF-8',
+             'Date': 'Wed, 13 Jan 2021 10:57:44 GMT',
+             'Expires': 'Wed, 13 Jan 2021 10:58:44 GMT',
+             'Last-Modified': 'Wed, 13 Jan 2021 10:57:44 GMT',
+             'Server': 'nginx/1.16.1',
+             'Strict-Transport-Security': 'max-age=172800; includeSubDomains',
+             'X-Cache': 'MISS'},
+ 'seconds': 0.46811,
+ 'status': 200}</msg>
+<status status="PASS" starttime="20210113 14:27:45.269" endtime="20210113 14:27:45.320"></status>
 </kw>
-<kw name="Set Headers Value">
+<kw name="Object" library="REST">
+<tags>
+<tag>assertions</tag>
+</tags>
+<doc>*Asserts the field as JSON object.*</doc>
+<arguments>
+<arg>response</arg>
+<arg>body</arg>
+<arg>${Response_Path}/${Response_File}_${version}_${Platform}.json</arg>
+</arguments>
+<msg timestamp="20210113 14:27:45.323" level="TRACE">Arguments: [ 'response' | 'body' | '../Outputs/ExpectedResponse_v5.9.0_Android.json' ]</msg>
+<msg timestamp="20210113 14:27:45.368" level="TRACE">Return: [{'body': {'contact': {'email': 'info@sheypoor.com',
+                       'internationalTel': '+982154587',
+                       'tel': '02154587'},
+           'features': {'advertisement': False,
+                        'all-iran-feature': True,
+                        'bump': True,
+                        'car-hide-price': False,
+                        'car-show-price-range': False,
+                        'carBodyInsurance': False,
+                        'carCertification': False,
+                        'carCertificationBuyer': False,
+                        'carCertificationUi': True,
+                        'carSearch': False,
+                        'chat': False,
+                        'cod': False,
+                        'consultant': True,
+                        'dot-ir': False,
+                        'hamshahri': False,
+                        'hidePrice': True,
+                        'leads': False,
+                        'leads-views': False,
+                        'leasing': False,
+                        'newChat': True,
+                        'notifications': False,
+                        'outOfIran': False,
+                        'package-more-view': False,
+                        'paid-features': True,
+                        'paid-features-bumps': True,
+                        'paid-tag': True,
+                        'performance-log': True,
+                        'post-moderation': False,
+                        'priceTag': False,
+                        'priceTagBI': False,
+                        'real-estate-hide-price': True,
+                        'real-estate-hide-price-rent': True,
+                        'real-estate-show-price-range': False,
+                        'resume-bank': False,
+                        'savedSearch': True,
+                        'secure-purchase': True,
+                        'secure-purchase-delivery': True,
+                        'shop-in-serp': True,
+                        'shop-secure-purchase-in-post-listing': False,
+                        'thirdPartyInsurance': False,
+                        'user-rating': False,
+                        'user-secure-purchase-in-post-listing': False,
+                        'video': True,
+                        'views': True,
+                        'visibility': False,
+                        'weblink': True},
+           'listing': {'filter': {'withImage': True,
+                                  'withImageException': [43633,
+                                                         43632,
+                                                         44100,
+                                                         44116,
+                                                         44101,
+                                                         44102,
+                                                         44103,
+                                                         44104,
+                                                         44105,
+                                                         44106,
+                                                         44107,
+                                                         44108,
+                                                         43631,
+                                                         43637,
+                                                         43634,
+                                                         43635,
+                                                         43618]},
+                       'new': {'maxPrice': 1000000000000}},
+           'notifications': [],
+           'priceControl': []},
+  'headers': {'Accept-Ranges': 'bytes',
+              'Age': '0',
+              'Cache-Control': 'public, max-age=60',
+              'Connection': 'keep-alive',
+              'Content-Encoding': 'gzip',
+              'Content-Length': '571',
+              'Content-Type': 'application/json; charset=UTF-8',
+              'Date': 'Wed, 13 Jan 2021 10:57:44 GMT',
+              'Expires': 'Wed, 13 Jan 2021 10:58:44 GMT',
+              'Last-Modified': 'Wed, 13 Jan 2021 10:57:44 GMT',
+              'Server': 'nginx/1.16.1',
+              'Strict-Transport-Security': 'max-age=172800; includeSubDomains',
+              'X-Cache': 'MISS'},
+  'seconds': 0.46811,
+  'status': 200}]</msg>
+<status status="PASS" starttime="20210113 14:27:45.321" endtime="20210113 14:27:45.371"></status>
+</kw>
+<msg timestamp="20210113 14:27:45.371" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210113 14:27:45.268" endtime="20210113 14:27:45.371"></status>
+</kw>
+<kw name="Set Headers Value For">
 <arguments>
 <arg>Desktop_Web</arg>
 </arguments>
+<msg timestamp="20210113 14:27:45.372" level="TRACE">Arguments: [ ${Platform}='Desktop_Web' ]</msg>
 <kw name="${key} IN [ @{${Platform}.keys()} ]" type="for">
 <kw name="${key} = User-Agent" type="foritem">
 <kw name="Get From Dictionary" library="Collections">
@@ -114,8 +423,10 @@
 <assign>
 <var>${value}</var>
 </assign>
-<msg timestamp="20210112 16:38:28.900" level="INFO">${value} = Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36</msg>
-<status status="PASS" starttime="20210112 16:38:28.900" endtime="20210112 16:38:28.901"></status>
+<msg timestamp="20210113 14:27:45.373" level="TRACE">Arguments: [ {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36'} | 'User-Agent' ]</msg>
+<msg timestamp="20210113 14:27:45.373" level="TRACE">Return: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36'</msg>
+<msg timestamp="20210113 14:27:45.374" level="INFO">${value} = Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36</msg>
+<status status="PASS" starttime="20210113 14:27:45.373" endtime="20210113 14:27:45.374"></status>
 </kw>
 <kw name="Set Headers" library="REST">
 <tags>
@@ -125,46 +436,363 @@
 <arguments>
 <arg>{"key":"value"}</arg>
 </arguments>
-<status status="PASS" starttime="20210112 16:38:28.901" endtime="20210112 16:38:28.902"></status>
+<msg timestamp="20210113 14:27:45.374" level="TRACE">Arguments: [ '{"key":"value"}' ]</msg>
+<msg timestamp="20210113 14:27:45.374" level="TRACE">Return: {'Accept': 'application/json, */*',
+ 'Content-Type': 'application/json',
+ 'User-Agent': 'RESTinstance/1.0.2',
+ 'key': 'value'}</msg>
+<status status="PASS" starttime="20210113 14:27:45.374" endtime="20210113 14:27:45.374"></status>
 </kw>
-<status status="PASS" starttime="20210112 16:38:28.900" endtime="20210112 16:38:28.902"></status>
-</kw>
-<status status="PASS" starttime="20210112 16:38:28.899" endtime="20210112 16:38:28.902"></status>
-</kw>
-<status status="PASS" starttime="20210112 16:38:28.899" endtime="20210112 16:38:28.902"></status>
-</kw>
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
+<kw name="Set Task Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current task.</doc>
 <arguments>
-<arg>\nTest Running On The Platform: Desktop Web</arg>
+<arg>${Platform}</arg>
 </arguments>
-<status status="PASS" starttime="20210112 16:38:28.902" endtime="20210112 16:38:28.930"></status>
+<msg timestamp="20210113 14:27:45.375" level="TRACE">Arguments: [ '${Platform}' ]</msg>
+<msg timestamp="20210113 14:27:45.375" level="INFO">${Platform} = Desktop_Web</msg>
+<msg timestamp="20210113 14:27:45.375" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210113 14:27:45.375" endtime="20210113 14:27:45.375"></status>
 </kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<doc>Returns from the enclosing user keyword.</doc>
+<arguments>
+<arg>${Platform}</arg>
+</arguments>
+<msg timestamp="20210113 14:27:45.376" level="TRACE">Arguments: [ '${Platform}' ]</msg>
+<msg timestamp="20210113 14:27:45.376" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20210113 14:27:45.375" endtime="20210113 14:27:45.376"></status>
+</kw>
+<status status="PASS" starttime="20210113 14:27:45.373" endtime="20210113 14:27:45.376"></status>
+</kw>
+<status status="PASS" starttime="20210113 14:27:45.372" endtime="20210113 14:27:45.376"></status>
+</kw>
+<msg timestamp="20210113 14:27:45.378" level="TRACE">Return: 'Desktop_Web'</msg>
+<status status="PASS" starttime="20210113 14:27:45.372" endtime="20210113 14:27:45.378"></status>
+</kw>
+<kw name="Send Get Request">
+<msg timestamp="20210113 14:27:45.380" level="TRACE">Arguments: [  ]</msg>
 <kw name="Get" library="REST">
 <tags>
 <tag>http</tag>
 </tags>
 <doc>*Sends a GET request to the endpoint.*</doc>
 <arguments>
-<arg>${v}${EndPoint}</arg>
+<arg>${version}${EndPoint}</arg>
 </arguments>
-<assign>
-<var>${req}</var>
-</assign>
-<msg timestamp="20210112 16:38:29.889" level="INFO">${req} = {'seconds': 0.9408179999999999, 'status': 200, 'body': {'listing': {'filter': {'withImage': True, 'withImageException': [43633, 43632, 44100, 44116, 44101, 44102, 44103, 44104, 44105, 44106, 44107, 44...</msg>
-<status status="PASS" starttime="20210112 16:38:28.931" endtime="20210112 16:38:29.890"></status>
+<msg timestamp="20210113 14:27:45.382" level="TRACE">Arguments: [ 'v5.9.0/general/config' ]</msg>
+<msg timestamp="20210113 14:27:45.386" level="DEBUG">Starting new HTTPS connection (1): www.sheypoor.com:443</msg>
+<msg timestamp="20210113 14:27:45.544" level="DEBUG">https://www.sheypoor.com:443 "GET /api/v5.9.0/general/config HTTP/1.1" 200 571</msg>
+<msg timestamp="20210113 14:27:45.557" level="TRACE">Return: {'body': {'contact': {'email': 'info@sheypoor.com',
+                      'internationalTel': '+982154587',
+                      'tel': '02154587'},
+          'features': {'advertisement': False,
+                       'all-iran-feature': True,
+                       'bump': True,
+                       'car-hide-price': False,
+                       'car-show-price-range': False,
+                       'carBodyInsurance': False,
+                       'carCertification': False,
+                       'carCertificationBuyer': False,
+                       'carCertificationUi': True,
+                       'carSearch': False,
+                       'chat': False,
+                       'cod': False,
+                       'consultant': True,
+                       'dot-ir': False,
+                       'hamshahri': False,
+                       'hidePrice': True,
+                       'leads': False,
+                       'leads-views': False,
+                       'leasing': False,
+                       'newChat': True,
+                       'notifications': False,
+                       'outOfIran': False,
+                       'package-more-view': False,
+                       'paid-features': True,
+                       'paid-features-bumps': True,
+                       'paid-tag': True,
+                       'performance-log': True,
+                       'post-moderation': False,
+                       'priceTag': False,
+                       'priceTagBI': False,
+                       'real-estate-hide-price': True,
+                       'real-estate-hide-price-rent': True,
+                       'real-estate-show-price-range': False,
+                       'resume-bank': False,
+                       'savedSearch': True,
+                       'secure-purchase': True,
+                       'secure-purchase-delivery': True,
+                       'shop-in-serp': True,
+                       'shop-secure-purchase-in-post-listing': False,
+                       'thirdPartyInsurance': False,
+                       'user-rating': False,
+                       'user-secure-purchase-in-post-listing': False,
+                       'video': True,
+                       'views': True,
+                       'visibility': False,
+                       'weblink': True},
+          'listing': {'filter': {'withImage': True,
+                                 'withImageException': [43633,
+                                                        43632,
+                                                        44100,
+                                                        44116,
+                                                        44101,
+                                                        44102,
+                                                        44103,
+                                                        44104,
+                                                        44105,
+                                                        44106,
+                                                        44107,
+                                                        44108,
+                                                        43631,
+                                                        43637,
+                                                        43634,
+                                                        43635,
+                                                        43618]},
+                      'new': {'maxPrice': 1000000000000}},
+          'notifications': [],
+          'priceControl': []},
+ 'headers': {'Accept-Ranges': 'bytes',
+             'Age': '0',
+             'Cache-Control': 'public, max-age=60',
+             'Connection': 'keep-alive',
+             'Content-Encoding': 'gzip',
+             'Content-Length': '571',
+             'Content-Type': 'application/json; charset=UTF-8',
+             'Date': 'Wed, 13 Jan 2021 10:57:44 GMT',
+             'Expires': 'Wed, 13 Jan 2021 10:58:44 GMT',
+             'Last-Modified': 'Wed, 13 Jan 2021 10:57:44 GMT',
+             'Server': 'nginx/1.16.1',
+             'Strict-Transport-Security': 'max-age=172800; includeSubDomains',
+             'X-Cache': 'MISS'},
+ 'seconds': 0.160826,
+ 'status': 200}</msg>
+<status status="PASS" starttime="20210113 14:27:45.381" endtime="20210113 14:27:45.561"></status>
 </kw>
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
+<msg timestamp="20210113 14:27:45.561" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210113 14:27:45.378" endtime="20210113 14:27:45.561"></status>
+</kw>
+<kw name="Validate Response">
+<msg timestamp="20210113 14:27:45.562" level="TRACE">Arguments: [  ]</msg>
+<kw name="Clear Expectations" library="REST">
+<tags>
+<tag>expectations</tag>
+</tags>
+<doc>*Resets the expectations for both request and response.*</doc>
+<msg timestamp="20210113 14:27:45.562" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20210113 14:27:45.562" level="TRACE">Return: {'$schema': 'http://json-schema.org/draft-07/schema#',
+ 'default': True,
+ 'description': None,
+ 'examples': [],
+ 'properties': {'request': {'properties': {}, 'type': 'object'},
+                'response': {'properties': {}, 'type': 'object'}},
+ 'title': 'https://www.sheypoor.com/api',
+ 'type': 'object'}</msg>
+<status status="PASS" starttime="20210113 14:27:45.562" endtime="20210113 14:27:45.563"></status>
+</kw>
+<kw name="Output" library="REST">
+<tags>
+<tag>I/O</tag>
+</tags>
+<doc>*Outputs JSON to terminal or a file.*</doc>
 <arguments>
-<arg>${req} for version ${v}</arg>
+<arg>response</arg>
+<arg>body</arg>
 </arguments>
-<status status="PASS" starttime="20210112 16:38:29.890" endtime="20210112 16:38:30.023"></status>
+<msg timestamp="20210113 14:27:45.563" level="TRACE">Arguments: [ 'response' | 'body' ]</msg>
+<msg timestamp="20210113 14:27:45.564" level="TRACE">Return: {'body': {'contact': {'email': 'info@sheypoor.com',
+                      'internationalTel': '+982154587',
+                      'tel': '02154587'},
+          'features': {'advertisement': False,
+                       'all-iran-feature': True,
+                       'bump': True,
+                       'car-hide-price': False,
+                       'car-show-price-range': False,
+                       'carBodyInsurance': False,
+                       'carCertification': False,
+                       'carCertificationBuyer': False,
+                       'carCertificationUi': True,
+                       'carSearch': False,
+                       'chat': False,
+                       'cod': False,
+                       'consultant': True,
+                       'dot-ir': False,
+                       'hamshahri': False,
+                       'hidePrice': True,
+                       'leads': False,
+                       'leads-views': False,
+                       'leasing': False,
+                       'newChat': True,
+                       'notifications': False,
+                       'outOfIran': False,
+                       'package-more-view': False,
+                       'paid-features': True,
+                       'paid-features-bumps': True,
+                       'paid-tag': True,
+                       'performance-log': True,
+                       'post-moderation': False,
+                       'priceTag': False,
+                       'priceTagBI': False,
+                       'real-estate-hide-price': True,
+                       'real-estate-hide-price-rent': True,
+                       'real-estate-show-price-range': False,
+                       'resume-bank': False,
+                       'savedSearch': True,
+                       'secure-purchase': True,
+                       'secure-purchase-delivery': True,
+                       'shop-in-serp': True,
+                       'shop-secure-purchase-in-post-listing': False,
+                       'thirdPartyInsurance': False,
+                       'user-rating': False,
+                       'user-secure-purchase-in-post-listing': False,
+                       'video': True,
+                       'views': True,
+                       'visibility': False,
+                       'weblink': True},
+          'listing': {'filter': {'withImage': True,
+                                 'withImageException': [43633,
+                                                        43632,
+                                                        44100,
+                                                        44116,
+                                                        44101,
+                                                        44102,
+                                                        44103,
+                                                        44104,
+                                                        44105,
+                                                        44106,
+                                                        44107,
+                                                        44108,
+                                                        43631,
+                                                        43637,
+                                                        43634,
+                                                        43635,
+                                                        43618]},
+                      'new': {'maxPrice': 1000000000000}},
+          'notifications': [],
+          'priceControl': []},
+ 'headers': {'Accept-Ranges': 'bytes',
+             'Age': '0',
+             'Cache-Control': 'public, max-age=60',
+             'Connection': 'keep-alive',
+             'Content-Encoding': 'gzip',
+             'Content-Length': '571',
+             'Content-Type': 'application/json; charset=UTF-8',
+             'Date': 'Wed, 13 Jan 2021 10:57:44 GMT',
+             'Expires': 'Wed, 13 Jan 2021 10:58:44 GMT',
+             'Last-Modified': 'Wed, 13 Jan 2021 10:57:44 GMT',
+             'Server': 'nginx/1.16.1',
+             'Strict-Transport-Security': 'max-age=172800; includeSubDomains',
+             'X-Cache': 'MISS'},
+ 'seconds': 0.160826,
+ 'status': 200}</msg>
+<status status="PASS" starttime="20210113 14:27:45.563" endtime="20210113 14:27:45.566"></status>
 </kw>
-<kw name="Set Headers Value">
+<kw name="Object" library="REST">
+<tags>
+<tag>assertions</tag>
+</tags>
+<doc>*Asserts the field as JSON object.*</doc>
+<arguments>
+<arg>response</arg>
+<arg>body</arg>
+<arg>${Response_Path}/${Response_File}_${version}_${Platform}.json</arg>
+</arguments>
+<msg timestamp="20210113 14:27:45.566" level="TRACE">Arguments: [ 'response' | 'body' | '../Outputs/ExpectedResponse_v5.9.0_Desktop_Web.json' ]</msg>
+<msg timestamp="20210113 14:27:45.587" level="TRACE">Return: [{'body': {'contact': {'email': 'info@sheypoor.com',
+                       'internationalTel': '+982154587',
+                       'tel': '02154587'},
+           'features': {'advertisement': False,
+                        'all-iran-feature': True,
+                        'bump': True,
+                        'car-hide-price': False,
+                        'car-show-price-range': False,
+                        'carBodyInsurance': False,
+                        'carCertification': False,
+                        'carCertificationBuyer': False,
+                        'carCertificationUi': True,
+                        'carSearch': False,
+                        'chat': False,
+                        'cod': False,
+                        'consultant': True,
+                        'dot-ir': False,
+                        'hamshahri': False,
+                        'hidePrice': True,
+                        'leads': False,
+                        'leads-views': False,
+                        'leasing': False,
+                        'newChat': True,
+                        'notifications': False,
+                        'outOfIran': False,
+                        'package-more-view': False,
+                        'paid-features': True,
+                        'paid-features-bumps': True,
+                        'paid-tag': True,
+                        'performance-log': True,
+                        'post-moderation': False,
+                        'priceTag': False,
+                        'priceTagBI': False,
+                        'real-estate-hide-price': True,
+                        'real-estate-hide-price-rent': True,
+                        'real-estate-show-price-range': False,
+                        'resume-bank': False,
+                        'savedSearch': True,
+                        'secure-purchase': True,
+                        'secure-purchase-delivery': True,
+                        'shop-in-serp': True,
+                        'shop-secure-purchase-in-post-listing': False,
+                        'thirdPartyInsurance': False,
+                        'user-rating': False,
+                        'user-secure-purchase-in-post-listing': False,
+                        'video': True,
+                        'views': True,
+                        'visibility': False,
+                        'weblink': True},
+           'listing': {'filter': {'withImage': True,
+                                  'withImageException': [43633,
+                                                         43632,
+                                                         44100,
+                                                         44116,
+                                                         44101,
+                                                         44102,
+                                                         44103,
+                                                         44104,
+                                                         44105,
+                                                         44106,
+                                                         44107,
+                                                         44108,
+                                                         43631,
+                                                         43637,
+                                                         43634,
+                                                         43635,
+                                                         43618]},
+                       'new': {'maxPrice': 1000000000000}},
+           'notifications': [],
+           'priceControl': []},
+  'headers': {'Accept-Ranges': 'bytes',
+              'Age': '0',
+              'Cache-Control': 'public, max-age=60',
+              'Connection': 'keep-alive',
+              'Content-Encoding': 'gzip',
+              'Content-Length': '571',
+              'Content-Type': 'application/json; charset=UTF-8',
+              'Date': 'Wed, 13 Jan 2021 10:57:44 GMT',
+              'Expires': 'Wed, 13 Jan 2021 10:58:44 GMT',
+              'Last-Modified': 'Wed, 13 Jan 2021 10:57:44 GMT',
+              'Server': 'nginx/1.16.1',
+              'Strict-Transport-Security': 'max-age=172800; includeSubDomains',
+              'X-Cache': 'MISS'},
+  'seconds': 0.160826,
+  'status': 200}]</msg>
+<status status="PASS" starttime="20210113 14:27:45.566" endtime="20210113 14:27:45.593"></status>
+</kw>
+<msg timestamp="20210113 14:27:45.593" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210113 14:27:45.561" endtime="20210113 14:27:45.593"></status>
+</kw>
+<kw name="Set Headers Value For">
 <arguments>
 <arg>Mobile_Site</arg>
 </arguments>
+<msg timestamp="20210113 14:27:45.594" level="TRACE">Arguments: [ ${Platform}='Mobile_Site' ]</msg>
 <kw name="${key} IN [ @{${Platform}.keys()} ]" type="for">
 <kw name="${key} = User-Agent" type="foritem">
 <kw name="Get From Dictionary" library="Collections">
@@ -176,8 +804,10 @@
 <assign>
 <var>${value}</var>
 </assign>
-<msg timestamp="20210112 16:38:30.026" level="INFO">${value} = Mozilla/5.0 (Linux; U; Android 8.1; en-us; SCH-I535 Build/KOT49H) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30</msg>
-<status status="PASS" starttime="20210112 16:38:30.025" endtime="20210112 16:38:30.026"></status>
+<msg timestamp="20210113 14:27:45.596" level="TRACE">Arguments: [ {'User-Agent': 'Mozilla/5.0 (Linux; U; Android 8.1; en-us; SCH-I535 Build/KOT49H) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30'} | 'User-Agent' ]</msg>
+<msg timestamp="20210113 14:27:45.597" level="TRACE">Return: 'Mozilla/5.0 (Linux; U; Android 8.1; en-us; SCH-I535 Build/KOT49H) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30'</msg>
+<msg timestamp="20210113 14:27:45.597" level="INFO">${value} = Mozilla/5.0 (Linux; U; Android 8.1; en-us; SCH-I535 Build/KOT49H) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30</msg>
+<status status="PASS" starttime="20210113 14:27:45.596" endtime="20210113 14:27:45.597"></status>
 </kw>
 <kw name="Set Headers" library="REST">
 <tags>
@@ -187,61 +817,382 @@
 <arguments>
 <arg>{"key":"value"}</arg>
 </arguments>
-<status status="PASS" starttime="20210112 16:38:30.027" endtime="20210112 16:38:30.027"></status>
+<msg timestamp="20210113 14:27:45.598" level="TRACE">Arguments: [ '{"key":"value"}' ]</msg>
+<msg timestamp="20210113 14:27:45.598" level="TRACE">Return: {'Accept': 'application/json, */*',
+ 'Content-Type': 'application/json',
+ 'User-Agent': 'RESTinstance/1.0.2',
+ 'key': 'value'}</msg>
+<status status="PASS" starttime="20210113 14:27:45.597" endtime="20210113 14:27:45.598"></status>
 </kw>
-<status status="PASS" starttime="20210112 16:38:30.024" endtime="20210112 16:38:30.027"></status>
-</kw>
-<status status="PASS" starttime="20210112 16:38:30.024" endtime="20210112 16:38:30.028"></status>
-</kw>
-<status status="PASS" starttime="20210112 16:38:30.023" endtime="20210112 16:38:30.028"></status>
-</kw>
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
+<kw name="Set Task Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current task.</doc>
 <arguments>
-<arg>\nTest Running On The Platform: Mobile Site</arg>
+<arg>${Platform}</arg>
 </arguments>
-<status status="PASS" starttime="20210112 16:38:30.028" endtime="20210112 16:38:30.030"></status>
+<msg timestamp="20210113 14:27:45.599" level="TRACE">Arguments: [ '${Platform}' ]</msg>
+<msg timestamp="20210113 14:27:45.600" level="INFO">${Platform} = Mobile_Site</msg>
+<msg timestamp="20210113 14:27:45.600" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210113 14:27:45.599" endtime="20210113 14:27:45.600"></status>
 </kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<doc>Returns from the enclosing user keyword.</doc>
+<arguments>
+<arg>${Platform}</arg>
+</arguments>
+<msg timestamp="20210113 14:27:45.600" level="TRACE">Arguments: [ '${Platform}' ]</msg>
+<msg timestamp="20210113 14:27:45.601" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20210113 14:27:45.600" endtime="20210113 14:27:45.601"></status>
+</kw>
+<status status="PASS" starttime="20210113 14:27:45.595" endtime="20210113 14:27:45.601"></status>
+</kw>
+<status status="PASS" starttime="20210113 14:27:45.595" endtime="20210113 14:27:45.601"></status>
+</kw>
+<msg timestamp="20210113 14:27:45.601" level="TRACE">Return: 'Mobile_Site'</msg>
+<status status="PASS" starttime="20210113 14:27:45.594" endtime="20210113 14:27:45.602"></status>
+</kw>
+<kw name="Send Get Request">
+<msg timestamp="20210113 14:27:45.602" level="TRACE">Arguments: [  ]</msg>
 <kw name="Get" library="REST">
 <tags>
 <tag>http</tag>
 </tags>
 <doc>*Sends a GET request to the endpoint.*</doc>
 <arguments>
-<arg>${v}${EndPoint}</arg>
+<arg>${version}${EndPoint}</arg>
 </arguments>
-<assign>
-<var>${req}</var>
-</assign>
-<msg timestamp="20210112 16:38:30.981" level="INFO">${req} = {'seconds': 0.938312, 'status': 200, 'body': {'listing': {'filter': {'withImage': True, 'withImageException': [43633, 43632, 44100, 44116, 44101, 44102, 44103, 44104, 44105, 44106, 44107, 44108, 43631...</msg>
-<status status="PASS" starttime="20210112 16:38:30.030" endtime="20210112 16:38:30.981"></status>
+<msg timestamp="20210113 14:27:45.603" level="TRACE">Arguments: [ 'v5.9.0/general/config' ]</msg>
+<msg timestamp="20210113 14:27:45.606" level="DEBUG">Starting new HTTPS connection (1): www.sheypoor.com:443</msg>
+<msg timestamp="20210113 14:27:45.732" level="DEBUG">https://www.sheypoor.com:443 "GET /api/v5.9.0/general/config HTTP/1.1" 200 571</msg>
+<msg timestamp="20210113 14:27:45.742" level="TRACE">Return: {'body': {'contact': {'email': 'info@sheypoor.com',
+                      'internationalTel': '+982154587',
+                      'tel': '02154587'},
+          'features': {'advertisement': False,
+                       'all-iran-feature': True,
+                       'bump': True,
+                       'car-hide-price': False,
+                       'car-show-price-range': False,
+                       'carBodyInsurance': False,
+                       'carCertification': False,
+                       'carCertificationBuyer': False,
+                       'carCertificationUi': True,
+                       'carSearch': False,
+                       'chat': False,
+                       'cod': False,
+                       'consultant': True,
+                       'dot-ir': False,
+                       'hamshahri': False,
+                       'hidePrice': True,
+                       'leads': False,
+                       'leads-views': False,
+                       'leasing': False,
+                       'newChat': True,
+                       'notifications': False,
+                       'outOfIran': False,
+                       'package-more-view': False,
+                       'paid-features': True,
+                       'paid-features-bumps': True,
+                       'paid-tag': True,
+                       'performance-log': True,
+                       'post-moderation': False,
+                       'priceTag': False,
+                       'priceTagBI': False,
+                       'real-estate-hide-price': True,
+                       'real-estate-hide-price-rent': True,
+                       'real-estate-show-price-range': False,
+                       'resume-bank': False,
+                       'savedSearch': True,
+                       'secure-purchase': True,
+                       'secure-purchase-delivery': True,
+                       'shop-in-serp': True,
+                       'shop-secure-purchase-in-post-listing': False,
+                       'thirdPartyInsurance': False,
+                       'user-rating': False,
+                       'user-secure-purchase-in-post-listing': False,
+                       'video': True,
+                       'views': True,
+                       'visibility': False,
+                       'weblink': True},
+          'listing': {'filter': {'withImage': True,
+                                 'withImageException': [43633,
+                                                        43632,
+                                                        44100,
+                                                        44116,
+                                                        44101,
+                                                        44102,
+                                                        44103,
+                                                        44104,
+                                                        44105,
+                                                        44106,
+                                                        44107,
+                                                        44108,
+                                                        43631,
+                                                        43637,
+                                                        43634,
+                                                        43635,
+                                                        43618]},
+                      'new': {'maxPrice': 1000000000000}},
+          'notifications': [],
+          'priceControl': []},
+ 'headers': {'Accept-Ranges': 'bytes',
+             'Age': '0',
+             'Cache-Control': 'public, max-age=60',
+             'Connection': 'keep-alive',
+             'Content-Encoding': 'gzip',
+             'Content-Length': '571',
+             'Content-Type': 'application/json; charset=UTF-8',
+             'Date': 'Wed, 13 Jan 2021 10:57:44 GMT',
+             'Expires': 'Wed, 13 Jan 2021 10:58:44 GMT',
+             'Last-Modified': 'Wed, 13 Jan 2021 10:57:44 GMT',
+             'Server': 'nginx/1.16.1',
+             'Strict-Transport-Security': 'max-age=172800; includeSubDomains',
+             'X-Cache': 'HIT'},
+ 'seconds': 0.127005,
+ 'status': 200}</msg>
+<status status="PASS" starttime="20210113 14:27:45.602" endtime="20210113 14:27:45.748"></status>
 </kw>
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
+<msg timestamp="20210113 14:27:45.749" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210113 14:27:45.602" endtime="20210113 14:27:45.749"></status>
+</kw>
+<kw name="Validate Response">
+<msg timestamp="20210113 14:27:45.750" level="TRACE">Arguments: [  ]</msg>
+<kw name="Clear Expectations" library="REST">
+<tags>
+<tag>expectations</tag>
+</tags>
+<doc>*Resets the expectations for both request and response.*</doc>
+<msg timestamp="20210113 14:27:45.751" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20210113 14:27:45.752" level="TRACE">Return: {'$schema': 'http://json-schema.org/draft-07/schema#',
+ 'default': True,
+ 'description': None,
+ 'examples': [],
+ 'properties': {'request': {'properties': {}, 'type': 'object'},
+                'response': {'properties': {}, 'type': 'object'}},
+ 'title': 'https://www.sheypoor.com/api',
+ 'type': 'object'}</msg>
+<status status="PASS" starttime="20210113 14:27:45.751" endtime="20210113 14:27:45.753"></status>
+</kw>
+<kw name="Output" library="REST">
+<tags>
+<tag>I/O</tag>
+</tags>
+<doc>*Outputs JSON to terminal or a file.*</doc>
 <arguments>
-<arg>${req} for version ${v}</arg>
+<arg>response</arg>
+<arg>body</arg>
 </arguments>
-<status status="PASS" starttime="20210112 16:38:30.981" endtime="20210112 16:38:31.108"></status>
+<msg timestamp="20210113 14:27:45.754" level="TRACE">Arguments: [ 'response' | 'body' ]</msg>
+<msg timestamp="20210113 14:27:45.756" level="TRACE">Return: {'body': {'contact': {'email': 'info@sheypoor.com',
+                      'internationalTel': '+982154587',
+                      'tel': '02154587'},
+          'features': {'advertisement': False,
+                       'all-iran-feature': True,
+                       'bump': True,
+                       'car-hide-price': False,
+                       'car-show-price-range': False,
+                       'carBodyInsurance': False,
+                       'carCertification': False,
+                       'carCertificationBuyer': False,
+                       'carCertificationUi': True,
+                       'carSearch': False,
+                       'chat': False,
+                       'cod': False,
+                       'consultant': True,
+                       'dot-ir': False,
+                       'hamshahri': False,
+                       'hidePrice': True,
+                       'leads': False,
+                       'leads-views': False,
+                       'leasing': False,
+                       'newChat': True,
+                       'notifications': False,
+                       'outOfIran': False,
+                       'package-more-view': False,
+                       'paid-features': True,
+                       'paid-features-bumps': True,
+                       'paid-tag': True,
+                       'performance-log': True,
+                       'post-moderation': False,
+                       'priceTag': False,
+                       'priceTagBI': False,
+                       'real-estate-hide-price': True,
+                       'real-estate-hide-price-rent': True,
+                       'real-estate-show-price-range': False,
+                       'resume-bank': False,
+                       'savedSearch': True,
+                       'secure-purchase': True,
+                       'secure-purchase-delivery': True,
+                       'shop-in-serp': True,
+                       'shop-secure-purchase-in-post-listing': False,
+                       'thirdPartyInsurance': False,
+                       'user-rating': False,
+                       'user-secure-purchase-in-post-listing': False,
+                       'video': True,
+                       'views': True,
+                       'visibility': False,
+                       'weblink': True},
+          'listing': {'filter': {'withImage': True,
+                                 'withImageException': [43633,
+                                                        43632,
+                                                        44100,
+                                                        44116,
+                                                        44101,
+                                                        44102,
+                                                        44103,
+                                                        44104,
+                                                        44105,
+                                                        44106,
+                                                        44107,
+                                                        44108,
+                                                        43631,
+                                                        43637,
+                                                        43634,
+                                                        43635,
+                                                        43618]},
+                      'new': {'maxPrice': 1000000000000}},
+          'notifications': [],
+          'priceControl': []},
+ 'headers': {'Accept-Ranges': 'bytes',
+             'Age': '0',
+             'Cache-Control': 'public, max-age=60',
+             'Connection': 'keep-alive',
+             'Content-Encoding': 'gzip',
+             'Content-Length': '571',
+             'Content-Type': 'application/json; charset=UTF-8',
+             'Date': 'Wed, 13 Jan 2021 10:57:44 GMT',
+             'Expires': 'Wed, 13 Jan 2021 10:58:44 GMT',
+             'Last-Modified': 'Wed, 13 Jan 2021 10:57:44 GMT',
+             'Server': 'nginx/1.16.1',
+             'Strict-Transport-Security': 'max-age=172800; includeSubDomains',
+             'X-Cache': 'HIT'},
+ 'seconds': 0.127005,
+ 'status': 200}</msg>
+<status status="PASS" starttime="20210113 14:27:45.753" endtime="20210113 14:27:45.763"></status>
+</kw>
+<kw name="Object" library="REST">
+<tags>
+<tag>assertions</tag>
+</tags>
+<doc>*Asserts the field as JSON object.*</doc>
+<arguments>
+<arg>response</arg>
+<arg>body</arg>
+<arg>${Response_Path}/${Response_File}_${version}_${Platform}.json</arg>
+</arguments>
+<msg timestamp="20210113 14:27:45.764" level="TRACE">Arguments: [ 'response' | 'body' | '../Outputs/ExpectedResponse_v5.9.0_Mobile_Site.json' ]</msg>
+<msg timestamp="20210113 14:27:45.782" level="TRACE">Return: [{'body': {'contact': {'email': 'info@sheypoor.com',
+                       'internationalTel': '+982154587',
+                       'tel': '02154587'},
+           'features': {'advertisement': False,
+                        'all-iran-feature': True,
+                        'bump': True,
+                        'car-hide-price': False,
+                        'car-show-price-range': False,
+                        'carBodyInsurance': False,
+                        'carCertification': False,
+                        'carCertificationBuyer': False,
+                        'carCertificationUi': True,
+                        'carSearch': False,
+                        'chat': False,
+                        'cod': False,
+                        'consultant': True,
+                        'dot-ir': False,
+                        'hamshahri': False,
+                        'hidePrice': True,
+                        'leads': False,
+                        'leads-views': False,
+                        'leasing': False,
+                        'newChat': True,
+                        'notifications': False,
+                        'outOfIran': False,
+                        'package-more-view': False,
+                        'paid-features': True,
+                        'paid-features-bumps': True,
+                        'paid-tag': True,
+                        'performance-log': True,
+                        'post-moderation': False,
+                        'priceTag': False,
+                        'priceTagBI': False,
+                        'real-estate-hide-price': True,
+                        'real-estate-hide-price-rent': True,
+                        'real-estate-show-price-range': False,
+                        'resume-bank': False,
+                        'savedSearch': True,
+                        'secure-purchase': True,
+                        'secure-purchase-delivery': True,
+                        'shop-in-serp': True,
+                        'shop-secure-purchase-in-post-listing': False,
+                        'thirdPartyInsurance': False,
+                        'user-rating': False,
+                        'user-secure-purchase-in-post-listing': False,
+                        'video': True,
+                        'views': True,
+                        'visibility': False,
+                        'weblink': True},
+           'listing': {'filter': {'withImage': True,
+                                  'withImageException': [43633,
+                                                         43632,
+                                                         44100,
+                                                         44116,
+                                                         44101,
+                                                         44102,
+                                                         44103,
+                                                         44104,
+                                                         44105,
+                                                         44106,
+                                                         44107,
+                                                         44108,
+                                                         43631,
+                                                         43637,
+                                                         43634,
+                                                         43635,
+                                                         43618]},
+                       'new': {'maxPrice': 1000000000000}},
+           'notifications': [],
+           'priceControl': []},
+  'headers': {'Accept-Ranges': 'bytes',
+              'Age': '0',
+              'Cache-Control': 'public, max-age=60',
+              'Connection': 'keep-alive',
+              'Content-Encoding': 'gzip',
+              'Content-Length': '571',
+              'Content-Type': 'application/json; charset=UTF-8',
+              'Date': 'Wed, 13 Jan 2021 10:57:44 GMT',
+              'Expires': 'Wed, 13 Jan 2021 10:58:44 GMT',
+              'Last-Modified': 'Wed, 13 Jan 2021 10:57:44 GMT',
+              'Server': 'nginx/1.16.1',
+              'Strict-Transport-Security': 'max-age=172800; includeSubDomains',
+              'X-Cache': 'HIT'},
+  'seconds': 0.127005,
+  'status': 200}]</msg>
+<status status="PASS" starttime="20210113 14:27:45.763" endtime="20210113 14:27:45.785"></status>
+</kw>
+<msg timestamp="20210113 14:27:45.785" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210113 14:27:45.749" endtime="20210113 14:27:45.785"></status>
 </kw>
 <kw name="Continue For Loop" library="BuiltIn">
 <doc>Skips the current for loop iteration and continues from the next.</doc>
-<msg timestamp="20210112 16:38:31.109" level="INFO">Continuing for loop from the next iteration.</msg>
-<status status="PASS" starttime="20210112 16:38:31.109" endtime="20210112 16:38:31.109"></status>
+<msg timestamp="20210113 14:27:45.785" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20210113 14:27:45.785" level="INFO">Continuing for loop from the next iteration.</msg>
+<status status="PASS" starttime="20210113 14:27:45.785" endtime="20210113 14:27:45.785"></status>
 </kw>
-<status status="PASS" starttime="20210112 16:38:27.476" endtime="20210112 16:38:31.109"></status>
+<status status="PASS" starttime="20210113 14:27:44.687" endtime="20210113 14:27:45.785"></status>
 </kw>
-<kw name="${v} = v5.8.0" type="foritem">
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
+<kw name="${version} = v5.8.0" type="foritem">
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
 <arguments>
-<arg>\nAPI Version is: ${v}</arg>
+<arg>${version}</arg>
 </arguments>
-<status status="PASS" starttime="20210112 16:38:31.110" endtime="20210112 16:38:31.111"></status>
+<msg timestamp="20210113 14:27:45.786" level="TRACE">Arguments: [ '${version}' ]</msg>
+<msg timestamp="20210113 14:27:45.786" level="INFO">${version} = v5.8.0</msg>
+<msg timestamp="20210113 14:27:45.786" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210113 14:27:45.786" endtime="20210113 14:27:45.786"></status>
 </kw>
-<kw name="Set Headers Value">
+<kw name="Set Headers Value For">
 <arguments>
 <arg>Android</arg>
 </arguments>
+<msg timestamp="20210113 14:27:45.787" level="TRACE">Arguments: [ ${Platform}='Android' ]</msg>
 <kw name="${key} IN [ @{${Platform}.keys()} ]" type="for">
 <kw name="${key} = X-AGENT-TYPE" type="foritem">
 <kw name="Get From Dictionary" library="Collections">
@@ -253,8 +1204,10 @@
 <assign>
 <var>${value}</var>
 </assign>
-<msg timestamp="20210112 16:38:31.113" level="INFO">${value} = Android App</msg>
-<status status="PASS" starttime="20210112 16:38:31.113" endtime="20210112 16:38:31.113"></status>
+<msg timestamp="20210113 14:27:45.787" level="TRACE">Arguments: [ {'App-Version': '5.9.0', 'X-AGENT-TYPE': 'Android App'} | 'X-AGENT-TYPE' ]</msg>
+<msg timestamp="20210113 14:27:45.788" level="TRACE">Return: 'Android App'</msg>
+<msg timestamp="20210113 14:27:45.788" level="INFO">${value} = Android App</msg>
+<status status="PASS" starttime="20210113 14:27:45.787" endtime="20210113 14:27:45.788"></status>
 </kw>
 <kw name="Set Headers" library="REST">
 <tags>
@@ -264,71 +1217,363 @@
 <arguments>
 <arg>{"key":"value"}</arg>
 </arguments>
-<status status="PASS" starttime="20210112 16:38:31.114" endtime="20210112 16:38:31.114"></status>
+<msg timestamp="20210113 14:27:45.788" level="TRACE">Arguments: [ '{"key":"value"}' ]</msg>
+<msg timestamp="20210113 14:27:45.788" level="TRACE">Return: {'Accept': 'application/json, */*',
+ 'Content-Type': 'application/json',
+ 'User-Agent': 'RESTinstance/1.0.2',
+ 'key': 'value'}</msg>
+<status status="PASS" starttime="20210113 14:27:45.788" endtime="20210113 14:27:45.788"></status>
 </kw>
-<status status="PASS" starttime="20210112 16:38:31.113" endtime="20210112 16:38:31.114"></status>
-</kw>
-<kw name="${key} = App-Version" type="foritem">
-<kw name="Get From Dictionary" library="Collections">
-<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<kw name="Set Task Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current task.</doc>
 <arguments>
-<arg>${${Platform}}</arg>
-<arg>${key}</arg>
+<arg>${Platform}</arg>
 </arguments>
-<assign>
-<var>${value}</var>
-</assign>
-<msg timestamp="20210112 16:38:31.114" level="INFO">${value} = 5.9.0</msg>
-<status status="PASS" starttime="20210112 16:38:31.114" endtime="20210112 16:38:31.114"></status>
+<msg timestamp="20210113 14:27:45.789" level="TRACE">Arguments: [ '${Platform}' ]</msg>
+<msg timestamp="20210113 14:27:45.789" level="INFO">${Platform} = Android</msg>
+<msg timestamp="20210113 14:27:45.789" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210113 14:27:45.788" endtime="20210113 14:27:45.789"></status>
 </kw>
-<kw name="Set Headers" library="REST">
-<tags>
-<tag>settings</tag>
-</tags>
-<doc>*Sets new request headers or updates the existing.*</doc>
+<kw name="Return From Keyword" library="BuiltIn">
+<doc>Returns from the enclosing user keyword.</doc>
 <arguments>
-<arg>{"key":"value"}</arg>
+<arg>${Platform}</arg>
 </arguments>
-<status status="PASS" starttime="20210112 16:38:31.115" endtime="20210112 16:38:31.115"></status>
+<msg timestamp="20210113 14:27:45.789" level="TRACE">Arguments: [ '${Platform}' ]</msg>
+<msg timestamp="20210113 14:27:45.789" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20210113 14:27:45.789" endtime="20210113 14:27:45.789"></status>
 </kw>
-<status status="PASS" starttime="20210112 16:38:31.114" endtime="20210112 16:38:31.115"></status>
+<status status="PASS" starttime="20210113 14:27:45.787" endtime="20210113 14:27:45.789"></status>
 </kw>
-<status status="PASS" starttime="20210112 16:38:31.112" endtime="20210112 16:38:31.115"></status>
+<status status="PASS" starttime="20210113 14:27:45.787" endtime="20210113 14:27:45.789"></status>
 </kw>
-<status status="PASS" starttime="20210112 16:38:31.112" endtime="20210112 16:38:31.116"></status>
+<msg timestamp="20210113 14:27:45.790" level="TRACE">Return: 'Android'</msg>
+<status status="PASS" starttime="20210113 14:27:45.786" endtime="20210113 14:27:45.790"></status>
 </kw>
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
-<arguments>
-<arg>\nTest Running On The Platform: Android</arg>
-</arguments>
-<status status="PASS" starttime="20210112 16:38:31.116" endtime="20210112 16:38:31.117"></status>
-</kw>
+<kw name="Send Get Request">
+<msg timestamp="20210113 14:27:45.790" level="TRACE">Arguments: [  ]</msg>
 <kw name="Get" library="REST">
 <tags>
 <tag>http</tag>
 </tags>
 <doc>*Sends a GET request to the endpoint.*</doc>
 <arguments>
-<arg>${v}${EndPoint}</arg>
+<arg>${version}${EndPoint}</arg>
 </arguments>
-<assign>
-<var>${req}</var>
-</assign>
-<msg timestamp="20210112 16:38:32.070" level="INFO">${req} = {'seconds': 0.9370470000000001, 'status': 200, 'body': {'listing': {'filter': {'withImage': True, 'withImageException': [43633, 43632, 44100, 44116, 44101, 44102, 44103, 44104, 44105, 44106, 44107, 44...</msg>
-<status status="PASS" starttime="20210112 16:38:31.119" endtime="20210112 16:38:32.071"></status>
+<msg timestamp="20210113 14:27:45.790" level="TRACE">Arguments: [ 'v5.8.0/general/config' ]</msg>
+<msg timestamp="20210113 14:27:45.792" level="DEBUG">Starting new HTTPS connection (1): www.sheypoor.com:443</msg>
+<msg timestamp="20210113 14:27:45.947" level="DEBUG">https://www.sheypoor.com:443 "GET /api/v5.8.0/general/config HTTP/1.1" 200 571</msg>
+<msg timestamp="20210113 14:27:45.957" level="TRACE">Return: {'body': {'contact': {'email': 'info@sheypoor.com',
+                      'internationalTel': '+982154587',
+                      'tel': '02154587'},
+          'features': {'advertisement': False,
+                       'all-iran-feature': True,
+                       'bump': True,
+                       'car-hide-price': False,
+                       'car-show-price-range': False,
+                       'carBodyInsurance': False,
+                       'carCertification': False,
+                       'carCertificationBuyer': False,
+                       'carCertificationUi': True,
+                       'carSearch': False,
+                       'chat': False,
+                       'cod': False,
+                       'consultant': True,
+                       'dot-ir': False,
+                       'hamshahri': False,
+                       'hidePrice': True,
+                       'leads': False,
+                       'leads-views': False,
+                       'leasing': False,
+                       'newChat': True,
+                       'notifications': False,
+                       'outOfIran': False,
+                       'package-more-view': False,
+                       'paid-features': True,
+                       'paid-features-bumps': True,
+                       'paid-tag': True,
+                       'performance-log': True,
+                       'post-moderation': False,
+                       'priceTag': False,
+                       'priceTagBI': False,
+                       'real-estate-hide-price': True,
+                       'real-estate-hide-price-rent': True,
+                       'real-estate-show-price-range': False,
+                       'resume-bank': False,
+                       'savedSearch': True,
+                       'secure-purchase': True,
+                       'secure-purchase-delivery': True,
+                       'shop-in-serp': True,
+                       'shop-secure-purchase-in-post-listing': False,
+                       'thirdPartyInsurance': False,
+                       'user-rating': False,
+                       'user-secure-purchase-in-post-listing': False,
+                       'video': True,
+                       'views': True,
+                       'visibility': False,
+                       'weblink': True},
+          'listing': {'filter': {'withImage': True,
+                                 'withImageException': [43633,
+                                                        43632,
+                                                        44100,
+                                                        44116,
+                                                        44101,
+                                                        44102,
+                                                        44103,
+                                                        44104,
+                                                        44105,
+                                                        44106,
+                                                        44107,
+                                                        44108,
+                                                        43631,
+                                                        43637,
+                                                        43634,
+                                                        43635,
+                                                        43618]},
+                      'new': {'maxPrice': 1000000000000}},
+          'notifications': [],
+          'priceControl': []},
+ 'headers': {'Accept-Ranges': 'bytes',
+             'Age': '0',
+             'Cache-Control': 'public, max-age=60',
+             'Connection': 'keep-alive',
+             'Content-Encoding': 'gzip',
+             'Content-Length': '571',
+             'Content-Type': 'application/json; charset=UTF-8',
+             'Date': 'Wed, 13 Jan 2021 10:57:45 GMT',
+             'Expires': 'Wed, 13 Jan 2021 10:58:45 GMT',
+             'Last-Modified': 'Wed, 13 Jan 2021 10:57:45 GMT',
+             'Server': 'nginx/1.16.1',
+             'Strict-Transport-Security': 'max-age=172800; includeSubDomains',
+             'X-Cache': 'MISS'},
+ 'seconds': 0.156868,
+ 'status': 200}</msg>
+<status status="PASS" starttime="20210113 14:27:45.790" endtime="20210113 14:27:45.963"></status>
 </kw>
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
+<msg timestamp="20210113 14:27:45.964" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210113 14:27:45.790" endtime="20210113 14:27:45.964"></status>
+</kw>
+<kw name="Validate Response">
+<msg timestamp="20210113 14:27:45.966" level="TRACE">Arguments: [  ]</msg>
+<kw name="Clear Expectations" library="REST">
+<tags>
+<tag>expectations</tag>
+</tags>
+<doc>*Resets the expectations for both request and response.*</doc>
+<msg timestamp="20210113 14:27:45.966" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20210113 14:27:45.967" level="TRACE">Return: {'$schema': 'http://json-schema.org/draft-07/schema#',
+ 'default': True,
+ 'description': None,
+ 'examples': [],
+ 'properties': {'request': {'properties': {}, 'type': 'object'},
+                'response': {'properties': {}, 'type': 'object'}},
+ 'title': 'https://www.sheypoor.com/api',
+ 'type': 'object'}</msg>
+<status status="PASS" starttime="20210113 14:27:45.966" endtime="20210113 14:27:45.968"></status>
+</kw>
+<kw name="Output" library="REST">
+<tags>
+<tag>I/O</tag>
+</tags>
+<doc>*Outputs JSON to terminal or a file.*</doc>
 <arguments>
-<arg>${req} for version ${v}</arg>
+<arg>response</arg>
+<arg>body</arg>
 </arguments>
-<status status="PASS" starttime="20210112 16:38:32.071" endtime="20210112 16:38:32.173"></status>
+<msg timestamp="20210113 14:27:45.969" level="TRACE">Arguments: [ 'response' | 'body' ]</msg>
+<msg timestamp="20210113 14:27:45.973" level="TRACE">Return: {'body': {'contact': {'email': 'info@sheypoor.com',
+                      'internationalTel': '+982154587',
+                      'tel': '02154587'},
+          'features': {'advertisement': False,
+                       'all-iran-feature': True,
+                       'bump': True,
+                       'car-hide-price': False,
+                       'car-show-price-range': False,
+                       'carBodyInsurance': False,
+                       'carCertification': False,
+                       'carCertificationBuyer': False,
+                       'carCertificationUi': True,
+                       'carSearch': False,
+                       'chat': False,
+                       'cod': False,
+                       'consultant': True,
+                       'dot-ir': False,
+                       'hamshahri': False,
+                       'hidePrice': True,
+                       'leads': False,
+                       'leads-views': False,
+                       'leasing': False,
+                       'newChat': True,
+                       'notifications': False,
+                       'outOfIran': False,
+                       'package-more-view': False,
+                       'paid-features': True,
+                       'paid-features-bumps': True,
+                       'paid-tag': True,
+                       'performance-log': True,
+                       'post-moderation': False,
+                       'priceTag': False,
+                       'priceTagBI': False,
+                       'real-estate-hide-price': True,
+                       'real-estate-hide-price-rent': True,
+                       'real-estate-show-price-range': False,
+                       'resume-bank': False,
+                       'savedSearch': True,
+                       'secure-purchase': True,
+                       'secure-purchase-delivery': True,
+                       'shop-in-serp': True,
+                       'shop-secure-purchase-in-post-listing': False,
+                       'thirdPartyInsurance': False,
+                       'user-rating': False,
+                       'user-secure-purchase-in-post-listing': False,
+                       'video': True,
+                       'views': True,
+                       'visibility': False,
+                       'weblink': True},
+          'listing': {'filter': {'withImage': True,
+                                 'withImageException': [43633,
+                                                        43632,
+                                                        44100,
+                                                        44116,
+                                                        44101,
+                                                        44102,
+                                                        44103,
+                                                        44104,
+                                                        44105,
+                                                        44106,
+                                                        44107,
+                                                        44108,
+                                                        43631,
+                                                        43637,
+                                                        43634,
+                                                        43635,
+                                                        43618]},
+                      'new': {'maxPrice': 1000000000000}},
+          'notifications': [],
+          'priceControl': []},
+ 'headers': {'Accept-Ranges': 'bytes',
+             'Age': '0',
+             'Cache-Control': 'public, max-age=60',
+             'Connection': 'keep-alive',
+             'Content-Encoding': 'gzip',
+             'Content-Length': '571',
+             'Content-Type': 'application/json; charset=UTF-8',
+             'Date': 'Wed, 13 Jan 2021 10:57:45 GMT',
+             'Expires': 'Wed, 13 Jan 2021 10:58:45 GMT',
+             'Last-Modified': 'Wed, 13 Jan 2021 10:57:45 GMT',
+             'Server': 'nginx/1.16.1',
+             'Strict-Transport-Security': 'max-age=172800; includeSubDomains',
+             'X-Cache': 'MISS'},
+ 'seconds': 0.156868,
+ 'status': 200}</msg>
+<status status="PASS" starttime="20210113 14:27:45.969" endtime="20210113 14:27:45.978"></status>
 </kw>
-<kw name="Set Headers Value">
+<kw name="Object" library="REST">
+<tags>
+<tag>assertions</tag>
+</tags>
+<doc>*Asserts the field as JSON object.*</doc>
+<arguments>
+<arg>response</arg>
+<arg>body</arg>
+<arg>${Response_Path}/${Response_File}_${version}_${Platform}.json</arg>
+</arguments>
+<msg timestamp="20210113 14:27:45.979" level="TRACE">Arguments: [ 'response' | 'body' | '../Outputs/ExpectedResponse_v5.8.0_Android.json' ]</msg>
+<msg timestamp="20210113 14:27:46.030" level="TRACE">Return: [{'body': {'contact': {'email': 'info@sheypoor.com',
+                       'internationalTel': '+982154587',
+                       'tel': '02154587'},
+           'features': {'advertisement': False,
+                        'all-iran-feature': True,
+                        'bump': True,
+                        'car-hide-price': False,
+                        'car-show-price-range': False,
+                        'carBodyInsurance': False,
+                        'carCertification': False,
+                        'carCertificationBuyer': False,
+                        'carCertificationUi': True,
+                        'carSearch': False,
+                        'chat': False,
+                        'cod': False,
+                        'consultant': True,
+                        'dot-ir': False,
+                        'hamshahri': False,
+                        'hidePrice': True,
+                        'leads': False,
+                        'leads-views': False,
+                        'leasing': False,
+                        'newChat': True,
+                        'notifications': False,
+                        'outOfIran': False,
+                        'package-more-view': False,
+                        'paid-features': True,
+                        'paid-features-bumps': True,
+                        'paid-tag': True,
+                        'performance-log': True,
+                        'post-moderation': False,
+                        'priceTag': False,
+                        'priceTagBI': False,
+                        'real-estate-hide-price': True,
+                        'real-estate-hide-price-rent': True,
+                        'real-estate-show-price-range': False,
+                        'resume-bank': False,
+                        'savedSearch': True,
+                        'secure-purchase': True,
+                        'secure-purchase-delivery': True,
+                        'shop-in-serp': True,
+                        'shop-secure-purchase-in-post-listing': False,
+                        'thirdPartyInsurance': False,
+                        'user-rating': False,
+                        'user-secure-purchase-in-post-listing': False,
+                        'video': True,
+                        'views': True,
+                        'visibility': False,
+                        'weblink': True},
+           'listing': {'filter': {'withImage': True,
+                                  'withImageException': [43633,
+                                                         43632,
+                                                         44100,
+                                                         44116,
+                                                         44101,
+                                                         44102,
+                                                         44103,
+                                                         44104,
+                                                         44105,
+                                                         44106,
+                                                         44107,
+                                                         44108,
+                                                         43631,
+                                                         43637,
+                                                         43634,
+                                                         43635,
+                                                         43618]},
+                       'new': {'maxPrice': 1000000000000}},
+           'notifications': [],
+           'priceControl': []},
+  'headers': {'Accept-Ranges': 'bytes',
+              'Age': '0',
+              'Cache-Control': 'public, max-age=60',
+              'Connection': 'keep-alive',
+              'Content-Encoding': 'gzip',
+              'Content-Length': '571',
+              'Content-Type': 'application/json; charset=UTF-8',
+              'Date': 'Wed, 13 Jan 2021 10:57:45 GMT',
+              'Expires': 'Wed, 13 Jan 2021 10:58:45 GMT',
+              'Last-Modified': 'Wed, 13 Jan 2021 10:57:45 GMT',
+              'Server': 'nginx/1.16.1',
+              'Strict-Transport-Security': 'max-age=172800; includeSubDomains',
+              'X-Cache': 'MISS'},
+  'seconds': 0.156868,
+  'status': 200}]</msg>
+<status status="PASS" starttime="20210113 14:27:45.979" endtime="20210113 14:27:46.033"></status>
+</kw>
+<msg timestamp="20210113 14:27:46.033" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210113 14:27:45.965" endtime="20210113 14:27:46.034"></status>
+</kw>
+<kw name="Set Headers Value For">
 <arguments>
 <arg>Desktop_Web</arg>
 </arguments>
+<msg timestamp="20210113 14:27:46.034" level="TRACE">Arguments: [ ${Platform}='Desktop_Web' ]</msg>
 <kw name="${key} IN [ @{${Platform}.keys()} ]" type="for">
 <kw name="${key} = User-Agent" type="foritem">
 <kw name="Get From Dictionary" library="Collections">
@@ -340,8 +1585,10 @@
 <assign>
 <var>${value}</var>
 </assign>
-<msg timestamp="20210112 16:38:32.177" level="INFO">${value} = Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36</msg>
-<status status="PASS" starttime="20210112 16:38:32.176" endtime="20210112 16:38:32.177"></status>
+<msg timestamp="20210113 14:27:46.036" level="TRACE">Arguments: [ {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36'} | 'User-Agent' ]</msg>
+<msg timestamp="20210113 14:27:46.037" level="TRACE">Return: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36'</msg>
+<msg timestamp="20210113 14:27:46.037" level="INFO">${value} = Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36</msg>
+<status status="PASS" starttime="20210113 14:27:46.036" endtime="20210113 14:27:46.037"></status>
 </kw>
 <kw name="Set Headers" library="REST">
 <tags>
@@ -351,46 +1598,363 @@
 <arguments>
 <arg>{"key":"value"}</arg>
 </arguments>
-<status status="PASS" starttime="20210112 16:38:32.177" endtime="20210112 16:38:32.178"></status>
+<msg timestamp="20210113 14:27:46.038" level="TRACE">Arguments: [ '{"key":"value"}' ]</msg>
+<msg timestamp="20210113 14:27:46.038" level="TRACE">Return: {'Accept': 'application/json, */*',
+ 'Content-Type': 'application/json',
+ 'User-Agent': 'RESTinstance/1.0.2',
+ 'key': 'value'}</msg>
+<status status="PASS" starttime="20210113 14:27:46.037" endtime="20210113 14:27:46.039"></status>
 </kw>
-<status status="PASS" starttime="20210112 16:38:32.176" endtime="20210112 16:38:32.178"></status>
-</kw>
-<status status="PASS" starttime="20210112 16:38:32.175" endtime="20210112 16:38:32.178"></status>
-</kw>
-<status status="PASS" starttime="20210112 16:38:32.174" endtime="20210112 16:38:32.178"></status>
-</kw>
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
+<kw name="Set Task Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current task.</doc>
 <arguments>
-<arg>\nTest Running On The Platform: Desktop Web</arg>
+<arg>${Platform}</arg>
 </arguments>
-<status status="PASS" starttime="20210112 16:38:32.179" endtime="20210112 16:38:32.179"></status>
+<msg timestamp="20210113 14:27:46.039" level="TRACE">Arguments: [ '${Platform}' ]</msg>
+<msg timestamp="20210113 14:27:46.040" level="INFO">${Platform} = Desktop_Web</msg>
+<msg timestamp="20210113 14:27:46.040" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210113 14:27:46.039" endtime="20210113 14:27:46.041"></status>
 </kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<doc>Returns from the enclosing user keyword.</doc>
+<arguments>
+<arg>${Platform}</arg>
+</arguments>
+<msg timestamp="20210113 14:27:46.041" level="TRACE">Arguments: [ '${Platform}' ]</msg>
+<msg timestamp="20210113 14:27:46.041" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20210113 14:27:46.041" endtime="20210113 14:27:46.041"></status>
+</kw>
+<status status="PASS" starttime="20210113 14:27:46.036" endtime="20210113 14:27:46.041"></status>
+</kw>
+<status status="PASS" starttime="20210113 14:27:46.035" endtime="20210113 14:27:46.041"></status>
+</kw>
+<msg timestamp="20210113 14:27:46.042" level="TRACE">Return: 'Desktop_Web'</msg>
+<status status="PASS" starttime="20210113 14:27:46.034" endtime="20210113 14:27:46.042"></status>
+</kw>
+<kw name="Send Get Request">
+<msg timestamp="20210113 14:27:46.043" level="TRACE">Arguments: [  ]</msg>
 <kw name="Get" library="REST">
 <tags>
 <tag>http</tag>
 </tags>
 <doc>*Sends a GET request to the endpoint.*</doc>
 <arguments>
-<arg>${v}${EndPoint}</arg>
+<arg>${version}${EndPoint}</arg>
 </arguments>
-<assign>
-<var>${req}</var>
-</assign>
-<msg timestamp="20210112 16:38:33.135" level="INFO">${req} = {'seconds': 0.945768, 'status': 200, 'body': {'listing': {'filter': {'withImage': True, 'withImageException': [43633, 43632, 44100, 44116, 44101, 44102, 44103, 44104, 44105, 44106, 44107, 44108, 43631...</msg>
-<status status="PASS" starttime="20210112 16:38:32.180" endtime="20210112 16:38:33.135"></status>
+<msg timestamp="20210113 14:27:46.044" level="TRACE">Arguments: [ 'v5.8.0/general/config' ]</msg>
+<msg timestamp="20210113 14:27:46.047" level="DEBUG">Starting new HTTPS connection (1): www.sheypoor.com:443</msg>
+<msg timestamp="20210113 14:27:46.205" level="DEBUG">https://www.sheypoor.com:443 "GET /api/v5.8.0/general/config HTTP/1.1" 200 571</msg>
+<msg timestamp="20210113 14:27:46.216" level="TRACE">Return: {'body': {'contact': {'email': 'info@sheypoor.com',
+                      'internationalTel': '+982154587',
+                      'tel': '02154587'},
+          'features': {'advertisement': False,
+                       'all-iran-feature': True,
+                       'bump': True,
+                       'car-hide-price': False,
+                       'car-show-price-range': False,
+                       'carBodyInsurance': False,
+                       'carCertification': False,
+                       'carCertificationBuyer': False,
+                       'carCertificationUi': True,
+                       'carSearch': False,
+                       'chat': False,
+                       'cod': False,
+                       'consultant': True,
+                       'dot-ir': False,
+                       'hamshahri': False,
+                       'hidePrice': True,
+                       'leads': False,
+                       'leads-views': False,
+                       'leasing': False,
+                       'newChat': True,
+                       'notifications': False,
+                       'outOfIran': False,
+                       'package-more-view': False,
+                       'paid-features': True,
+                       'paid-features-bumps': True,
+                       'paid-tag': True,
+                       'performance-log': True,
+                       'post-moderation': False,
+                       'priceTag': False,
+                       'priceTagBI': False,
+                       'real-estate-hide-price': True,
+                       'real-estate-hide-price-rent': True,
+                       'real-estate-show-price-range': False,
+                       'resume-bank': False,
+                       'savedSearch': True,
+                       'secure-purchase': True,
+                       'secure-purchase-delivery': True,
+                       'shop-in-serp': True,
+                       'shop-secure-purchase-in-post-listing': False,
+                       'thirdPartyInsurance': False,
+                       'user-rating': False,
+                       'user-secure-purchase-in-post-listing': False,
+                       'video': True,
+                       'views': True,
+                       'visibility': False,
+                       'weblink': True},
+          'listing': {'filter': {'withImage': True,
+                                 'withImageException': [43633,
+                                                        43632,
+                                                        44100,
+                                                        44116,
+                                                        44101,
+                                                        44102,
+                                                        44103,
+                                                        44104,
+                                                        44105,
+                                                        44106,
+                                                        44107,
+                                                        44108,
+                                                        43631,
+                                                        43637,
+                                                        43634,
+                                                        43635,
+                                                        43618]},
+                      'new': {'maxPrice': 1000000000000}},
+          'notifications': [],
+          'priceControl': []},
+ 'headers': {'Accept-Ranges': 'bytes',
+             'Age': '0',
+             'Cache-Control': 'public, max-age=60',
+             'Connection': 'keep-alive',
+             'Content-Encoding': 'gzip',
+             'Content-Length': '571',
+             'Content-Type': 'application/json; charset=UTF-8',
+             'Date': 'Wed, 13 Jan 2021 10:57:45 GMT',
+             'Expires': 'Wed, 13 Jan 2021 10:58:45 GMT',
+             'Last-Modified': 'Wed, 13 Jan 2021 10:57:45 GMT',
+             'Server': 'nginx/1.16.1',
+             'Strict-Transport-Security': 'max-age=172800; includeSubDomains',
+             'X-Cache': 'MISS'},
+ 'seconds': 0.160546,
+ 'status': 200}</msg>
+<status status="PASS" starttime="20210113 14:27:46.043" endtime="20210113 14:27:46.224"></status>
 </kw>
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
+<msg timestamp="20210113 14:27:46.225" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210113 14:27:46.042" endtime="20210113 14:27:46.225"></status>
+</kw>
+<kw name="Validate Response">
+<msg timestamp="20210113 14:27:46.227" level="TRACE">Arguments: [  ]</msg>
+<kw name="Clear Expectations" library="REST">
+<tags>
+<tag>expectations</tag>
+</tags>
+<doc>*Resets the expectations for both request and response.*</doc>
+<msg timestamp="20210113 14:27:46.229" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20210113 14:27:46.229" level="TRACE">Return: {'$schema': 'http://json-schema.org/draft-07/schema#',
+ 'default': True,
+ 'description': None,
+ 'examples': [],
+ 'properties': {'request': {'properties': {}, 'type': 'object'},
+                'response': {'properties': {}, 'type': 'object'}},
+ 'title': 'https://www.sheypoor.com/api',
+ 'type': 'object'}</msg>
+<status status="PASS" starttime="20210113 14:27:46.228" endtime="20210113 14:27:46.231"></status>
+</kw>
+<kw name="Output" library="REST">
+<tags>
+<tag>I/O</tag>
+</tags>
+<doc>*Outputs JSON to terminal or a file.*</doc>
 <arguments>
-<arg>${req} for version ${v}</arg>
+<arg>response</arg>
+<arg>body</arg>
 </arguments>
-<status status="PASS" starttime="20210112 16:38:33.136" endtime="20210112 16:38:33.241"></status>
+<msg timestamp="20210113 14:27:46.233" level="TRACE">Arguments: [ 'response' | 'body' ]</msg>
+<msg timestamp="20210113 14:27:46.236" level="TRACE">Return: {'body': {'contact': {'email': 'info@sheypoor.com',
+                      'internationalTel': '+982154587',
+                      'tel': '02154587'},
+          'features': {'advertisement': False,
+                       'all-iran-feature': True,
+                       'bump': True,
+                       'car-hide-price': False,
+                       'car-show-price-range': False,
+                       'carBodyInsurance': False,
+                       'carCertification': False,
+                       'carCertificationBuyer': False,
+                       'carCertificationUi': True,
+                       'carSearch': False,
+                       'chat': False,
+                       'cod': False,
+                       'consultant': True,
+                       'dot-ir': False,
+                       'hamshahri': False,
+                       'hidePrice': True,
+                       'leads': False,
+                       'leads-views': False,
+                       'leasing': False,
+                       'newChat': True,
+                       'notifications': False,
+                       'outOfIran': False,
+                       'package-more-view': False,
+                       'paid-features': True,
+                       'paid-features-bumps': True,
+                       'paid-tag': True,
+                       'performance-log': True,
+                       'post-moderation': False,
+                       'priceTag': False,
+                       'priceTagBI': False,
+                       'real-estate-hide-price': True,
+                       'real-estate-hide-price-rent': True,
+                       'real-estate-show-price-range': False,
+                       'resume-bank': False,
+                       'savedSearch': True,
+                       'secure-purchase': True,
+                       'secure-purchase-delivery': True,
+                       'shop-in-serp': True,
+                       'shop-secure-purchase-in-post-listing': False,
+                       'thirdPartyInsurance': False,
+                       'user-rating': False,
+                       'user-secure-purchase-in-post-listing': False,
+                       'video': True,
+                       'views': True,
+                       'visibility': False,
+                       'weblink': True},
+          'listing': {'filter': {'withImage': True,
+                                 'withImageException': [43633,
+                                                        43632,
+                                                        44100,
+                                                        44116,
+                                                        44101,
+                                                        44102,
+                                                        44103,
+                                                        44104,
+                                                        44105,
+                                                        44106,
+                                                        44107,
+                                                        44108,
+                                                        43631,
+                                                        43637,
+                                                        43634,
+                                                        43635,
+                                                        43618]},
+                      'new': {'maxPrice': 1000000000000}},
+          'notifications': [],
+          'priceControl': []},
+ 'headers': {'Accept-Ranges': 'bytes',
+             'Age': '0',
+             'Cache-Control': 'public, max-age=60',
+             'Connection': 'keep-alive',
+             'Content-Encoding': 'gzip',
+             'Content-Length': '571',
+             'Content-Type': 'application/json; charset=UTF-8',
+             'Date': 'Wed, 13 Jan 2021 10:57:45 GMT',
+             'Expires': 'Wed, 13 Jan 2021 10:58:45 GMT',
+             'Last-Modified': 'Wed, 13 Jan 2021 10:57:45 GMT',
+             'Server': 'nginx/1.16.1',
+             'Strict-Transport-Security': 'max-age=172800; includeSubDomains',
+             'X-Cache': 'MISS'},
+ 'seconds': 0.160546,
+ 'status': 200}</msg>
+<status status="PASS" starttime="20210113 14:27:46.232" endtime="20210113 14:27:46.243"></status>
 </kw>
-<kw name="Set Headers Value">
+<kw name="Object" library="REST">
+<tags>
+<tag>assertions</tag>
+</tags>
+<doc>*Asserts the field as JSON object.*</doc>
+<arguments>
+<arg>response</arg>
+<arg>body</arg>
+<arg>${Response_Path}/${Response_File}_${version}_${Platform}.json</arg>
+</arguments>
+<msg timestamp="20210113 14:27:46.244" level="TRACE">Arguments: [ 'response' | 'body' | '../Outputs/ExpectedResponse_v5.8.0_Desktop_Web.json' ]</msg>
+<msg timestamp="20210113 14:27:46.279" level="TRACE">Return: [{'body': {'contact': {'email': 'info@sheypoor.com',
+                       'internationalTel': '+982154587',
+                       'tel': '02154587'},
+           'features': {'advertisement': False,
+                        'all-iran-feature': True,
+                        'bump': True,
+                        'car-hide-price': False,
+                        'car-show-price-range': False,
+                        'carBodyInsurance': False,
+                        'carCertification': False,
+                        'carCertificationBuyer': False,
+                        'carCertificationUi': True,
+                        'carSearch': False,
+                        'chat': False,
+                        'cod': False,
+                        'consultant': True,
+                        'dot-ir': False,
+                        'hamshahri': False,
+                        'hidePrice': True,
+                        'leads': False,
+                        'leads-views': False,
+                        'leasing': False,
+                        'newChat': True,
+                        'notifications': False,
+                        'outOfIran': False,
+                        'package-more-view': False,
+                        'paid-features': True,
+                        'paid-features-bumps': True,
+                        'paid-tag': True,
+                        'performance-log': True,
+                        'post-moderation': False,
+                        'priceTag': False,
+                        'priceTagBI': False,
+                        'real-estate-hide-price': True,
+                        'real-estate-hide-price-rent': True,
+                        'real-estate-show-price-range': False,
+                        'resume-bank': False,
+                        'savedSearch': True,
+                        'secure-purchase': True,
+                        'secure-purchase-delivery': True,
+                        'shop-in-serp': True,
+                        'shop-secure-purchase-in-post-listing': False,
+                        'thirdPartyInsurance': False,
+                        'user-rating': False,
+                        'user-secure-purchase-in-post-listing': False,
+                        'video': True,
+                        'views': True,
+                        'visibility': False,
+                        'weblink': True},
+           'listing': {'filter': {'withImage': True,
+                                  'withImageException': [43633,
+                                                         43632,
+                                                         44100,
+                                                         44116,
+                                                         44101,
+                                                         44102,
+                                                         44103,
+                                                         44104,
+                                                         44105,
+                                                         44106,
+                                                         44107,
+                                                         44108,
+                                                         43631,
+                                                         43637,
+                                                         43634,
+                                                         43635,
+                                                         43618]},
+                       'new': {'maxPrice': 1000000000000}},
+           'notifications': [],
+           'priceControl': []},
+  'headers': {'Accept-Ranges': 'bytes',
+              'Age': '0',
+              'Cache-Control': 'public, max-age=60',
+              'Connection': 'keep-alive',
+              'Content-Encoding': 'gzip',
+              'Content-Length': '571',
+              'Content-Type': 'application/json; charset=UTF-8',
+              'Date': 'Wed, 13 Jan 2021 10:57:45 GMT',
+              'Expires': 'Wed, 13 Jan 2021 10:58:45 GMT',
+              'Last-Modified': 'Wed, 13 Jan 2021 10:57:45 GMT',
+              'Server': 'nginx/1.16.1',
+              'Strict-Transport-Security': 'max-age=172800; includeSubDomains',
+              'X-Cache': 'MISS'},
+  'seconds': 0.160546,
+  'status': 200}]</msg>
+<status status="PASS" starttime="20210113 14:27:46.244" endtime="20210113 14:27:46.283"></status>
+</kw>
+<msg timestamp="20210113 14:27:46.284" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210113 14:27:46.226" endtime="20210113 14:27:46.284"></status>
+</kw>
+<kw name="Set Headers Value For">
 <arguments>
 <arg>Mobile_Site</arg>
 </arguments>
+<msg timestamp="20210113 14:27:46.285" level="TRACE">Arguments: [ ${Platform}='Mobile_Site' ]</msg>
 <kw name="${key} IN [ @{${Platform}.keys()} ]" type="for">
 <kw name="${key} = User-Agent" type="foritem">
 <kw name="Get From Dictionary" library="Collections">
@@ -402,8 +1966,10 @@
 <assign>
 <var>${value}</var>
 </assign>
-<msg timestamp="20210112 16:38:33.244" level="INFO">${value} = Mozilla/5.0 (Linux; U; Android 8.1; en-us; SCH-I535 Build/KOT49H) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30</msg>
-<status status="PASS" starttime="20210112 16:38:33.243" endtime="20210112 16:38:33.244"></status>
+<msg timestamp="20210113 14:27:46.287" level="TRACE">Arguments: [ {'User-Agent': 'Mozilla/5.0 (Linux; U; Android 8.1; en-us; SCH-I535 Build/KOT49H) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30'} | 'User-Agent' ]</msg>
+<msg timestamp="20210113 14:27:46.287" level="TRACE">Return: 'Mozilla/5.0 (Linux; U; Android 8.1; en-us; SCH-I535 Build/KOT49H) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30'</msg>
+<msg timestamp="20210113 14:27:46.287" level="INFO">${value} = Mozilla/5.0 (Linux; U; Android 8.1; en-us; SCH-I535 Build/KOT49H) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30</msg>
+<status status="PASS" starttime="20210113 14:27:46.286" endtime="20210113 14:27:46.288"></status>
 </kw>
 <kw name="Set Headers" library="REST">
 <tags>
@@ -413,61 +1979,382 @@
 <arguments>
 <arg>{"key":"value"}</arg>
 </arguments>
-<status status="PASS" starttime="20210112 16:38:33.245" endtime="20210112 16:38:33.245"></status>
+<msg timestamp="20210113 14:27:46.288" level="TRACE">Arguments: [ '{"key":"value"}' ]</msg>
+<msg timestamp="20210113 14:27:46.289" level="TRACE">Return: {'Accept': 'application/json, */*',
+ 'Content-Type': 'application/json',
+ 'User-Agent': 'RESTinstance/1.0.2',
+ 'key': 'value'}</msg>
+<status status="PASS" starttime="20210113 14:27:46.288" endtime="20210113 14:27:46.289"></status>
 </kw>
-<status status="PASS" starttime="20210112 16:38:33.243" endtime="20210112 16:38:33.245"></status>
-</kw>
-<status status="PASS" starttime="20210112 16:38:33.242" endtime="20210112 16:38:33.245"></status>
-</kw>
-<status status="PASS" starttime="20210112 16:38:33.241" endtime="20210112 16:38:33.245"></status>
-</kw>
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
+<kw name="Set Task Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current task.</doc>
 <arguments>
-<arg>\nTest Running On The Platform: Mobile Site</arg>
+<arg>${Platform}</arg>
 </arguments>
-<status status="PASS" starttime="20210112 16:38:33.245" endtime="20210112 16:38:33.246"></status>
+<msg timestamp="20210113 14:27:46.289" level="TRACE">Arguments: [ '${Platform}' ]</msg>
+<msg timestamp="20210113 14:27:46.290" level="INFO">${Platform} = Mobile_Site</msg>
+<msg timestamp="20210113 14:27:46.290" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210113 14:27:46.289" endtime="20210113 14:27:46.290"></status>
 </kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<doc>Returns from the enclosing user keyword.</doc>
+<arguments>
+<arg>${Platform}</arg>
+</arguments>
+<msg timestamp="20210113 14:27:46.290" level="TRACE">Arguments: [ '${Platform}' ]</msg>
+<msg timestamp="20210113 14:27:46.291" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20210113 14:27:46.290" endtime="20210113 14:27:46.291"></status>
+</kw>
+<status status="PASS" starttime="20210113 14:27:46.286" endtime="20210113 14:27:46.291"></status>
+</kw>
+<status status="PASS" starttime="20210113 14:27:46.285" endtime="20210113 14:27:46.291"></status>
+</kw>
+<msg timestamp="20210113 14:27:46.291" level="TRACE">Return: 'Mobile_Site'</msg>
+<status status="PASS" starttime="20210113 14:27:46.284" endtime="20210113 14:27:46.291"></status>
+</kw>
+<kw name="Send Get Request">
+<msg timestamp="20210113 14:27:46.292" level="TRACE">Arguments: [  ]</msg>
 <kw name="Get" library="REST">
 <tags>
 <tag>http</tag>
 </tags>
 <doc>*Sends a GET request to the endpoint.*</doc>
 <arguments>
-<arg>${v}${EndPoint}</arg>
+<arg>${version}${EndPoint}</arg>
 </arguments>
-<assign>
-<var>${req}</var>
-</assign>
-<msg timestamp="20210112 16:38:34.216" level="INFO">${req} = {'seconds': 0.9548110000000001, 'status': 200, 'body': {'listing': {'filter': {'withImage': True, 'withImageException': [43633, 43632, 44100, 44116, 44101, 44102, 44103, 44104, 44105, 44106, 44107, 44...</msg>
-<status status="PASS" starttime="20210112 16:38:33.246" endtime="20210112 16:38:34.216"></status>
+<msg timestamp="20210113 14:27:46.292" level="TRACE">Arguments: [ 'v5.8.0/general/config' ]</msg>
+<msg timestamp="20210113 14:27:46.295" level="DEBUG">Starting new HTTPS connection (1): www.sheypoor.com:443</msg>
+<msg timestamp="20210113 14:27:46.419" level="DEBUG">https://www.sheypoor.com:443 "GET /api/v5.8.0/general/config HTTP/1.1" 200 571</msg>
+<msg timestamp="20210113 14:27:46.429" level="TRACE">Return: {'body': {'contact': {'email': 'info@sheypoor.com',
+                      'internationalTel': '+982154587',
+                      'tel': '02154587'},
+          'features': {'advertisement': False,
+                       'all-iran-feature': True,
+                       'bump': True,
+                       'car-hide-price': False,
+                       'car-show-price-range': False,
+                       'carBodyInsurance': False,
+                       'carCertification': False,
+                       'carCertificationBuyer': False,
+                       'carCertificationUi': True,
+                       'carSearch': False,
+                       'chat': False,
+                       'cod': False,
+                       'consultant': True,
+                       'dot-ir': False,
+                       'hamshahri': False,
+                       'hidePrice': True,
+                       'leads': False,
+                       'leads-views': False,
+                       'leasing': False,
+                       'newChat': True,
+                       'notifications': False,
+                       'outOfIran': False,
+                       'package-more-view': False,
+                       'paid-features': True,
+                       'paid-features-bumps': True,
+                       'paid-tag': True,
+                       'performance-log': True,
+                       'post-moderation': False,
+                       'priceTag': False,
+                       'priceTagBI': False,
+                       'real-estate-hide-price': True,
+                       'real-estate-hide-price-rent': True,
+                       'real-estate-show-price-range': False,
+                       'resume-bank': False,
+                       'savedSearch': True,
+                       'secure-purchase': True,
+                       'secure-purchase-delivery': True,
+                       'shop-in-serp': True,
+                       'shop-secure-purchase-in-post-listing': False,
+                       'thirdPartyInsurance': False,
+                       'user-rating': False,
+                       'user-secure-purchase-in-post-listing': False,
+                       'video': True,
+                       'views': True,
+                       'visibility': False,
+                       'weblink': True},
+          'listing': {'filter': {'withImage': True,
+                                 'withImageException': [43633,
+                                                        43632,
+                                                        44100,
+                                                        44116,
+                                                        44101,
+                                                        44102,
+                                                        44103,
+                                                        44104,
+                                                        44105,
+                                                        44106,
+                                                        44107,
+                                                        44108,
+                                                        43631,
+                                                        43637,
+                                                        43634,
+                                                        43635,
+                                                        43618]},
+                      'new': {'maxPrice': 1000000000000}},
+          'notifications': [],
+          'priceControl': []},
+ 'headers': {'Accept-Ranges': 'bytes',
+             'Age': '0',
+             'Cache-Control': 'public, max-age=60',
+             'Connection': 'keep-alive',
+             'Content-Encoding': 'gzip',
+             'Content-Length': '571',
+             'Content-Type': 'application/json; charset=UTF-8',
+             'Date': 'Wed, 13 Jan 2021 10:57:45 GMT',
+             'Expires': 'Wed, 13 Jan 2021 10:58:45 GMT',
+             'Last-Modified': 'Wed, 13 Jan 2021 10:57:45 GMT',
+             'Server': 'nginx/1.16.1',
+             'Strict-Transport-Security': 'max-age=172800; includeSubDomains',
+             'X-Cache': 'HIT'},
+ 'seconds': 0.126265,
+ 'status': 200}</msg>
+<status status="PASS" starttime="20210113 14:27:46.292" endtime="20210113 14:27:46.438"></status>
 </kw>
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
+<msg timestamp="20210113 14:27:46.439" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210113 14:27:46.291" endtime="20210113 14:27:46.439"></status>
+</kw>
+<kw name="Validate Response">
+<msg timestamp="20210113 14:27:46.440" level="TRACE">Arguments: [  ]</msg>
+<kw name="Clear Expectations" library="REST">
+<tags>
+<tag>expectations</tag>
+</tags>
+<doc>*Resets the expectations for both request and response.*</doc>
+<msg timestamp="20210113 14:27:46.441" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20210113 14:27:46.442" level="TRACE">Return: {'$schema': 'http://json-schema.org/draft-07/schema#',
+ 'default': True,
+ 'description': None,
+ 'examples': [],
+ 'properties': {'request': {'properties': {}, 'type': 'object'},
+                'response': {'properties': {}, 'type': 'object'}},
+ 'title': 'https://www.sheypoor.com/api',
+ 'type': 'object'}</msg>
+<status status="PASS" starttime="20210113 14:27:46.441" endtime="20210113 14:27:46.443"></status>
+</kw>
+<kw name="Output" library="REST">
+<tags>
+<tag>I/O</tag>
+</tags>
+<doc>*Outputs JSON to terminal or a file.*</doc>
 <arguments>
-<arg>${req} for version ${v}</arg>
+<arg>response</arg>
+<arg>body</arg>
 </arguments>
-<status status="PASS" starttime="20210112 16:38:34.217" endtime="20210112 16:38:34.328"></status>
+<msg timestamp="20210113 14:27:46.445" level="TRACE">Arguments: [ 'response' | 'body' ]</msg>
+<msg timestamp="20210113 14:27:46.448" level="TRACE">Return: {'body': {'contact': {'email': 'info@sheypoor.com',
+                      'internationalTel': '+982154587',
+                      'tel': '02154587'},
+          'features': {'advertisement': False,
+                       'all-iran-feature': True,
+                       'bump': True,
+                       'car-hide-price': False,
+                       'car-show-price-range': False,
+                       'carBodyInsurance': False,
+                       'carCertification': False,
+                       'carCertificationBuyer': False,
+                       'carCertificationUi': True,
+                       'carSearch': False,
+                       'chat': False,
+                       'cod': False,
+                       'consultant': True,
+                       'dot-ir': False,
+                       'hamshahri': False,
+                       'hidePrice': True,
+                       'leads': False,
+                       'leads-views': False,
+                       'leasing': False,
+                       'newChat': True,
+                       'notifications': False,
+                       'outOfIran': False,
+                       'package-more-view': False,
+                       'paid-features': True,
+                       'paid-features-bumps': True,
+                       'paid-tag': True,
+                       'performance-log': True,
+                       'post-moderation': False,
+                       'priceTag': False,
+                       'priceTagBI': False,
+                       'real-estate-hide-price': True,
+                       'real-estate-hide-price-rent': True,
+                       'real-estate-show-price-range': False,
+                       'resume-bank': False,
+                       'savedSearch': True,
+                       'secure-purchase': True,
+                       'secure-purchase-delivery': True,
+                       'shop-in-serp': True,
+                       'shop-secure-purchase-in-post-listing': False,
+                       'thirdPartyInsurance': False,
+                       'user-rating': False,
+                       'user-secure-purchase-in-post-listing': False,
+                       'video': True,
+                       'views': True,
+                       'visibility': False,
+                       'weblink': True},
+          'listing': {'filter': {'withImage': True,
+                                 'withImageException': [43633,
+                                                        43632,
+                                                        44100,
+                                                        44116,
+                                                        44101,
+                                                        44102,
+                                                        44103,
+                                                        44104,
+                                                        44105,
+                                                        44106,
+                                                        44107,
+                                                        44108,
+                                                        43631,
+                                                        43637,
+                                                        43634,
+                                                        43635,
+                                                        43618]},
+                      'new': {'maxPrice': 1000000000000}},
+          'notifications': [],
+          'priceControl': []},
+ 'headers': {'Accept-Ranges': 'bytes',
+             'Age': '0',
+             'Cache-Control': 'public, max-age=60',
+             'Connection': 'keep-alive',
+             'Content-Encoding': 'gzip',
+             'Content-Length': '571',
+             'Content-Type': 'application/json; charset=UTF-8',
+             'Date': 'Wed, 13 Jan 2021 10:57:45 GMT',
+             'Expires': 'Wed, 13 Jan 2021 10:58:45 GMT',
+             'Last-Modified': 'Wed, 13 Jan 2021 10:57:45 GMT',
+             'Server': 'nginx/1.16.1',
+             'Strict-Transport-Security': 'max-age=172800; includeSubDomains',
+             'X-Cache': 'HIT'},
+ 'seconds': 0.126265,
+ 'status': 200}</msg>
+<status status="PASS" starttime="20210113 14:27:46.444" endtime="20210113 14:27:46.454"></status>
+</kw>
+<kw name="Object" library="REST">
+<tags>
+<tag>assertions</tag>
+</tags>
+<doc>*Asserts the field as JSON object.*</doc>
+<arguments>
+<arg>response</arg>
+<arg>body</arg>
+<arg>${Response_Path}/${Response_File}_${version}_${Platform}.json</arg>
+</arguments>
+<msg timestamp="20210113 14:27:46.454" level="TRACE">Arguments: [ 'response' | 'body' | '../Outputs/ExpectedResponse_v5.8.0_Mobile_Site.json' ]</msg>
+<msg timestamp="20210113 14:27:46.475" level="TRACE">Return: [{'body': {'contact': {'email': 'info@sheypoor.com',
+                       'internationalTel': '+982154587',
+                       'tel': '02154587'},
+           'features': {'advertisement': False,
+                        'all-iran-feature': True,
+                        'bump': True,
+                        'car-hide-price': False,
+                        'car-show-price-range': False,
+                        'carBodyInsurance': False,
+                        'carCertification': False,
+                        'carCertificationBuyer': False,
+                        'carCertificationUi': True,
+                        'carSearch': False,
+                        'chat': False,
+                        'cod': False,
+                        'consultant': True,
+                        'dot-ir': False,
+                        'hamshahri': False,
+                        'hidePrice': True,
+                        'leads': False,
+                        'leads-views': False,
+                        'leasing': False,
+                        'newChat': True,
+                        'notifications': False,
+                        'outOfIran': False,
+                        'package-more-view': False,
+                        'paid-features': True,
+                        'paid-features-bumps': True,
+                        'paid-tag': True,
+                        'performance-log': True,
+                        'post-moderation': False,
+                        'priceTag': False,
+                        'priceTagBI': False,
+                        'real-estate-hide-price': True,
+                        'real-estate-hide-price-rent': True,
+                        'real-estate-show-price-range': False,
+                        'resume-bank': False,
+                        'savedSearch': True,
+                        'secure-purchase': True,
+                        'secure-purchase-delivery': True,
+                        'shop-in-serp': True,
+                        'shop-secure-purchase-in-post-listing': False,
+                        'thirdPartyInsurance': False,
+                        'user-rating': False,
+                        'user-secure-purchase-in-post-listing': False,
+                        'video': True,
+                        'views': True,
+                        'visibility': False,
+                        'weblink': True},
+           'listing': {'filter': {'withImage': True,
+                                  'withImageException': [43633,
+                                                         43632,
+                                                         44100,
+                                                         44116,
+                                                         44101,
+                                                         44102,
+                                                         44103,
+                                                         44104,
+                                                         44105,
+                                                         44106,
+                                                         44107,
+                                                         44108,
+                                                         43631,
+                                                         43637,
+                                                         43634,
+                                                         43635,
+                                                         43618]},
+                       'new': {'maxPrice': 1000000000000}},
+           'notifications': [],
+           'priceControl': []},
+  'headers': {'Accept-Ranges': 'bytes',
+              'Age': '0',
+              'Cache-Control': 'public, max-age=60',
+              'Connection': 'keep-alive',
+              'Content-Encoding': 'gzip',
+              'Content-Length': '571',
+              'Content-Type': 'application/json; charset=UTF-8',
+              'Date': 'Wed, 13 Jan 2021 10:57:45 GMT',
+              'Expires': 'Wed, 13 Jan 2021 10:58:45 GMT',
+              'Last-Modified': 'Wed, 13 Jan 2021 10:57:45 GMT',
+              'Server': 'nginx/1.16.1',
+              'Strict-Transport-Security': 'max-age=172800; includeSubDomains',
+              'X-Cache': 'HIT'},
+  'seconds': 0.126265,
+  'status': 200}]</msg>
+<status status="PASS" starttime="20210113 14:27:46.454" endtime="20210113 14:27:46.478"></status>
+</kw>
+<msg timestamp="20210113 14:27:46.478" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210113 14:27:46.439" endtime="20210113 14:27:46.478"></status>
 </kw>
 <kw name="Continue For Loop" library="BuiltIn">
 <doc>Skips the current for loop iteration and continues from the next.</doc>
-<msg timestamp="20210112 16:38:34.329" level="INFO">Continuing for loop from the next iteration.</msg>
-<status status="PASS" starttime="20210112 16:38:34.329" endtime="20210112 16:38:34.329"></status>
+<msg timestamp="20210113 14:27:46.479" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20210113 14:27:46.479" level="INFO">Continuing for loop from the next iteration.</msg>
+<status status="PASS" starttime="20210113 14:27:46.479" endtime="20210113 14:27:46.479"></status>
 </kw>
-<status status="PASS" starttime="20210112 16:38:31.110" endtime="20210112 16:38:34.330"></status>
+<status status="PASS" starttime="20210113 14:27:45.786" endtime="20210113 14:27:46.479"></status>
 </kw>
-<kw name="${v} = v3.1.5" type="foritem">
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
+<kw name="${version} = v3.1.5" type="foritem">
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
 <arguments>
-<arg>\nAPI Version is: ${v}</arg>
+<arg>${version}</arg>
 </arguments>
-<status status="PASS" starttime="20210112 16:38:34.330" endtime="20210112 16:38:34.369"></status>
+<msg timestamp="20210113 14:27:46.479" level="TRACE">Arguments: [ '${version}' ]</msg>
+<msg timestamp="20210113 14:27:46.480" level="INFO">${version} = v3.1.5</msg>
+<msg timestamp="20210113 14:27:46.480" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210113 14:27:46.479" endtime="20210113 14:27:46.480"></status>
 </kw>
-<kw name="Set Headers Value">
+<kw name="Set Headers Value For">
 <arguments>
 <arg>Android</arg>
 </arguments>
+<msg timestamp="20210113 14:27:46.480" level="TRACE">Arguments: [ ${Platform}='Android' ]</msg>
 <kw name="${key} IN [ @{${Platform}.keys()} ]" type="for">
 <kw name="${key} = X-AGENT-TYPE" type="foritem">
 <kw name="Get From Dictionary" library="Collections">
@@ -479,8 +2366,10 @@
 <assign>
 <var>${value}</var>
 </assign>
-<msg timestamp="20210112 16:38:34.372" level="INFO">${value} = Android App</msg>
-<status status="PASS" starttime="20210112 16:38:34.371" endtime="20210112 16:38:34.372"></status>
+<msg timestamp="20210113 14:27:46.481" level="TRACE">Arguments: [ {'App-Version': '5.9.0', 'X-AGENT-TYPE': 'Android App'} | 'X-AGENT-TYPE' ]</msg>
+<msg timestamp="20210113 14:27:46.481" level="TRACE">Return: 'Android App'</msg>
+<msg timestamp="20210113 14:27:46.481" level="INFO">${value} = Android App</msg>
+<status status="PASS" starttime="20210113 14:27:46.481" endtime="20210113 14:27:46.481"></status>
 </kw>
 <kw name="Set Headers" library="REST">
 <tags>
@@ -490,71 +2379,363 @@
 <arguments>
 <arg>{"key":"value"}</arg>
 </arguments>
-<status status="PASS" starttime="20210112 16:38:34.372" endtime="20210112 16:38:34.373"></status>
+<msg timestamp="20210113 14:27:46.482" level="TRACE">Arguments: [ '{"key":"value"}' ]</msg>
+<msg timestamp="20210113 14:27:46.482" level="TRACE">Return: {'Accept': 'application/json, */*',
+ 'Content-Type': 'application/json',
+ 'User-Agent': 'RESTinstance/1.0.2',
+ 'key': 'value'}</msg>
+<status status="PASS" starttime="20210113 14:27:46.481" endtime="20210113 14:27:46.482"></status>
 </kw>
-<status status="PASS" starttime="20210112 16:38:34.371" endtime="20210112 16:38:34.373"></status>
-</kw>
-<kw name="${key} = App-Version" type="foritem">
-<kw name="Get From Dictionary" library="Collections">
-<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<kw name="Set Task Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current task.</doc>
 <arguments>
-<arg>${${Platform}}</arg>
-<arg>${key}</arg>
+<arg>${Platform}</arg>
 </arguments>
-<assign>
-<var>${value}</var>
-</assign>
-<msg timestamp="20210112 16:38:34.375" level="INFO">${value} = 5.9.0</msg>
-<status status="PASS" starttime="20210112 16:38:34.374" endtime="20210112 16:38:34.375"></status>
+<msg timestamp="20210113 14:27:46.482" level="TRACE">Arguments: [ '${Platform}' ]</msg>
+<msg timestamp="20210113 14:27:46.482" level="INFO">${Platform} = Android</msg>
+<msg timestamp="20210113 14:27:46.483" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210113 14:27:46.482" endtime="20210113 14:27:46.483"></status>
 </kw>
-<kw name="Set Headers" library="REST">
-<tags>
-<tag>settings</tag>
-</tags>
-<doc>*Sets new request headers or updates the existing.*</doc>
+<kw name="Return From Keyword" library="BuiltIn">
+<doc>Returns from the enclosing user keyword.</doc>
 <arguments>
-<arg>{"key":"value"}</arg>
+<arg>${Platform}</arg>
 </arguments>
-<status status="PASS" starttime="20210112 16:38:34.375" endtime="20210112 16:38:34.376"></status>
+<msg timestamp="20210113 14:27:46.483" level="TRACE">Arguments: [ '${Platform}' ]</msg>
+<msg timestamp="20210113 14:27:46.483" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20210113 14:27:46.483" endtime="20210113 14:27:46.483"></status>
 </kw>
-<status status="PASS" starttime="20210112 16:38:34.373" endtime="20210112 16:38:34.376"></status>
+<status status="PASS" starttime="20210113 14:27:46.481" endtime="20210113 14:27:46.483"></status>
 </kw>
-<status status="PASS" starttime="20210112 16:38:34.370" endtime="20210112 16:38:34.376"></status>
+<status status="PASS" starttime="20210113 14:27:46.480" endtime="20210113 14:27:46.483"></status>
 </kw>
-<status status="PASS" starttime="20210112 16:38:34.369" endtime="20210112 16:38:34.376"></status>
+<msg timestamp="20210113 14:27:46.483" level="TRACE">Return: 'Android'</msg>
+<status status="PASS" starttime="20210113 14:27:46.480" endtime="20210113 14:27:46.484"></status>
 </kw>
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
-<arguments>
-<arg>\nTest Running On The Platform: Android</arg>
-</arguments>
-<status status="PASS" starttime="20210112 16:38:34.376" endtime="20210112 16:38:34.378"></status>
-</kw>
+<kw name="Send Get Request">
+<msg timestamp="20210113 14:27:46.484" level="TRACE">Arguments: [  ]</msg>
 <kw name="Get" library="REST">
 <tags>
 <tag>http</tag>
 </tags>
 <doc>*Sends a GET request to the endpoint.*</doc>
 <arguments>
-<arg>${v}${EndPoint}</arg>
+<arg>${version}${EndPoint}</arg>
 </arguments>
-<assign>
-<var>${req}</var>
-</assign>
-<msg timestamp="20210112 16:38:35.324" level="INFO">${req} = {'seconds': 0.9342670000000001, 'status': 200, 'body': {'listing': {'filter': {'withImage': True, 'withImageException': [43633, 43632, 44100, 44116, 44101, 44102, 44103, 44104, 44105, 44106, 44107, 44...</msg>
-<status status="PASS" starttime="20210112 16:38:34.378" endtime="20210112 16:38:35.324"></status>
+<msg timestamp="20210113 14:27:46.484" level="TRACE">Arguments: [ 'v3.1.5/general/config' ]</msg>
+<msg timestamp="20210113 14:27:46.486" level="DEBUG">Starting new HTTPS connection (1): www.sheypoor.com:443</msg>
+<msg timestamp="20210113 14:27:46.636" level="DEBUG">https://www.sheypoor.com:443 "GET /api/v3.1.5/general/config HTTP/1.1" 200 571</msg>
+<msg timestamp="20210113 14:27:46.648" level="TRACE">Return: {'body': {'contact': {'email': 'info@sheypoor.com',
+                      'internationalTel': '+982154587',
+                      'tel': '02154587'},
+          'features': {'advertisement': False,
+                       'all-iran-feature': True,
+                       'bump': True,
+                       'car-hide-price': False,
+                       'car-show-price-range': False,
+                       'carBodyInsurance': False,
+                       'carCertification': False,
+                       'carCertificationBuyer': False,
+                       'carCertificationUi': True,
+                       'carSearch': False,
+                       'chat': False,
+                       'cod': False,
+                       'consultant': True,
+                       'dot-ir': False,
+                       'hamshahri': False,
+                       'hidePrice': True,
+                       'leads': False,
+                       'leads-views': False,
+                       'leasing': False,
+                       'newChat': True,
+                       'notifications': False,
+                       'outOfIran': False,
+                       'package-more-view': False,
+                       'paid-features': True,
+                       'paid-features-bumps': True,
+                       'paid-tag': True,
+                       'performance-log': True,
+                       'post-moderation': False,
+                       'priceTag': False,
+                       'priceTagBI': False,
+                       'real-estate-hide-price': True,
+                       'real-estate-hide-price-rent': True,
+                       'real-estate-show-price-range': False,
+                       'resume-bank': False,
+                       'savedSearch': True,
+                       'secure-purchase': True,
+                       'secure-purchase-delivery': True,
+                       'shop-in-serp': True,
+                       'shop-secure-purchase-in-post-listing': False,
+                       'thirdPartyInsurance': False,
+                       'user-rating': False,
+                       'user-secure-purchase-in-post-listing': False,
+                       'video': True,
+                       'views': True,
+                       'visibility': False,
+                       'weblink': True},
+          'listing': {'filter': {'withImage': True,
+                                 'withImageException': [43633,
+                                                        43632,
+                                                        44100,
+                                                        44116,
+                                                        44101,
+                                                        44102,
+                                                        44103,
+                                                        44104,
+                                                        44105,
+                                                        44106,
+                                                        44107,
+                                                        44108,
+                                                        43631,
+                                                        43637,
+                                                        43634,
+                                                        43635,
+                                                        43618]},
+                      'new': {'maxPrice': 1000000000000}},
+          'notifications': [],
+          'priceControl': []},
+ 'headers': {'Accept-Ranges': 'bytes',
+             'Age': '0',
+             'Cache-Control': 'public, max-age=60',
+             'Connection': 'keep-alive',
+             'Content-Encoding': 'gzip',
+             'Content-Length': '571',
+             'Content-Type': 'application/json; charset=UTF-8',
+             'Date': 'Wed, 13 Jan 2021 10:57:45 GMT',
+             'Expires': 'Wed, 13 Jan 2021 10:58:45 GMT',
+             'Last-Modified': 'Wed, 13 Jan 2021 10:57:45 GMT',
+             'Server': 'nginx/1.16.1',
+             'Strict-Transport-Security': 'max-age=172800; includeSubDomains',
+             'X-Cache': 'MISS'},
+ 'seconds': 0.150918,
+ 'status': 200}</msg>
+<status status="PASS" starttime="20210113 14:27:46.484" endtime="20210113 14:27:46.656"></status>
 </kw>
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
+<msg timestamp="20210113 14:27:46.657" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210113 14:27:46.484" endtime="20210113 14:27:46.657"></status>
+</kw>
+<kw name="Validate Response">
+<msg timestamp="20210113 14:27:46.659" level="TRACE">Arguments: [  ]</msg>
+<kw name="Clear Expectations" library="REST">
+<tags>
+<tag>expectations</tag>
+</tags>
+<doc>*Resets the expectations for both request and response.*</doc>
+<msg timestamp="20210113 14:27:46.661" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20210113 14:27:46.661" level="TRACE">Return: {'$schema': 'http://json-schema.org/draft-07/schema#',
+ 'default': True,
+ 'description': None,
+ 'examples': [],
+ 'properties': {'request': {'properties': {}, 'type': 'object'},
+                'response': {'properties': {}, 'type': 'object'}},
+ 'title': 'https://www.sheypoor.com/api',
+ 'type': 'object'}</msg>
+<status status="PASS" starttime="20210113 14:27:46.660" endtime="20210113 14:27:46.663"></status>
+</kw>
+<kw name="Output" library="REST">
+<tags>
+<tag>I/O</tag>
+</tags>
+<doc>*Outputs JSON to terminal or a file.*</doc>
 <arguments>
-<arg>${req} for version ${v}</arg>
+<arg>response</arg>
+<arg>body</arg>
 </arguments>
-<status status="PASS" starttime="20210112 16:38:35.325" endtime="20210112 16:38:35.422"></status>
+<msg timestamp="20210113 14:27:46.664" level="TRACE">Arguments: [ 'response' | 'body' ]</msg>
+<msg timestamp="20210113 14:27:46.665" level="TRACE">Return: {'body': {'contact': {'email': 'info@sheypoor.com',
+                      'internationalTel': '+982154587',
+                      'tel': '02154587'},
+          'features': {'advertisement': False,
+                       'all-iran-feature': True,
+                       'bump': True,
+                       'car-hide-price': False,
+                       'car-show-price-range': False,
+                       'carBodyInsurance': False,
+                       'carCertification': False,
+                       'carCertificationBuyer': False,
+                       'carCertificationUi': True,
+                       'carSearch': False,
+                       'chat': False,
+                       'cod': False,
+                       'consultant': True,
+                       'dot-ir': False,
+                       'hamshahri': False,
+                       'hidePrice': True,
+                       'leads': False,
+                       'leads-views': False,
+                       'leasing': False,
+                       'newChat': True,
+                       'notifications': False,
+                       'outOfIran': False,
+                       'package-more-view': False,
+                       'paid-features': True,
+                       'paid-features-bumps': True,
+                       'paid-tag': True,
+                       'performance-log': True,
+                       'post-moderation': False,
+                       'priceTag': False,
+                       'priceTagBI': False,
+                       'real-estate-hide-price': True,
+                       'real-estate-hide-price-rent': True,
+                       'real-estate-show-price-range': False,
+                       'resume-bank': False,
+                       'savedSearch': True,
+                       'secure-purchase': True,
+                       'secure-purchase-delivery': True,
+                       'shop-in-serp': True,
+                       'shop-secure-purchase-in-post-listing': False,
+                       'thirdPartyInsurance': False,
+                       'user-rating': False,
+                       'user-secure-purchase-in-post-listing': False,
+                       'video': True,
+                       'views': True,
+                       'visibility': False,
+                       'weblink': True},
+          'listing': {'filter': {'withImage': True,
+                                 'withImageException': [43633,
+                                                        43632,
+                                                        44100,
+                                                        44116,
+                                                        44101,
+                                                        44102,
+                                                        44103,
+                                                        44104,
+                                                        44105,
+                                                        44106,
+                                                        44107,
+                                                        44108,
+                                                        43631,
+                                                        43637,
+                                                        43634,
+                                                        43635,
+                                                        43618]},
+                      'new': {'maxPrice': 1000000000000}},
+          'notifications': [],
+          'priceControl': []},
+ 'headers': {'Accept-Ranges': 'bytes',
+             'Age': '0',
+             'Cache-Control': 'public, max-age=60',
+             'Connection': 'keep-alive',
+             'Content-Encoding': 'gzip',
+             'Content-Length': '571',
+             'Content-Type': 'application/json; charset=UTF-8',
+             'Date': 'Wed, 13 Jan 2021 10:57:45 GMT',
+             'Expires': 'Wed, 13 Jan 2021 10:58:45 GMT',
+             'Last-Modified': 'Wed, 13 Jan 2021 10:57:45 GMT',
+             'Server': 'nginx/1.16.1',
+             'Strict-Transport-Security': 'max-age=172800; includeSubDomains',
+             'X-Cache': 'MISS'},
+ 'seconds': 0.150918,
+ 'status': 200}</msg>
+<status status="PASS" starttime="20210113 14:27:46.663" endtime="20210113 14:27:46.668"></status>
 </kw>
-<kw name="Set Headers Value">
+<kw name="Object" library="REST">
+<tags>
+<tag>assertions</tag>
+</tags>
+<doc>*Asserts the field as JSON object.*</doc>
+<arguments>
+<arg>response</arg>
+<arg>body</arg>
+<arg>${Response_Path}/${Response_File}_${version}_${Platform}.json</arg>
+</arguments>
+<msg timestamp="20210113 14:27:46.669" level="TRACE">Arguments: [ 'response' | 'body' | '../Outputs/ExpectedResponse_v3.1.5_Android.json' ]</msg>
+<msg timestamp="20210113 14:27:46.687" level="TRACE">Return: [{'body': {'contact': {'email': 'info@sheypoor.com',
+                       'internationalTel': '+982154587',
+                       'tel': '02154587'},
+           'features': {'advertisement': False,
+                        'all-iran-feature': True,
+                        'bump': True,
+                        'car-hide-price': False,
+                        'car-show-price-range': False,
+                        'carBodyInsurance': False,
+                        'carCertification': False,
+                        'carCertificationBuyer': False,
+                        'carCertificationUi': True,
+                        'carSearch': False,
+                        'chat': False,
+                        'cod': False,
+                        'consultant': True,
+                        'dot-ir': False,
+                        'hamshahri': False,
+                        'hidePrice': True,
+                        'leads': False,
+                        'leads-views': False,
+                        'leasing': False,
+                        'newChat': True,
+                        'notifications': False,
+                        'outOfIran': False,
+                        'package-more-view': False,
+                        'paid-features': True,
+                        'paid-features-bumps': True,
+                        'paid-tag': True,
+                        'performance-log': True,
+                        'post-moderation': False,
+                        'priceTag': False,
+                        'priceTagBI': False,
+                        'real-estate-hide-price': True,
+                        'real-estate-hide-price-rent': True,
+                        'real-estate-show-price-range': False,
+                        'resume-bank': False,
+                        'savedSearch': True,
+                        'secure-purchase': True,
+                        'secure-purchase-delivery': True,
+                        'shop-in-serp': True,
+                        'shop-secure-purchase-in-post-listing': False,
+                        'thirdPartyInsurance': False,
+                        'user-rating': False,
+                        'user-secure-purchase-in-post-listing': False,
+                        'video': True,
+                        'views': True,
+                        'visibility': False,
+                        'weblink': True},
+           'listing': {'filter': {'withImage': True,
+                                  'withImageException': [43633,
+                                                         43632,
+                                                         44100,
+                                                         44116,
+                                                         44101,
+                                                         44102,
+                                                         44103,
+                                                         44104,
+                                                         44105,
+                                                         44106,
+                                                         44107,
+                                                         44108,
+                                                         43631,
+                                                         43637,
+                                                         43634,
+                                                         43635,
+                                                         43618]},
+                       'new': {'maxPrice': 1000000000000}},
+           'notifications': [],
+           'priceControl': []},
+  'headers': {'Accept-Ranges': 'bytes',
+              'Age': '0',
+              'Cache-Control': 'public, max-age=60',
+              'Connection': 'keep-alive',
+              'Content-Encoding': 'gzip',
+              'Content-Length': '571',
+              'Content-Type': 'application/json; charset=UTF-8',
+              'Date': 'Wed, 13 Jan 2021 10:57:45 GMT',
+              'Expires': 'Wed, 13 Jan 2021 10:58:45 GMT',
+              'Last-Modified': 'Wed, 13 Jan 2021 10:57:45 GMT',
+              'Server': 'nginx/1.16.1',
+              'Strict-Transport-Security': 'max-age=172800; includeSubDomains',
+              'X-Cache': 'MISS'},
+  'seconds': 0.150918,
+  'status': 200}]</msg>
+<status status="PASS" starttime="20210113 14:27:46.668" endtime="20210113 14:27:46.689"></status>
+</kw>
+<msg timestamp="20210113 14:27:46.689" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210113 14:27:46.658" endtime="20210113 14:27:46.689"></status>
+</kw>
+<kw name="Set Headers Value For">
 <arguments>
 <arg>Desktop_Web</arg>
 </arguments>
+<msg timestamp="20210113 14:27:46.690" level="TRACE">Arguments: [ ${Platform}='Desktop_Web' ]</msg>
 <kw name="${key} IN [ @{${Platform}.keys()} ]" type="for">
 <kw name="${key} = User-Agent" type="foritem">
 <kw name="Get From Dictionary" library="Collections">
@@ -566,8 +2747,10 @@
 <assign>
 <var>${value}</var>
 </assign>
-<msg timestamp="20210112 16:38:35.425" level="INFO">${value} = Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36</msg>
-<status status="PASS" starttime="20210112 16:38:35.425" endtime="20210112 16:38:35.426"></status>
+<msg timestamp="20210113 14:27:46.691" level="TRACE">Arguments: [ {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36'} | 'User-Agent' ]</msg>
+<msg timestamp="20210113 14:27:46.691" level="TRACE">Return: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36'</msg>
+<msg timestamp="20210113 14:27:46.691" level="INFO">${value} = Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36</msg>
+<status status="PASS" starttime="20210113 14:27:46.691" endtime="20210113 14:27:46.691"></status>
 </kw>
 <kw name="Set Headers" library="REST">
 <tags>
@@ -577,46 +2760,363 @@
 <arguments>
 <arg>{"key":"value"}</arg>
 </arguments>
-<status status="PASS" starttime="20210112 16:38:35.426" endtime="20210112 16:38:35.427"></status>
+<msg timestamp="20210113 14:27:46.691" level="TRACE">Arguments: [ '{"key":"value"}' ]</msg>
+<msg timestamp="20210113 14:27:46.692" level="TRACE">Return: {'Accept': 'application/json, */*',
+ 'Content-Type': 'application/json',
+ 'User-Agent': 'RESTinstance/1.0.2',
+ 'key': 'value'}</msg>
+<status status="PASS" starttime="20210113 14:27:46.691" endtime="20210113 14:27:46.692"></status>
 </kw>
-<status status="PASS" starttime="20210112 16:38:35.424" endtime="20210112 16:38:35.427"></status>
-</kw>
-<status status="PASS" starttime="20210112 16:38:35.423" endtime="20210112 16:38:35.427"></status>
-</kw>
-<status status="PASS" starttime="20210112 16:38:35.422" endtime="20210112 16:38:35.427"></status>
-</kw>
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
+<kw name="Set Task Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current task.</doc>
 <arguments>
-<arg>\nTest Running On The Platform: Desktop Web</arg>
+<arg>${Platform}</arg>
 </arguments>
-<status status="PASS" starttime="20210112 16:38:35.427" endtime="20210112 16:38:35.428"></status>
+<msg timestamp="20210113 14:27:46.692" level="TRACE">Arguments: [ '${Platform}' ]</msg>
+<msg timestamp="20210113 14:27:46.692" level="INFO">${Platform} = Desktop_Web</msg>
+<msg timestamp="20210113 14:27:46.693" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210113 14:27:46.692" endtime="20210113 14:27:46.693"></status>
 </kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<doc>Returns from the enclosing user keyword.</doc>
+<arguments>
+<arg>${Platform}</arg>
+</arguments>
+<msg timestamp="20210113 14:27:46.693" level="TRACE">Arguments: [ '${Platform}' ]</msg>
+<msg timestamp="20210113 14:27:46.693" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20210113 14:27:46.693" endtime="20210113 14:27:46.693"></status>
+</kw>
+<status status="PASS" starttime="20210113 14:27:46.691" endtime="20210113 14:27:46.693"></status>
+</kw>
+<status status="PASS" starttime="20210113 14:27:46.690" endtime="20210113 14:27:46.693"></status>
+</kw>
+<msg timestamp="20210113 14:27:46.693" level="TRACE">Return: 'Desktop_Web'</msg>
+<status status="PASS" starttime="20210113 14:27:46.689" endtime="20210113 14:27:46.693"></status>
+</kw>
+<kw name="Send Get Request">
+<msg timestamp="20210113 14:27:46.694" level="TRACE">Arguments: [  ]</msg>
 <kw name="Get" library="REST">
 <tags>
 <tag>http</tag>
 </tags>
 <doc>*Sends a GET request to the endpoint.*</doc>
 <arguments>
-<arg>${v}${EndPoint}</arg>
+<arg>${version}${EndPoint}</arg>
 </arguments>
-<assign>
-<var>${req}</var>
-</assign>
-<msg timestamp="20210112 16:38:36.378" level="INFO">${req} = {'seconds': 0.936044, 'status': 200, 'body': {'listing': {'filter': {'withImage': True, 'withImageException': [43633, 43632, 44100, 44116, 44101, 44102, 44103, 44104, 44105, 44106, 44107, 44108, 43631...</msg>
-<status status="PASS" starttime="20210112 16:38:35.428" endtime="20210112 16:38:36.378"></status>
+<msg timestamp="20210113 14:27:46.694" level="TRACE">Arguments: [ 'v3.1.5/general/config' ]</msg>
+<msg timestamp="20210113 14:27:46.696" level="DEBUG">Starting new HTTPS connection (1): www.sheypoor.com:443</msg>
+<msg timestamp="20210113 14:27:46.829" level="DEBUG">https://www.sheypoor.com:443 "GET /api/v3.1.5/general/config HTTP/1.1" 200 571</msg>
+<msg timestamp="20210113 14:27:46.842" level="TRACE">Return: {'body': {'contact': {'email': 'info@sheypoor.com',
+                      'internationalTel': '+982154587',
+                      'tel': '02154587'},
+          'features': {'advertisement': False,
+                       'all-iran-feature': True,
+                       'bump': True,
+                       'car-hide-price': False,
+                       'car-show-price-range': False,
+                       'carBodyInsurance': False,
+                       'carCertification': False,
+                       'carCertificationBuyer': False,
+                       'carCertificationUi': True,
+                       'carSearch': False,
+                       'chat': False,
+                       'cod': False,
+                       'consultant': True,
+                       'dot-ir': False,
+                       'hamshahri': False,
+                       'hidePrice': True,
+                       'leads': False,
+                       'leads-views': False,
+                       'leasing': False,
+                       'newChat': True,
+                       'notifications': False,
+                       'outOfIran': False,
+                       'package-more-view': False,
+                       'paid-features': True,
+                       'paid-features-bumps': True,
+                       'paid-tag': True,
+                       'performance-log': True,
+                       'post-moderation': False,
+                       'priceTag': False,
+                       'priceTagBI': False,
+                       'real-estate-hide-price': True,
+                       'real-estate-hide-price-rent': True,
+                       'real-estate-show-price-range': False,
+                       'resume-bank': False,
+                       'savedSearch': True,
+                       'secure-purchase': True,
+                       'secure-purchase-delivery': True,
+                       'shop-in-serp': True,
+                       'shop-secure-purchase-in-post-listing': False,
+                       'thirdPartyInsurance': False,
+                       'user-rating': False,
+                       'user-secure-purchase-in-post-listing': False,
+                       'video': True,
+                       'views': True,
+                       'visibility': False,
+                       'weblink': True},
+          'listing': {'filter': {'withImage': True,
+                                 'withImageException': [43633,
+                                                        43632,
+                                                        44100,
+                                                        44116,
+                                                        44101,
+                                                        44102,
+                                                        44103,
+                                                        44104,
+                                                        44105,
+                                                        44106,
+                                                        44107,
+                                                        44108,
+                                                        43631,
+                                                        43637,
+                                                        43634,
+                                                        43635,
+                                                        43618]},
+                      'new': {'maxPrice': 1000000000000}},
+          'notifications': [],
+          'priceControl': []},
+ 'headers': {'Accept-Ranges': 'bytes',
+             'Age': '0',
+             'Cache-Control': 'public, max-age=60',
+             'Connection': 'keep-alive',
+             'Content-Encoding': 'gzip',
+             'Content-Length': '571',
+             'Content-Type': 'application/json; charset=UTF-8',
+             'Date': 'Wed, 13 Jan 2021 10:57:46 GMT',
+             'Expires': 'Wed, 13 Jan 2021 10:58:45 GMT',
+             'Last-Modified': 'Wed, 13 Jan 2021 10:57:45 GMT',
+             'Server': 'nginx/1.16.1',
+             'Strict-Transport-Security': 'max-age=172800; includeSubDomains',
+             'X-Cache': 'HIT'},
+ 'seconds': 0.135157,
+ 'status': 200}</msg>
+<status status="PASS" starttime="20210113 14:27:46.694" endtime="20210113 14:27:46.850"></status>
 </kw>
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
+<msg timestamp="20210113 14:27:46.851" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210113 14:27:46.694" endtime="20210113 14:27:46.851"></status>
+</kw>
+<kw name="Validate Response">
+<msg timestamp="20210113 14:27:46.853" level="TRACE">Arguments: [  ]</msg>
+<kw name="Clear Expectations" library="REST">
+<tags>
+<tag>expectations</tag>
+</tags>
+<doc>*Resets the expectations for both request and response.*</doc>
+<msg timestamp="20210113 14:27:46.854" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20210113 14:27:46.854" level="TRACE">Return: {'$schema': 'http://json-schema.org/draft-07/schema#',
+ 'default': True,
+ 'description': None,
+ 'examples': [],
+ 'properties': {'request': {'properties': {}, 'type': 'object'},
+                'response': {'properties': {}, 'type': 'object'}},
+ 'title': 'https://www.sheypoor.com/api',
+ 'type': 'object'}</msg>
+<status status="PASS" starttime="20210113 14:27:46.854" endtime="20210113 14:27:46.856"></status>
+</kw>
+<kw name="Output" library="REST">
+<tags>
+<tag>I/O</tag>
+</tags>
+<doc>*Outputs JSON to terminal or a file.*</doc>
 <arguments>
-<arg>${req} for version ${v}</arg>
+<arg>response</arg>
+<arg>body</arg>
 </arguments>
-<status status="PASS" starttime="20210112 16:38:36.379" endtime="20210112 16:38:36.456"></status>
+<msg timestamp="20210113 14:27:46.857" level="TRACE">Arguments: [ 'response' | 'body' ]</msg>
+<msg timestamp="20210113 14:27:46.860" level="TRACE">Return: {'body': {'contact': {'email': 'info@sheypoor.com',
+                      'internationalTel': '+982154587',
+                      'tel': '02154587'},
+          'features': {'advertisement': False,
+                       'all-iran-feature': True,
+                       'bump': True,
+                       'car-hide-price': False,
+                       'car-show-price-range': False,
+                       'carBodyInsurance': False,
+                       'carCertification': False,
+                       'carCertificationBuyer': False,
+                       'carCertificationUi': True,
+                       'carSearch': False,
+                       'chat': False,
+                       'cod': False,
+                       'consultant': True,
+                       'dot-ir': False,
+                       'hamshahri': False,
+                       'hidePrice': True,
+                       'leads': False,
+                       'leads-views': False,
+                       'leasing': False,
+                       'newChat': True,
+                       'notifications': False,
+                       'outOfIran': False,
+                       'package-more-view': False,
+                       'paid-features': True,
+                       'paid-features-bumps': True,
+                       'paid-tag': True,
+                       'performance-log': True,
+                       'post-moderation': False,
+                       'priceTag': False,
+                       'priceTagBI': False,
+                       'real-estate-hide-price': True,
+                       'real-estate-hide-price-rent': True,
+                       'real-estate-show-price-range': False,
+                       'resume-bank': False,
+                       'savedSearch': True,
+                       'secure-purchase': True,
+                       'secure-purchase-delivery': True,
+                       'shop-in-serp': True,
+                       'shop-secure-purchase-in-post-listing': False,
+                       'thirdPartyInsurance': False,
+                       'user-rating': False,
+                       'user-secure-purchase-in-post-listing': False,
+                       'video': True,
+                       'views': True,
+                       'visibility': False,
+                       'weblink': True},
+          'listing': {'filter': {'withImage': True,
+                                 'withImageException': [43633,
+                                                        43632,
+                                                        44100,
+                                                        44116,
+                                                        44101,
+                                                        44102,
+                                                        44103,
+                                                        44104,
+                                                        44105,
+                                                        44106,
+                                                        44107,
+                                                        44108,
+                                                        43631,
+                                                        43637,
+                                                        43634,
+                                                        43635,
+                                                        43618]},
+                      'new': {'maxPrice': 1000000000000}},
+          'notifications': [],
+          'priceControl': []},
+ 'headers': {'Accept-Ranges': 'bytes',
+             'Age': '0',
+             'Cache-Control': 'public, max-age=60',
+             'Connection': 'keep-alive',
+             'Content-Encoding': 'gzip',
+             'Content-Length': '571',
+             'Content-Type': 'application/json; charset=UTF-8',
+             'Date': 'Wed, 13 Jan 2021 10:57:46 GMT',
+             'Expires': 'Wed, 13 Jan 2021 10:58:45 GMT',
+             'Last-Modified': 'Wed, 13 Jan 2021 10:57:45 GMT',
+             'Server': 'nginx/1.16.1',
+             'Strict-Transport-Security': 'max-age=172800; includeSubDomains',
+             'X-Cache': 'HIT'},
+ 'seconds': 0.135157,
+ 'status': 200}</msg>
+<status status="PASS" starttime="20210113 14:27:46.856" endtime="20210113 14:27:46.867"></status>
 </kw>
-<kw name="Set Headers Value">
+<kw name="Object" library="REST">
+<tags>
+<tag>assertions</tag>
+</tags>
+<doc>*Asserts the field as JSON object.*</doc>
+<arguments>
+<arg>response</arg>
+<arg>body</arg>
+<arg>${Response_Path}/${Response_File}_${version}_${Platform}.json</arg>
+</arguments>
+<msg timestamp="20210113 14:27:46.870" level="TRACE">Arguments: [ 'response' | 'body' | '../Outputs/ExpectedResponse_v3.1.5_Desktop_Web.json' ]</msg>
+<msg timestamp="20210113 14:27:46.914" level="TRACE">Return: [{'body': {'contact': {'email': 'info@sheypoor.com',
+                       'internationalTel': '+982154587',
+                       'tel': '02154587'},
+           'features': {'advertisement': False,
+                        'all-iran-feature': True,
+                        'bump': True,
+                        'car-hide-price': False,
+                        'car-show-price-range': False,
+                        'carBodyInsurance': False,
+                        'carCertification': False,
+                        'carCertificationBuyer': False,
+                        'carCertificationUi': True,
+                        'carSearch': False,
+                        'chat': False,
+                        'cod': False,
+                        'consultant': True,
+                        'dot-ir': False,
+                        'hamshahri': False,
+                        'hidePrice': True,
+                        'leads': False,
+                        'leads-views': False,
+                        'leasing': False,
+                        'newChat': True,
+                        'notifications': False,
+                        'outOfIran': False,
+                        'package-more-view': False,
+                        'paid-features': True,
+                        'paid-features-bumps': True,
+                        'paid-tag': True,
+                        'performance-log': True,
+                        'post-moderation': False,
+                        'priceTag': False,
+                        'priceTagBI': False,
+                        'real-estate-hide-price': True,
+                        'real-estate-hide-price-rent': True,
+                        'real-estate-show-price-range': False,
+                        'resume-bank': False,
+                        'savedSearch': True,
+                        'secure-purchase': True,
+                        'secure-purchase-delivery': True,
+                        'shop-in-serp': True,
+                        'shop-secure-purchase-in-post-listing': False,
+                        'thirdPartyInsurance': False,
+                        'user-rating': False,
+                        'user-secure-purchase-in-post-listing': False,
+                        'video': True,
+                        'views': True,
+                        'visibility': False,
+                        'weblink': True},
+           'listing': {'filter': {'withImage': True,
+                                  'withImageException': [43633,
+                                                         43632,
+                                                         44100,
+                                                         44116,
+                                                         44101,
+                                                         44102,
+                                                         44103,
+                                                         44104,
+                                                         44105,
+                                                         44106,
+                                                         44107,
+                                                         44108,
+                                                         43631,
+                                                         43637,
+                                                         43634,
+                                                         43635,
+                                                         43618]},
+                       'new': {'maxPrice': 1000000000000}},
+           'notifications': [],
+           'priceControl': []},
+  'headers': {'Accept-Ranges': 'bytes',
+              'Age': '0',
+              'Cache-Control': 'public, max-age=60',
+              'Connection': 'keep-alive',
+              'Content-Encoding': 'gzip',
+              'Content-Length': '571',
+              'Content-Type': 'application/json; charset=UTF-8',
+              'Date': 'Wed, 13 Jan 2021 10:57:46 GMT',
+              'Expires': 'Wed, 13 Jan 2021 10:58:45 GMT',
+              'Last-Modified': 'Wed, 13 Jan 2021 10:57:45 GMT',
+              'Server': 'nginx/1.16.1',
+              'Strict-Transport-Security': 'max-age=172800; includeSubDomains',
+              'X-Cache': 'HIT'},
+  'seconds': 0.135157,
+  'status': 200}]</msg>
+<status status="PASS" starttime="20210113 14:27:46.868" endtime="20210113 14:27:46.919"></status>
+</kw>
+<msg timestamp="20210113 14:27:46.920" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210113 14:27:46.852" endtime="20210113 14:27:46.920"></status>
+</kw>
+<kw name="Set Headers Value For">
 <arguments>
 <arg>Mobile_Site</arg>
 </arguments>
+<msg timestamp="20210113 14:27:46.921" level="TRACE">Arguments: [ ${Platform}='Mobile_Site' ]</msg>
 <kw name="${key} IN [ @{${Platform}.keys()} ]" type="for">
 <kw name="${key} = User-Agent" type="foritem">
 <kw name="Get From Dictionary" library="Collections">
@@ -628,8 +3128,10 @@
 <assign>
 <var>${value}</var>
 </assign>
-<msg timestamp="20210112 16:38:36.457" level="INFO">${value} = Mozilla/5.0 (Linux; U; Android 8.1; en-us; SCH-I535 Build/KOT49H) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30</msg>
-<status status="PASS" starttime="20210112 16:38:36.457" endtime="20210112 16:38:36.457"></status>
+<msg timestamp="20210113 14:27:46.923" level="TRACE">Arguments: [ {'User-Agent': 'Mozilla/5.0 (Linux; U; Android 8.1; en-us; SCH-I535 Build/KOT49H) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30'} | 'User-Agent' ]</msg>
+<msg timestamp="20210113 14:27:46.923" level="TRACE">Return: 'Mozilla/5.0 (Linux; U; Android 8.1; en-us; SCH-I535 Build/KOT49H) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30'</msg>
+<msg timestamp="20210113 14:27:46.923" level="INFO">${value} = Mozilla/5.0 (Linux; U; Android 8.1; en-us; SCH-I535 Build/KOT49H) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30</msg>
+<status status="PASS" starttime="20210113 14:27:46.922" endtime="20210113 14:27:46.923"></status>
 </kw>
 <kw name="Set Headers" library="REST">
 <tags>
@@ -639,57 +3141,375 @@
 <arguments>
 <arg>{"key":"value"}</arg>
 </arguments>
-<status status="PASS" starttime="20210112 16:38:36.458" endtime="20210112 16:38:36.458"></status>
+<msg timestamp="20210113 14:27:46.924" level="TRACE">Arguments: [ '{"key":"value"}' ]</msg>
+<msg timestamp="20210113 14:27:46.924" level="TRACE">Return: {'Accept': 'application/json, */*',
+ 'Content-Type': 'application/json',
+ 'User-Agent': 'RESTinstance/1.0.2',
+ 'key': 'value'}</msg>
+<status status="PASS" starttime="20210113 14:27:46.924" endtime="20210113 14:27:46.924"></status>
 </kw>
-<status status="PASS" starttime="20210112 16:38:36.457" endtime="20210112 16:38:36.458"></status>
-</kw>
-<status status="PASS" starttime="20210112 16:38:36.456" endtime="20210112 16:38:36.458"></status>
-</kw>
-<status status="PASS" starttime="20210112 16:38:36.456" endtime="20210112 16:38:36.458"></status>
-</kw>
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
+<kw name="Set Task Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current task.</doc>
 <arguments>
-<arg>\nTest Running On The Platform: Mobile Site</arg>
+<arg>${Platform}</arg>
 </arguments>
-<status status="PASS" starttime="20210112 16:38:36.458" endtime="20210112 16:38:36.459"></status>
+<msg timestamp="20210113 14:27:46.925" level="TRACE">Arguments: [ '${Platform}' ]</msg>
+<msg timestamp="20210113 14:27:46.926" level="INFO">${Platform} = Mobile_Site</msg>
+<msg timestamp="20210113 14:27:46.926" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210113 14:27:46.925" endtime="20210113 14:27:46.926"></status>
 </kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<doc>Returns from the enclosing user keyword.</doc>
+<arguments>
+<arg>${Platform}</arg>
+</arguments>
+<msg timestamp="20210113 14:27:46.927" level="TRACE">Arguments: [ '${Platform}' ]</msg>
+<msg timestamp="20210113 14:27:46.927" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20210113 14:27:46.926" endtime="20210113 14:27:46.927"></status>
+</kw>
+<status status="PASS" starttime="20210113 14:27:46.922" endtime="20210113 14:27:46.927"></status>
+</kw>
+<status status="PASS" starttime="20210113 14:27:46.921" endtime="20210113 14:27:46.927"></status>
+</kw>
+<msg timestamp="20210113 14:27:46.927" level="TRACE">Return: 'Mobile_Site'</msg>
+<status status="PASS" starttime="20210113 14:27:46.920" endtime="20210113 14:27:46.928"></status>
+</kw>
+<kw name="Send Get Request">
+<msg timestamp="20210113 14:27:46.928" level="TRACE">Arguments: [  ]</msg>
 <kw name="Get" library="REST">
 <tags>
 <tag>http</tag>
 </tags>
 <doc>*Sends a GET request to the endpoint.*</doc>
 <arguments>
-<arg>${v}${EndPoint}</arg>
+<arg>${version}${EndPoint}</arg>
 </arguments>
-<assign>
-<var>${req}</var>
-</assign>
-<msg timestamp="20210112 16:38:37.430" level="INFO">${req} = {'seconds': 0.959893, 'status': 200, 'body': {'listing': {'filter': {'withImage': True, 'withImageException': [43633, 43632, 44100, 44116, 44101, 44102, 44103, 44104, 44105, 44106, 44107, 44108, 43631...</msg>
-<status status="PASS" starttime="20210112 16:38:36.459" endtime="20210112 16:38:37.431"></status>
+<msg timestamp="20210113 14:27:46.929" level="TRACE">Arguments: [ 'v3.1.5/general/config' ]</msg>
+<msg timestamp="20210113 14:27:46.933" level="DEBUG">Starting new HTTPS connection (1): www.sheypoor.com:443</msg>
+<msg timestamp="20210113 14:27:47.060" level="DEBUG">https://www.sheypoor.com:443 "GET /api/v3.1.5/general/config HTTP/1.1" 200 571</msg>
+<msg timestamp="20210113 14:27:47.071" level="TRACE">Return: {'body': {'contact': {'email': 'info@sheypoor.com',
+                      'internationalTel': '+982154587',
+                      'tel': '02154587'},
+          'features': {'advertisement': False,
+                       'all-iran-feature': True,
+                       'bump': True,
+                       'car-hide-price': False,
+                       'car-show-price-range': False,
+                       'carBodyInsurance': False,
+                       'carCertification': False,
+                       'carCertificationBuyer': False,
+                       'carCertificationUi': True,
+                       'carSearch': False,
+                       'chat': False,
+                       'cod': False,
+                       'consultant': True,
+                       'dot-ir': False,
+                       'hamshahri': False,
+                       'hidePrice': True,
+                       'leads': False,
+                       'leads-views': False,
+                       'leasing': False,
+                       'newChat': True,
+                       'notifications': False,
+                       'outOfIran': False,
+                       'package-more-view': False,
+                       'paid-features': True,
+                       'paid-features-bumps': True,
+                       'paid-tag': True,
+                       'performance-log': True,
+                       'post-moderation': False,
+                       'priceTag': False,
+                       'priceTagBI': False,
+                       'real-estate-hide-price': True,
+                       'real-estate-hide-price-rent': True,
+                       'real-estate-show-price-range': False,
+                       'resume-bank': False,
+                       'savedSearch': True,
+                       'secure-purchase': True,
+                       'secure-purchase-delivery': True,
+                       'shop-in-serp': True,
+                       'shop-secure-purchase-in-post-listing': False,
+                       'thirdPartyInsurance': False,
+                       'user-rating': False,
+                       'user-secure-purchase-in-post-listing': False,
+                       'video': True,
+                       'views': True,
+                       'visibility': False,
+                       'weblink': True},
+          'listing': {'filter': {'withImage': True,
+                                 'withImageException': [43633,
+                                                        43632,
+                                                        44100,
+                                                        44116,
+                                                        44101,
+                                                        44102,
+                                                        44103,
+                                                        44104,
+                                                        44105,
+                                                        44106,
+                                                        44107,
+                                                        44108,
+                                                        43631,
+                                                        43637,
+                                                        43634,
+                                                        43635,
+                                                        43618]},
+                      'new': {'maxPrice': 1000000000000}},
+          'notifications': [],
+          'priceControl': []},
+ 'headers': {'Accept-Ranges': 'bytes',
+             'Age': '0',
+             'Cache-Control': 'public, max-age=60',
+             'Connection': 'keep-alive',
+             'Content-Encoding': 'gzip',
+             'Content-Length': '571',
+             'Content-Type': 'application/json; charset=UTF-8',
+             'Date': 'Wed, 13 Jan 2021 10:57:46 GMT',
+             'Expires': 'Wed, 13 Jan 2021 10:58:45 GMT',
+             'Last-Modified': 'Wed, 13 Jan 2021 10:57:45 GMT',
+             'Server': 'nginx/1.16.1',
+             'Strict-Transport-Security': 'max-age=172800; includeSubDomains',
+             'X-Cache': 'HIT'},
+ 'seconds': 0.12864799999999998,
+ 'status': 200}</msg>
+<status status="PASS" starttime="20210113 14:27:46.929" endtime="20210113 14:27:47.080"></status>
 </kw>
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
+<msg timestamp="20210113 14:27:47.080" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210113 14:27:46.928" endtime="20210113 14:27:47.081"></status>
+</kw>
+<kw name="Validate Response">
+<msg timestamp="20210113 14:27:47.082" level="TRACE">Arguments: [  ]</msg>
+<kw name="Clear Expectations" library="REST">
+<tags>
+<tag>expectations</tag>
+</tags>
+<doc>*Resets the expectations for both request and response.*</doc>
+<msg timestamp="20210113 14:27:47.083" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20210113 14:27:47.083" level="TRACE">Return: {'$schema': 'http://json-schema.org/draft-07/schema#',
+ 'default': True,
+ 'description': None,
+ 'examples': [],
+ 'properties': {'request': {'properties': {}, 'type': 'object'},
+                'response': {'properties': {}, 'type': 'object'}},
+ 'title': 'https://www.sheypoor.com/api',
+ 'type': 'object'}</msg>
+<status status="PASS" starttime="20210113 14:27:47.083" endtime="20210113 14:27:47.084"></status>
+</kw>
+<kw name="Output" library="REST">
+<tags>
+<tag>I/O</tag>
+</tags>
+<doc>*Outputs JSON to terminal or a file.*</doc>
 <arguments>
-<arg>${req} for version ${v}</arg>
+<arg>response</arg>
+<arg>body</arg>
 </arguments>
-<status status="PASS" starttime="20210112 16:38:37.431" endtime="20210112 16:38:37.542"></status>
+<msg timestamp="20210113 14:27:47.084" level="TRACE">Arguments: [ 'response' | 'body' ]</msg>
+<msg timestamp="20210113 14:27:47.085" level="TRACE">Return: {'body': {'contact': {'email': 'info@sheypoor.com',
+                      'internationalTel': '+982154587',
+                      'tel': '02154587'},
+          'features': {'advertisement': False,
+                       'all-iran-feature': True,
+                       'bump': True,
+                       'car-hide-price': False,
+                       'car-show-price-range': False,
+                       'carBodyInsurance': False,
+                       'carCertification': False,
+                       'carCertificationBuyer': False,
+                       'carCertificationUi': True,
+                       'carSearch': False,
+                       'chat': False,
+                       'cod': False,
+                       'consultant': True,
+                       'dot-ir': False,
+                       'hamshahri': False,
+                       'hidePrice': True,
+                       'leads': False,
+                       'leads-views': False,
+                       'leasing': False,
+                       'newChat': True,
+                       'notifications': False,
+                       'outOfIran': False,
+                       'package-more-view': False,
+                       'paid-features': True,
+                       'paid-features-bumps': True,
+                       'paid-tag': True,
+                       'performance-log': True,
+                       'post-moderation': False,
+                       'priceTag': False,
+                       'priceTagBI': False,
+                       'real-estate-hide-price': True,
+                       'real-estate-hide-price-rent': True,
+                       'real-estate-show-price-range': False,
+                       'resume-bank': False,
+                       'savedSearch': True,
+                       'secure-purchase': True,
+                       'secure-purchase-delivery': True,
+                       'shop-in-serp': True,
+                       'shop-secure-purchase-in-post-listing': False,
+                       'thirdPartyInsurance': False,
+                       'user-rating': False,
+                       'user-secure-purchase-in-post-listing': False,
+                       'video': True,
+                       'views': True,
+                       'visibility': False,
+                       'weblink': True},
+          'listing': {'filter': {'withImage': True,
+                                 'withImageException': [43633,
+                                                        43632,
+                                                        44100,
+                                                        44116,
+                                                        44101,
+                                                        44102,
+                                                        44103,
+                                                        44104,
+                                                        44105,
+                                                        44106,
+                                                        44107,
+                                                        44108,
+                                                        43631,
+                                                        43637,
+                                                        43634,
+                                                        43635,
+                                                        43618]},
+                      'new': {'maxPrice': 1000000000000}},
+          'notifications': [],
+          'priceControl': []},
+ 'headers': {'Accept-Ranges': 'bytes',
+             'Age': '0',
+             'Cache-Control': 'public, max-age=60',
+             'Connection': 'keep-alive',
+             'Content-Encoding': 'gzip',
+             'Content-Length': '571',
+             'Content-Type': 'application/json; charset=UTF-8',
+             'Date': 'Wed, 13 Jan 2021 10:57:46 GMT',
+             'Expires': 'Wed, 13 Jan 2021 10:58:45 GMT',
+             'Last-Modified': 'Wed, 13 Jan 2021 10:57:45 GMT',
+             'Server': 'nginx/1.16.1',
+             'Strict-Transport-Security': 'max-age=172800; includeSubDomains',
+             'X-Cache': 'HIT'},
+ 'seconds': 0.12864799999999998,
+ 'status': 200}</msg>
+<status status="PASS" starttime="20210113 14:27:47.084" endtime="20210113 14:27:47.089"></status>
+</kw>
+<kw name="Object" library="REST">
+<tags>
+<tag>assertions</tag>
+</tags>
+<doc>*Asserts the field as JSON object.*</doc>
+<arguments>
+<arg>response</arg>
+<arg>body</arg>
+<arg>${Response_Path}/${Response_File}_${version}_${Platform}.json</arg>
+</arguments>
+<msg timestamp="20210113 14:27:47.090" level="TRACE">Arguments: [ 'response' | 'body' | '../Outputs/ExpectedResponse_v3.1.5_Mobile_Site.json' ]</msg>
+<msg timestamp="20210113 14:27:47.108" level="TRACE">Return: [{'body': {'contact': {'email': 'info@sheypoor.com',
+                       'internationalTel': '+982154587',
+                       'tel': '02154587'},
+           'features': {'advertisement': False,
+                        'all-iran-feature': True,
+                        'bump': True,
+                        'car-hide-price': False,
+                        'car-show-price-range': False,
+                        'carBodyInsurance': False,
+                        'carCertification': False,
+                        'carCertificationBuyer': False,
+                        'carCertificationUi': True,
+                        'carSearch': False,
+                        'chat': False,
+                        'cod': False,
+                        'consultant': True,
+                        'dot-ir': False,
+                        'hamshahri': False,
+                        'hidePrice': True,
+                        'leads': False,
+                        'leads-views': False,
+                        'leasing': False,
+                        'newChat': True,
+                        'notifications': False,
+                        'outOfIran': False,
+                        'package-more-view': False,
+                        'paid-features': True,
+                        'paid-features-bumps': True,
+                        'paid-tag': True,
+                        'performance-log': True,
+                        'post-moderation': False,
+                        'priceTag': False,
+                        'priceTagBI': False,
+                        'real-estate-hide-price': True,
+                        'real-estate-hide-price-rent': True,
+                        'real-estate-show-price-range': False,
+                        'resume-bank': False,
+                        'savedSearch': True,
+                        'secure-purchase': True,
+                        'secure-purchase-delivery': True,
+                        'shop-in-serp': True,
+                        'shop-secure-purchase-in-post-listing': False,
+                        'thirdPartyInsurance': False,
+                        'user-rating': False,
+                        'user-secure-purchase-in-post-listing': False,
+                        'video': True,
+                        'views': True,
+                        'visibility': False,
+                        'weblink': True},
+           'listing': {'filter': {'withImage': True,
+                                  'withImageException': [43633,
+                                                         43632,
+                                                         44100,
+                                                         44116,
+                                                         44101,
+                                                         44102,
+                                                         44103,
+                                                         44104,
+                                                         44105,
+                                                         44106,
+                                                         44107,
+                                                         44108,
+                                                         43631,
+                                                         43637,
+                                                         43634,
+                                                         43635,
+                                                         43618]},
+                       'new': {'maxPrice': 1000000000000}},
+           'notifications': [],
+           'priceControl': []},
+  'headers': {'Accept-Ranges': 'bytes',
+              'Age': '0',
+              'Cache-Control': 'public, max-age=60',
+              'Connection': 'keep-alive',
+              'Content-Encoding': 'gzip',
+              'Content-Length': '571',
+              'Content-Type': 'application/json; charset=UTF-8',
+              'Date': 'Wed, 13 Jan 2021 10:57:46 GMT',
+              'Expires': 'Wed, 13 Jan 2021 10:58:45 GMT',
+              'Last-Modified': 'Wed, 13 Jan 2021 10:57:45 GMT',
+              'Server': 'nginx/1.16.1',
+              'Strict-Transport-Security': 'max-age=172800; includeSubDomains',
+              'X-Cache': 'HIT'},
+  'seconds': 0.12864799999999998,
+  'status': 200}]</msg>
+<status status="PASS" starttime="20210113 14:27:47.090" endtime="20210113 14:27:47.111"></status>
+</kw>
+<msg timestamp="20210113 14:27:47.111" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210113 14:27:47.081" endtime="20210113 14:27:47.111"></status>
 </kw>
 <kw name="Continue For Loop" library="BuiltIn">
 <doc>Skips the current for loop iteration and continues from the next.</doc>
-<msg timestamp="20210112 16:38:37.544" level="INFO">Continuing for loop from the next iteration.</msg>
-<status status="PASS" starttime="20210112 16:38:37.543" endtime="20210112 16:38:37.544"></status>
+<msg timestamp="20210113 14:27:47.112" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20210113 14:27:47.112" level="INFO">Continuing for loop from the next iteration.</msg>
+<status status="PASS" starttime="20210113 14:27:47.112" endtime="20210113 14:27:47.112"></status>
 </kw>
-<status status="PASS" starttime="20210112 16:38:34.330" endtime="20210112 16:38:37.544"></status>
+<status status="PASS" starttime="20210113 14:27:46.479" endtime="20210113 14:27:47.112"></status>
 </kw>
-<status status="PASS" starttime="20210112 16:38:27.476" endtime="20210112 16:38:37.544"></status>
+<status status="PASS" starttime="20210113 14:27:44.686" endtime="20210113 14:27:47.112"></status>
 </kw>
-<status status="PASS" starttime="20210112 16:38:27.476" endtime="20210112 16:38:37.545"></status>
+<msg timestamp="20210113 14:27:47.113" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210113 14:27:44.685" endtime="20210113 14:27:47.113"></status>
 </kw>
-<status status="PASS" starttime="20210112 16:38:27.475" endtime="20210112 16:38:37.546" critical="yes"></status>
+<status status="PASS" starttime="20210113 14:27:44.683" endtime="20210113 14:27:47.118" critical="yes"></status>
 </test>
 <doc>A test suite with a single test for testing Config API.</doc>
-<status status="PASS" starttime="20210112 16:38:26.641" endtime="20210112 16:38:37.585"></status>
+<status status="PASS" starttime="20210113 14:27:43.819" endtime="20210113 14:27:47.127"></status>
 </suite>
 <statistics>
 <total>
