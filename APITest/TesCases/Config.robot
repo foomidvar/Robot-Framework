@@ -4,7 +4,7 @@ Library                   REST               ${Host}
 Library                   BuiltIn
 Library                   Collections
 Test Setup                Set Log Level      TRACE
-Test Teardown             Output
+Test Teardown
 
 *** Variables ***
 ${Response_File}          ExpectedResponse
@@ -19,24 +19,21 @@ ${EndPoint}               /general/config
 
 *** Test Cases ***
 Test Different Versions of the CONFIG_API on all Platforms
-      Retrieve Versions,Set Headers And Send Request
+      Retrieve Versions,Set Headers, Send Request And Validate Response
 
 *** Keywords ***
-Retrieve Versions,Set Headers And Send Request
+Retrieve Versions,Set Headers, Send Request And Validate Response
+      Log To Console        \nPlatform${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}State
       FOR   ${version}    IN     @{API_Versions}
       Set Test Variable    ${version}
             Set Headers Value For  Android
-            Send Get Request
-            Validate Response
+            Send Request And Validate Response  Android  ${version}
 
             Set Headers Value For   Desktop_Web
-            Send Get Request
-            Validate Response
+            Send Request And Validate Response  Desktop_Web  ${version}
 
             Set Headers Value For  Mobile_Site
-            Send Get Request
-            Validate Response
-
+            Send Request And Validate Response  Mobile_Site  ${version}
       Continue For Loop
       END
 
@@ -48,12 +45,16 @@ Set Headers Value For
       FOR  ${key}   IN    @{${Platform}.keys()}
           ${value}=    Get From Dictionary     ${${Platform}}    ${key}
           Set Headers            {"key":"value"}
-          Set Task Variable      ${Platform}
-          Return From Keyword    ${Platform}
+          Set Test Variable        ${Platform}
+          # Return From Keyword    ${Platform}
       END
 
-Validate Response
-      # Output Schema        response        file_path=${Response_Path}/${Response_File}_${version}_${Platform}.json
+Send Request And Validate Response
+      [Arguments]     ${Platform}   ${version}
+      # Output Schema              response        file_path=${Response_Path}/${Response_File}_${version}_${Platform}.json
       Clear Expectations
-      Output    response    body
-      Object    response    body    ${Response_Path}/${Response_File}_${version}_${Platform}.json
+      Expect Response             ${Response_Path}/${Response_File}_${version}_${Platform}.json
+      Send Get Request
+      ${Result}=  Run Keyword And Return Status    Expect Response      ${Response_Path}/${Response_File}_${version}_${Platform}.json
+      Run Keyword If    ${Result}==True   Log To Console    \n${Platform}${SPACE}${version}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}"True"
+      ... ELSE      Log To Console    \n${Platform}${SPACE}${version}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}"False"
