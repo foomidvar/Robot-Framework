@@ -18,26 +18,7 @@
                                     "type": "array",
                                     "items": {
                                         "type": "integer"
-                                    },
-                                    "default": [
-                                        43633,
-                                        43632,
-                                        44100,
-                                        44116,
-                                        44101,
-                                        44102,
-                                        44103,
-                                        44104,
-                                        44105,
-                                        44106,
-                                        44107,
-                                        44108,
-                                        43631,
-                                        43637,
-                                        43634,
-                                        43635,
-                                        43618
-                                    ]
+                                    }
                                 }
                             },
                             "required": [
@@ -50,30 +31,23 @@
                             "properties": {
                                 "maxPrice": {
                                     "type": "integer",
-                                    "default": 1000000000000
+                                    "default": 0
                                 }
                             },
                             "required": [
                                 "maxPrice"
                             ]
                         }
-                    },
-                    "required": [
-                        "filter",
-                        "new"
-                    ]
+                    }
                 },
                 "features": {
                     "type": "object",
                     "properties": {
                         "savedSearch": {
                             "type": "boolean",
-                            "default": true
-                        },
-                        "chat": {
-                            "type": "boolean",
                             "default": false
                         },
+
                         "bump": {
                             "type": "boolean",
                             "default": true
