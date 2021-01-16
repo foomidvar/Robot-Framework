@@ -54,6 +54,6 @@ Send Request And Validate Response
       Clear Expectations
       Expect Response             ${Response_Path}/${Response_File}_${version}_${Platform}.json
       Send Get Request
-      ${Result}=  Run Keyword And Return Status   Expect Response      ${Response_Path}/${Response_File}_${version}_${Platform}.json
-      Run Keyword If    ${Result}==True   Log To Console    \n${Platform}${SPACE}${version}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}"True"
+      ${Result}=  Run Keyword And Ignore Error    Expect Response      ${Response_Path}/${Response_File}_${version}_${Platform}.json
+      Run Keyword If    '${Result[0]}'=='PASS'  Log To Console    \n${Platform}${SPACE}${version}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}"True"
       ...     ELSE      Log To Console    \n${Platform}${SPACE}${version}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}"False"
