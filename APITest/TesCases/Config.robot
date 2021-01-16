@@ -46,7 +46,6 @@ Set Headers Value For
           ${value}=    Get From Dictionary     ${${Platform}}    ${key}
           Set Headers            {"key":"value"}
           Set Test Variable        ${Platform}
-          # Return From Keyword    ${Platform}
       END
 
 Send Request And Validate Response
@@ -55,6 +54,6 @@ Send Request And Validate Response
       Clear Expectations
       Expect Response             ${Response_Path}/${Response_File}_${version}_${Platform}.json
       Send Get Request
-      ${Result}=  Run Keyword And Return Status    Expect Response      ${Response_Path}/${Response_File}_${version}_${Platform}.json
+      ${Result}=  Run Keyword And Return Status   Expect Response      ${Response_Path}/${Response_File}_${version}_${Platform}.json
       Run Keyword If    ${Result}==True   Log To Console    \n${Platform}${SPACE}${version}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}"True"
-      ... ELSE      Log To Console    \n${Platform}${SPACE}${version}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}"False"
+      ...     ELSE      Log To Console    \n${Platform}${SPACE}${version}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}"False"
