@@ -44,16 +44,16 @@ Set Headers Value For
       [Arguments]       ${Platform}
       FOR  ${key}   IN    @{${Platform}.keys()}
           ${value}=    Get From Dictionary     ${${Platform}}    ${key}
-          Set Headers            {"key":"value"}
+          Set Headers            {"${key}":"${value}"}
           Set Test Variable        ${Platform}
       END
 
 Send Request And Validate Response
       [Arguments]     ${Platform}   ${version}
-      # Output Schema              response        file_path=${Response_Path}/${Response_File}_${version}_${Platform}.json
-      Clear Expectations
-      Expect Response             ${Response_Path}/${Response_File}_${version}_${Platform}.json
+#      Output Schema              response      file_path=${Response_Path}/${Response_File}_${version}_${Platform}.json
+      Expect Response            ${Response_Path}/${Response_File}_${version}_${Platform}.json
       Send Get Request
+
       ${Result}=  Run Keyword And Ignore Error    Expect Response      ${Response_Path}/${Response_File}_${version}_${Platform}.json
       Run Keyword If    '${Result[0]}'=='PASS'  Log To Console    \n${Platform}${SPACE}${version}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}"True"
       ...     ELSE      Log To Console    \n${Platform}${SPACE}${version}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}"False"

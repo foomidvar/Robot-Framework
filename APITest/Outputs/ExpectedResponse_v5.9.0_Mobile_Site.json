@@ -4,6 +4,18 @@
         "body": {
             "type": "object",
             "properties": {
+                "loginSettings": {
+                    "type": "object",
+                    "properties": {
+                        "verificationCodeDelay": {
+                            "type": "integer",
+                            "default": 30
+                        }
+                    },
+                    "required": [
+                        "verificationCodeDelay"
+                    ]
+                },
                 "listing": {
                     "type": "object",
                     "properties": {
@@ -66,11 +78,27 @@
                 "features": {
                     "type": "object",
                     "properties": {
-                        "savedSearch": {
+                        "pageHits": {
                             "type": "boolean",
                             "default": true
                         },
                         "chat": {
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "localytics": {
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "locationDetection": {
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "savedSearch": {
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "https": {
                             "type": "boolean",
                             "default": false
                         },
@@ -96,7 +124,7 @@
                         },
                         "carSearch": {
                             "type": "boolean",
-                            "default": false
+                            "default": true
                         },
                         "leads": {
                             "type": "boolean",
@@ -130,10 +158,6 @@
                             "type": "boolean",
                             "default": false
                         },
-                        "priceTagBI": {
-                            "type": "boolean",
-                            "default": false
-                        },
                         "carCertificationUi": {
                             "type": "boolean",
                             "default": true
@@ -152,7 +176,7 @@
                         },
                         "performance-log": {
                             "type": "boolean",
-                            "default": true
+                            "default": false
                         },
                         "real-estate-show-price-range": {
                             "type": "boolean",
@@ -268,20 +292,23 @@
                         "dot-ir",
                         "hamshahri",
                         "hidePrice",
+                        "https",
                         "leads",
                         "leads-views",
                         "leasing",
+                        "localytics",
+                        "locationDetection",
                         "newChat",
                         "notifications",
                         "outOfIran",
                         "package-more-view",
+                        "pageHits",
                         "paid-features",
                         "paid-features-bumps",
                         "paid-tag",
                         "performance-log",
                         "post-moderation",
                         "priceTag",
-                        "priceTagBI",
                         "real-estate-hide-price",
                         "real-estate-hide-price-rent",
                         "real-estate-show-price-range",
@@ -306,7 +333,51 @@
                 },
                 "priceControl": {
                     "type": "array",
-                    "default": []
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "onCategory": {
+                                "type": "integer"
+                            },
+                            "onAttribute": {
+                                "type": "integer"
+                            },
+                            "sendAttributeIds": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer"
+                                }
+                            },
+                            "sendAttributeGroupNames": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "required": [
+                            "onAttribute",
+                            "onCategory",
+                            "sendAttributeGroupNames",
+                            "sendAttributeIds"
+                        ]
+                    },
+                    "default": [
+                        {
+                            "onCategory": 43627,
+                            "onAttribute": 1,
+                            "sendAttributeIds": [
+                                69160,
+                                69140,
+                                68102,
+                                68101,
+                                69130
+                            ],
+                            "sendAttributeGroupNames": [
+                                "CAR_MODEL"
+                            ]
+                        }
+                    ]
                 },
                 "contact": {
                     "type": "object",
@@ -335,6 +406,7 @@
                 "contact",
                 "features",
                 "listing",
+                "loginSettings",
                 "notifications",
                 "priceControl"
             ]

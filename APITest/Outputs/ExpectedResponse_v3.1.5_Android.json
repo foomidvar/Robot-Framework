@@ -4,6 +4,18 @@
         "body": {
             "type": "object",
             "properties": {
+                "loginSettings": {
+                    "type": "object",
+                    "properties": {
+                        "verificationCodeDelay": {
+                            "type": "integer",
+                            "default": 0
+                        }
+                    },
+                    "required": [
+                        "verificationCodeDelay"
+                    ]
+                },
                 "listing": {
                     "type": "object",
                     "properties": {
@@ -18,7 +30,26 @@
                                     "type": "array",
                                     "items": {
                                         "type": "integer"
-                                    }
+                                    },
+                                    "default": [
+                                        43633,
+                                        43632,
+                                        44100,
+                                        44116,
+                                        44101,
+                                        44102,
+                                        44103,
+                                        44104,
+                                        44105,
+                                        44106,
+                                        44107,
+                                        44108,
+                                        43631,
+                                        43637,
+                                        43634,
+                                        43635,
+                                        43618
+                                    ]
                                 }
                             },
                             "required": [
@@ -31,23 +62,50 @@
                             "properties": {
                                 "maxPrice": {
                                     "type": "integer",
-                                    "default": 0
+                                    "default": 1000000000000
                                 }
                             },
                             "required": [
                                 "maxPrice"
                             ]
                         }
-                    }
+                    },
+                    "required": [
+                        "filter",
+                        "new"
+                    ]
                 },
                 "features": {
                     "type": "object",
                     "properties": {
-                        "savedSearch": {
+                        "newChat": {
                             "type": "boolean",
                             "default": false
                         },
-
+                        "pageHits": {
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "chat": {
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "localytics": {
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "locationDetection": {
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "savedSearch": {
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "https": {
+                            "type": "boolean",
+                            "default": false
+                        },
                         "bump": {
                             "type": "boolean",
                             "default": true
@@ -64,13 +122,9 @@
                             "type": "boolean",
                             "default": true
                         },
-                        "newChat": {
-                            "type": "boolean",
-                            "default": true
-                        },
                         "carSearch": {
                             "type": "boolean",
-                            "default": false
+                            "default": true
                         },
                         "leads": {
                             "type": "boolean",
@@ -104,10 +158,6 @@
                             "type": "boolean",
                             "default": false
                         },
-                        "priceTagBI": {
-                            "type": "boolean",
-                            "default": false
-                        },
                         "carCertificationUi": {
                             "type": "boolean",
                             "default": true
@@ -126,7 +176,7 @@
                         },
                         "performance-log": {
                             "type": "boolean",
-                            "default": true
+                            "default": false
                         },
                         "real-estate-show-price-range": {
                             "type": "boolean",
@@ -242,20 +292,23 @@
                         "dot-ir",
                         "hamshahri",
                         "hidePrice",
+                        "https",
                         "leads",
                         "leads-views",
                         "leasing",
+                        "localytics",
+                        "locationDetection",
                         "newChat",
                         "notifications",
                         "outOfIran",
                         "package-more-view",
+                        "pageHits",
                         "paid-features",
                         "paid-features-bumps",
                         "paid-tag",
                         "performance-log",
                         "post-moderation",
                         "priceTag",
-                        "priceTagBI",
                         "real-estate-hide-price",
                         "real-estate-hide-price-rent",
                         "real-estate-show-price-range",
@@ -309,6 +362,7 @@
                 "contact",
                 "features",
                 "listing",
+                "loginSettings",
                 "notifications",
                 "priceControl"
             ]
