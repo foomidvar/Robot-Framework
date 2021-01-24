@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 3.2.2 (Python 3.6.8 on win32)" generated="20210120 15:42:36.279" rpa="false">
+<robot generator="Robot 3.2.2 (Python 3.6.8 on win32)" generated="20210124 12:31:19.782" rpa="false">
 <suite id="s1" name="Config2" source="D:\Robot Framework\APITest\TesCases\Config2.robot">
 <test id="s1-t1" name="Test Different Versions of the CONFIG_API on all Platforms">
 <kw name="Set Log Level" library="BuiltIn" type="setup">
@@ -7,63 +7,57 @@
 <arguments>
 <arg>TRACE</arg>
 </arguments>
-<msg timestamp="20210120 15:42:37.102" level="INFO">Log level changed from INFO to TRACE.</msg>
-<msg timestamp="20210120 15:42:37.102" level="TRACE">Return: 'INFO'</msg>
-<status status="PASS" starttime="20210120 15:42:37.102" endtime="20210120 15:42:37.102"></status>
+<msg timestamp="20210124 12:31:20.577" level="INFO">Log level changed from INFO to TRACE.</msg>
+<msg timestamp="20210124 12:31:20.577" level="TRACE">Return: 'INFO'</msg>
+<status status="PASS" starttime="20210124 12:31:20.577" endtime="20210124 12:31:20.577"></status>
 </kw>
-<kw name="Set Headers, Send Request And Validate Response">
-<msg timestamp="20210120 15:42:37.103" level="TRACE">Arguments: [  ]</msg>
-<kw name="Run Keyword If" library="BuiltIn">
-<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<kw name="Set Header Values">
+<msg timestamp="20210124 12:31:20.578" level="TRACE">Arguments: [  ]</msg>
+<kw name="Set Variable If" library="BuiltIn">
+<doc>Sets variable based on the given condition.</doc>
 <arguments>
 <arg>'${platform}' == 'Android'</arg>
-<arg>set headers</arg>
-<arg>{"X-AGENT-TYPE" : "Android App" , "App-Version" : "5.9.0" , "User-Agent" : "Android/4.4.2 Sheypoor/4.1.5 VersionCode/4010400 Manufacturer/HUAWEI Model/HUAWEI Y625-U32"}</arg>
+<arg>&amp;{Android}</arg>
+<arg>'${platform}' == 'Desktop_Web'</arg>
+<arg>&amp;{Desktop_Web}</arg>
+<arg>'${platform}' == 'Mobile_Site'</arg>
+<arg>&amp;{Mobile_Site}</arg>
 </arguments>
-<msg timestamp="20210120 15:42:37.103" level="TRACE">Arguments: [ "'Mobile_Site' == 'Android'" | 'set headers' | '{"X-AGENT-TYPE" : "Android App" , "App-Version" : "5.9.0" , "User-Agent" : "Android/4.4.2 Sheypoor/4.1.5 VersionCode/4010400 Manufacturer/HUAWEI Model/HUAWEI Y625-U32"}' ]</msg>
-<msg timestamp="20210120 15:42:37.103" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20210120 15:42:37.103" endtime="20210120 15:42:37.103"></status>
-</kw>
-<kw name="Run Keyword If" library="BuiltIn">
-<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<assign>
+<var>${headers}</var>
+</assign>
+<msg timestamp="20210124 12:31:20.578" level="TRACE">Arguments: [ "'Desktop_Web' == 'Android'" | '&amp;{Android}' | "'${platform}' == 'Desktop_Web'" | '&amp;{Desktop_Web}' | "'${platform}' == 'Mobile_Site'" | '&amp;{Mobile_Site}' ]</msg>
+<kw name="Set Variable If" library="BuiltIn">
+<doc>Sets variable based on the given condition.</doc>
 <arguments>
 <arg>'${platform}' == 'Desktop_Web'</arg>
-<arg>set headers</arg>
-<arg>{"User-Agent" : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36"}</arg>
-</arguments>
-<msg timestamp="20210120 15:42:37.104" level="TRACE">Arguments: [ "'Mobile_Site' == 'Desktop_Web'" | 'set headers' | '{"User-Agent" : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36"}' ]</msg>
-<msg timestamp="20210120 15:42:37.104" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20210120 15:42:37.104" endtime="20210120 15:42:37.104"></status>
-</kw>
-<kw name="Run Keyword If" library="BuiltIn">
-<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<arguments>
+<arg>&amp;{Desktop_Web}</arg>
 <arg>'${platform}' == 'Mobile_Site'</arg>
-<arg>set headers</arg>
-<arg>{"User-Agent" : "Mozilla/5.0 (Linux; U; Android 8.1; en-us; SCH-I535 Build/KOT49H) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30"}</arg>
+<arg>&amp;{Mobile_Site}</arg>
 </arguments>
-<msg timestamp="20210120 15:42:37.104" level="TRACE">Arguments: [ "'Mobile_Site' == 'Mobile_Site'" | 'set headers' | '{"User-Agent" : "Mozilla/5.0 (Linux; U; Android 8.1; en-us; SCH-I535 Build/KOT49H) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30"}' ]</msg>
-<kw name="Set Headers" library="REST">
-<tags>
-<tag>settings</tag>
-</tags>
-<doc>*Sets new request headers or updates the existing.*</doc>
-<arguments>
-<arg>{"User-Agent" : "Mozilla/5.0 (Linux; U; Android 8.1; en-us; SCH-I535 Build/KOT49H) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30"}</arg>
-</arguments>
-<msg timestamp="20210120 15:42:37.105" level="TRACE">Arguments: [ '{"User-Agent" : "Mozilla/5.0 (Linux; U; Android 8.1; en-us; SCH-I535 Build/KOT49H) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30"}' ]</msg>
-<msg timestamp="20210120 15:42:37.106" level="TRACE">Return: {'Accept': 'application/json, */*',
- 'Content-Type': 'application/json',
- 'User-Agent': 'Mozilla/5.0 (Linux; U; Android 8.1; en-us; SCH-I535 Build/KOT49H) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30'}</msg>
-<status status="PASS" starttime="20210120 15:42:37.105" endtime="20210120 15:42:37.106"></status>
+<msg timestamp="20210124 12:31:20.579" level="TRACE">Arguments: [ "'Desktop_Web' == 'Desktop_Web'" | '&amp;{Desktop_Web}' | "'${platform}' == 'Mobile_Site'" | '&amp;{Mobile_Site}' ]</msg>
+<msg timestamp="20210124 12:31:20.579" level="TRACE">Return: {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36'}</msg>
+<status status="PASS" starttime="20210124 12:31:20.579" endtime="20210124 12:31:20.579"></status>
 </kw>
-<msg timestamp="20210120 15:42:37.106" level="TRACE">Return: {'Accept': 'application/json, */*',
- 'Content-Type': 'application/json',
- 'User-Agent': 'Mozilla/5.0 (Linux; U; Android 8.1; en-us; SCH-I535 Build/KOT49H) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30'}</msg>
-<status status="PASS" starttime="20210120 15:42:37.104" endtime="20210120 15:42:37.106"></status>
+<msg timestamp="20210124 12:31:20.579" level="TRACE">Return: {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36'}</msg>
+<msg timestamp="20210124 12:31:20.579" level="INFO">${headers} = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36'}</msg>
+<status status="PASS" starttime="20210124 12:31:20.578" endtime="20210124 12:31:20.579"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${headers}</arg>
+</arguments>
+<msg timestamp="20210124 12:31:20.580" level="TRACE">Arguments: [ '${headers}' ]</msg>
+<msg timestamp="20210124 12:31:20.580" level="INFO">${headers} = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36'}</msg>
+<msg timestamp="20210124 12:31:20.580" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210124 12:31:20.580" endtime="20210124 12:31:20.580"></status>
+</kw>
+<msg timestamp="20210124 12:31:20.580" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210124 12:31:20.578" endtime="20210124 12:31:20.580"></status>
 </kw>
 <kw name="Send Request And Validate Response">
-<msg timestamp="20210120 15:42:37.106" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20210124 12:31:20.581" level="TRACE">Arguments: [  ]</msg>
 <kw name="Expect Response" library="REST">
 <tags>
 <tag>expectations</tag>
@@ -72,8 +66,8 @@
 <arguments>
 <arg>${Response_Path}/${Response_File}_${version}_${Platform}.json</arg>
 </arguments>
-<msg timestamp="20210120 15:42:37.107" level="TRACE">Arguments: [ '../Outputs/ExpectedResponse_v5.9.0_Mobile_Site.json' ]</msg>
-<msg timestamp="20210120 15:42:37.108" level="TRACE">Return: {'properties': {'body': {'properties': {'contact': {'properties': {'email': {'default': 'info@sheypoor.com',
+<msg timestamp="20210124 12:31:20.582" level="TRACE">Arguments: [ '../Outputs/ExpectedResponse_v3.1.5_Desktop_Web.json' ]</msg>
+<msg timestamp="20210124 12:31:20.582" level="TRACE">Return: {'properties': {'body': {'properties': {'contact': {'properties': {'email': {'default': 'info@sheypoor.com',
                                                                              'type': 'string'},
                                                                    'internationalTel': {'default': '+982154587',
                                                                                         'type': 'string'},
@@ -93,13 +87,13 @@
                                                                                        'type': 'boolean'},
                                                                     'car-show-price-range': {'default': False,
                                                                                              'type': 'boolean'},
-                                                                    'carBodyInsurance': {'default': True,
+                                                                    'carBodyInsurance': {'default': False,
                                                                                          'type': 'boolean'},
                                                                     'carCertification': {'default': False,
                                                                                          'type': 'boolean'},
                                                                     'carCertificationBuyer': {'default': False,
                                                                                               'type': 'boolean'},
-                                                                    'carCertificationUi': {'default': False,
+                                                                    'carCertificationUi': {'default': True,
                                                                                            'type': 'boolean'},
                                                                     'carSearch': {'default': False,
                                                                                   'type': 'boolean'},
@@ -141,6 +135,8 @@
                                                                                         'type': 'boolean'},
                                                                     'priceTag': {'default': False,
                                                                                  'type': 'boolean'},
+                                                                    'priceTagBI': {'default': False,
+                                                                                   'type': 'boolean'},
                                                                     'real-estate-hide-price': {'default': True,
                                                                                                'type': 'boolean'},
                                                                     'real-estate-hide-price-rent': {'default': True,
@@ -159,7 +155,7 @@
                                                                                      'type': 'boolean'},
                                                                     'shop-secure-purchase-in-post-listing': {'default': False,
                                                                                                              'type': 'boolean'},
-                                                                    'thirdPartyInsurance': {'default': True,
+                                                                    'thirdPartyInsurance': {'default': False,
                                                                                             'type': 'boolean'},
                                                                     'user-rating': {'default': False,
                                                                                     'type': 'boolean'},
@@ -202,6 +198,7 @@
                                                                   'performance-log',
                                                                   'post-moderation',
                                                                   'priceTag',
+                                                                  'priceTagBI',
                                                                   'real-estate-hide-price',
                                                                   'real-estate-hide-price-rent',
                                                                   'real-estate-show-price-range',
@@ -266,7 +263,7 @@
                                       'priceControl'],
                          'type': 'object'}},
  'type': 'object'}</msg>
-<status status="PASS" starttime="20210120 15:42:37.107" endtime="20210120 15:42:37.119"></status>
+<status status="PASS" starttime="20210124 12:31:20.581" endtime="20210124 12:31:20.592"></status>
 </kw>
 <kw name="Get" library="REST">
 <tags>
@@ -275,11 +272,12 @@
 <doc>*Sends a GET request to the endpoint.*</doc>
 <arguments>
 <arg>${version}${EndPoint}</arg>
+<arg>headers=${headers}</arg>
 </arguments>
-<msg timestamp="20210120 15:42:37.119" level="TRACE">Arguments: [ 'v5.9.0/general/config' ]</msg>
-<msg timestamp="20210120 15:42:37.124" level="DEBUG">Starting new HTTPS connection (1): www.sheypoor.com:443</msg>
-<msg timestamp="20210120 15:42:40.857" level="DEBUG">https://www.sheypoor.com:443 "GET /api/v5.9.0/general/config HTTP/1.1" 200 588</msg>
-<msg timestamp="20210120 15:42:40.957" level="TRACE">Return: {'body': {'contact': {'email': 'info@sheypoor.com',
+<msg timestamp="20210124 12:31:20.593" level="TRACE">Arguments: [ 'v3.1.5/general/config' | headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36'} ]</msg>
+<msg timestamp="20210124 12:31:20.597" level="DEBUG">Starting new HTTPS connection (1): www.sheypoor.com:443</msg>
+<msg timestamp="20210124 12:31:20.984" level="DEBUG">https://www.sheypoor.com:443 "GET /api/v3.1.5/general/config HTTP/1.1" 200 596</msg>
+<msg timestamp="20210124 12:31:21.095" level="TRACE">Return: {'body': {'contact': {'email': 'info@sheypoor.com',
                       'internationalTel': '+982154587',
                       'tel': '02154587'},
           'features': {'advertisement': False,
@@ -287,10 +285,10 @@
                        'bump': True,
                        'car-hide-price': False,
                        'car-show-price-range': False,
-                       'carBodyInsurance': True,
+                       'carBodyInsurance': False,
                        'carCertification': False,
                        'carCertificationBuyer': False,
-                       'carCertificationUi': False,
+                       'carCertificationUi': True,
                        'carSearch': False,
                        'chat': False,
                        'cod': False,
@@ -311,6 +309,7 @@
                        'performance-log': True,
                        'post-moderation': False,
                        'priceTag': False,
+                       'priceTagBI': False,
                        'real-estate-hide-price': True,
                        'real-estate-hide-price-rent': True,
                        'real-estate-show-price-range': False,
@@ -320,7 +319,7 @@
                        'secure-purchase-delivery': True,
                        'shop-in-serp': True,
                        'shop-secure-purchase-in-post-listing': False,
-                       'thirdPartyInsurance': True,
+                       'thirdPartyInsurance': False,
                        'user-rating': False,
                        'user-secure-purchase-in-post-listing': False,
                        'video': True,
@@ -350,32 +349,281 @@
           'notifications': [],
           'priceControl': []},
  'headers': {'Accept-Ranges': 'bytes',
-             'Age': '0',
+             'Age': '372',
              'Cache-Control': 'public, max-age=60',
              'Connection': 'keep-alive',
              'Content-Encoding': 'gzip',
-             'Content-Length': '588',
+             'Content-Length': '596',
              'Content-Type': 'application/json; charset=UTF-8',
-             'Date': 'Wed, 20 Jan 2021 12:12:38 GMT',
-             'Expires': 'Wed, 20 Jan 2021 12:13:38 GMT',
-             'Last-Modified': 'Wed, 20 Jan 2021 12:12:38 GMT',
+             'Date': 'Sun, 24 Jan 2021 09:01:20 GMT',
+             'Expires': 'Sun, 24 Jan 2021 08:56:07 GMT',
+             'Last-Modified': 'Sun, 24 Jan 2021 08:55:07 GMT',
              'Server': 'nginx/1.16.1',
              'Strict-Transport-Security': 'max-age=172800; includeSubDomains',
-             'X-Cache': 'MISS'},
- 'seconds': 0.734979,
+             'X-Cache': 'HIT'},
+ 'seconds': 0.38796600000000003,
  'status': 200}</msg>
-<status status="PASS" starttime="20210120 15:42:37.119" endtime="20210120 15:42:40.959"></status>
+<status status="PASS" starttime="20210124 12:31:20.592" endtime="20210124 12:31:21.097"></status>
 </kw>
-<msg timestamp="20210120 15:42:40.960" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20210120 15:42:37.106" endtime="20210120 15:42:40.960"></status>
+<msg timestamp="20210124 12:31:21.098" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210124 12:31:20.581" endtime="20210124 12:31:21.098"></status>
 </kw>
-<msg timestamp="20210120 15:42:40.960" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20210120 15:42:37.103" endtime="20210120 15:42:40.960"></status>
+<kw name="Get Performance-log Value">
+<msg timestamp="20210124 12:31:21.098" level="TRACE">Arguments: [  ]</msg>
+<kw name="Output" library="REST">
+<tags>
+<tag>I/O</tag>
+</tags>
+<doc>*Outputs JSON to terminal or a file.*</doc>
+<arguments>
+<arg>response body</arg>
+</arguments>
+<assign>
+<var>${Response}</var>
+</assign>
+<msg timestamp="20210124 12:31:21.099" level="TRACE">Arguments: [ 'response body' ]</msg>
+<msg timestamp="20210124 12:31:21.099" level="INFO">
+{
+    "loginSettings": {
+        "verificationCodeDelay": 30
+    },
+    "listing": {
+        "filter": {
+            "withImage": true,
+            "withImageException": [
+                43633,
+                43632,
+                44100,
+                44116,
+                44101,
+                44102,
+                44103,
+                44104,
+                44105,
+                44106,
+                44107,
+                44108,
+                43631,
+                43637,
+                43634,
+                43635,
+                43618
+            ]
+        },
+        "new": {
+            "maxPrice": 1000000000000
+        }
+    },
+    "features": {
+        "savedSearch": true,
+        "chat": false,
+        "bump": true,
+        "notifications": false,
+        "leads-views": false,
+        "paid-features": true,
+        "newChat": true,
+        "carSearch": false,
+        "leads": false,
+        "views": true,
+        "carBodyInsurance": false,
+        "thirdPartyInsurance": false,
+        "paid-features-bumps": true,
+        "carCertification": false,
+        "hidePrice": true,
+        "priceTag": false,
+        "priceTagBI": false,
+        "carCertificationUi": true,
+        "hamshahri": false,
+        "leasing": false,
+        "carCertificationBuyer": false,
+        "performance-log": true,
+        "real-estate-show-price-range": false,
+        "weblink": true,
+        "paid-tag": true,
+        "secure-purchase": true,
+        "visibility": false,
+        "resume-bank": false,
+        "all-iran-feature": true,
+        "package-more-view": false,
+        "dot-ir": false,
+        "outOfIran": false,
+        "secure-purchase-delivery": true,
+        "advertisement": false,
+        "real-estate-hide-price": true,
+        "car-hide-price": false,
+        "car-show-price-range": false,
+        "real-estate-hide-price-rent": true,
+        "post-moderation": false,
+        "cod": false,
+        "consultant": true,
+        "video": true,
+        "shop-in-serp": true,
+        "shop-secure-purchase-in-post-listing": false,
+        "user-secure-purchase-in-post-listing": false,
+        "user-rating": false
+    },
+    "notifications": [],
+    "priceControl": [],
+    "contact": {
+        "tel": "02154587",
+        "email": "info@sheypoor.com",
+        "internationalTel": "+982154587"
+    }
+}</msg>
+<msg timestamp="20210124 12:31:21.117" level="TRACE">Return: {'contact': {'email': 'info@sheypoor.com',
+             'internationalTel': '+982154587',
+             'tel': '02154587'},
+ 'features': {'advertisement': False,
+              'all-iran-feature': True,
+              'bump': True,
+              'car-hide-price': False,
+              'car-show-price-range': False,
+              'carBodyInsurance': False,
+              'carCertification': False,
+              'carCertificationBuyer': False,
+              'carCertificationUi': True,
+              'carSearch': False,
+              'chat': False,
+              'cod': False,
+              'consultant': True,
+              'dot-ir': False,
+              'hamshahri': False,
+              'hidePrice': True,
+              'leads': False,
+              'leads-views': False,
+              'leasing': False,
+              'newChat': True,
+              'notifications': False,
+              'outOfIran': False,
+              'package-more-view': False,
+              'paid-features': True,
+              'paid-features-bumps': True,
+              'paid-tag': True,
+              'performance-log': True,
+              'post-moderation': False,
+              'priceTag': False,
+              'priceTagBI': False,
+              'real-estate-hide-price': True,
+              'real-estate-hide-price-rent': True,
+              'real-estate-show-price-range': False,
+              'resume-bank': False,
+              'savedSearch': True,
+              'secure-purchase': True,
+              'secure-purchase-delivery': True,
+              'shop-in-serp': True,
+              'shop-secure-purchase-in-post-listing': False,
+              'thirdPartyInsurance': False,
+              'user-rating': False,
+              'user-secure-purchase-in-post-listing': False,
+              'video': True,
+              'views': True,
+              'visibility': False,
+              'weblink': True},
+ 'listing': {'filter': {'withImage': True,
+                        'withImageException': [43633,
+                                               43632,
+                                               44100,
+                                               44116,
+                                               44101,
+                                               44102,
+                                               44103,
+                                               44104,
+                                               44105,
+                                               44106,
+                                               44107,
+                                               44108,
+                                               43631,
+                                               43637,
+                                               43634,
+                                               43635,
+                                               43618]},
+             'new': {'maxPrice': 1000000000000}},
+ 'loginSettings': {'verificationCodeDelay': 30},
+ 'notifications': [],
+ 'priceControl': []}</msg>
+<msg timestamp="20210124 12:31:21.118" level="INFO">${Response} = {'loginSettings': {'verificationCodeDelay': 30}, 'listing': {'filter': {'withImage': True, 'withImageException': [43633, 43632, 44100, 44116, 44101, 44102, 44103, 44104, 44105, 44106, 44107, 44108, 43...</msg>
+<status status="PASS" starttime="20210124 12:31:21.099" endtime="20210124 12:31:21.118"></status>
 </kw>
-<status status="PASS" starttime="20210120 15:42:37.101" endtime="20210120 15:42:40.960" critical="yes"></status>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>'${Response["features"]["performance-log"]}'</arg>
+</arguments>
+<assign>
+<var>${performance-log}</var>
+</assign>
+<msg timestamp="20210124 12:31:21.119" level="TRACE">Arguments: [ "'True'" ]</msg>
+<msg timestamp="20210124 12:31:21.119" level="DEBUG">Argument types are:
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20210124 12:31:21.119" level="TRACE">Return: "'True'"</msg>
+<msg timestamp="20210124 12:31:21.119" level="INFO">${performance-log} = 'True'</msg>
+<status status="PASS" starttime="20210124 12:31:21.118" endtime="20210124 12:31:21.119"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${performance-log}</arg>
+</arguments>
+<msg timestamp="20210124 12:31:21.119" level="TRACE">Arguments: [ '${performance-log}' ]</msg>
+<msg timestamp="20210124 12:31:21.120" level="INFO">${performance-log} = 'True'</msg>
+<msg timestamp="20210124 12:31:21.120" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210124 12:31:21.119" endtime="20210124 12:31:21.120"></status>
+</kw>
+<msg timestamp="20210124 12:31:21.120" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210124 12:31:21.098" endtime="20210124 12:31:21.120"></status>
+</kw>
+<kw name="Check Performance-log Value">
+<msg timestamp="20210124 12:31:21.121" level="TRACE">Arguments: [  ]</msg>
+<kw name="Set Variable If" library="BuiltIn">
+<doc>Sets variable based on the given condition.</doc>
+<arguments>
+<arg>'${platform}' == 'Android'</arg>
+<arg>'False'</arg>
+<arg>'${platform}' == 'Desktop_Web'</arg>
+<arg>'True'</arg>
+<arg>'${platform}' == 'Mobile_Site'</arg>
+<arg>'True'</arg>
+</arguments>
+<assign>
+<var>${Expected_Performance-log}</var>
+</assign>
+<msg timestamp="20210124 12:31:21.121" level="TRACE">Arguments: [ "'Desktop_Web' == 'Android'" | "'False'" | "'${platform}' == 'Desktop_Web'" | "'True'" | "'${platform}' == 'Mobile_Site'" | "'True'" ]</msg>
+<kw name="Set Variable If" library="BuiltIn">
+<doc>Sets variable based on the given condition.</doc>
+<arguments>
+<arg>'${platform}' == 'Desktop_Web'</arg>
+<arg>'True'</arg>
+<arg>'${platform}' == 'Mobile_Site'</arg>
+<arg>'True'</arg>
+</arguments>
+<msg timestamp="20210124 12:31:21.122" level="TRACE">Arguments: [ "'Desktop_Web' == 'Desktop_Web'" | "'True'" | "'${platform}' == 'Mobile_Site'" | "'True'" ]</msg>
+<msg timestamp="20210124 12:31:21.122" level="TRACE">Return: "'True'"</msg>
+<status status="PASS" starttime="20210124 12:31:21.122" endtime="20210124 12:31:21.122"></status>
+</kw>
+<msg timestamp="20210124 12:31:21.122" level="TRACE">Return: "'True'"</msg>
+<msg timestamp="20210124 12:31:21.122" level="INFO">${Expected_Performance-log} = 'True'</msg>
+<status status="PASS" starttime="20210124 12:31:21.121" endtime="20210124 12:31:21.122"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${performance-log}</arg>
+<arg>${Expected_Performance-log}</arg>
+</arguments>
+<msg timestamp="20210124 12:31:21.123" level="TRACE">Arguments: [ "'True'" | "'True'" ]</msg>
+<msg timestamp="20210124 12:31:21.123" level="DEBUG">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20210124 12:31:21.123" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210124 12:31:21.122" endtime="20210124 12:31:21.123"></status>
+</kw>
+<msg timestamp="20210124 12:31:21.123" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210124 12:31:21.121" endtime="20210124 12:31:21.123"></status>
+</kw>
+<status status="PASS" starttime="20210124 12:31:20.576" endtime="20210124 12:31:21.124" critical="yes"></status>
 </test>
 <doc>A test suite with a single test for testing Config API.</doc>
-<status status="PASS" starttime="20210120 15:42:36.281" endtime="20210120 15:42:40.962"></status>
+<status status="PASS" starttime="20210124 12:31:19.784" endtime="20210124 12:31:21.130"></status>
 </suite>
 <statistics>
 <total>
