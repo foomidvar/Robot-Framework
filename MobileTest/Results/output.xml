@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 3.2.2 (Python 3.6.8 on win32)" generated="20210126 16:52:43.103" rpa="false">
-<suite id="s1" name="InstallApp" source="D:\Robot Framework\MobileTest\TesCases\InstallApp.robot">
+<robot generator="Robot 3.2.2 (Python 3.6.8 on win32)" generated="20210207 08:56:37.857" rpa="false">
+<suite id="s1" name="InstallApp2" source="D:\Robot Framework\MobileTest\TesCases\InstallApp2.robot">
 <test id="s1-t1" name="Install Sheypoor On The Mobile">
 <kw name="Set Log Level" library="BuiltIn" type="setup">
 <doc>Sets the log threshold to the specified level and returns the old level.</doc>
 <arguments>
 <arg>TRACE</arg>
 </arguments>
-<msg timestamp="20210126 16:52:43.591" level="INFO">Log level changed from INFO to TRACE.</msg>
-<msg timestamp="20210126 16:52:43.591" level="TRACE">Return: 'INFO'</msg>
-<status status="PASS" starttime="20210126 16:52:43.591" endtime="20210126 16:52:43.591"></status>
+<msg timestamp="20210207 08:56:38.238" level="INFO">Log level changed from INFO to TRACE.</msg>
+<msg timestamp="20210207 08:56:38.238" level="TRACE">Return: 'INFO'</msg>
+<status status="PASS" starttime="20210207 08:56:38.238" endtime="20210207 08:56:38.238"></status>
 </kw>
-<kw name="Open GooglePlay">
-<msg timestamp="20210126 16:52:43.593" level="TRACE">Arguments: [  ]</msg>
+<kw name="Install Application">
+<msg timestamp="20210207 08:56:38.239" level="TRACE">Arguments: [  ]</msg>
 <kw name="Open Application" library="AppiumLibrary">
 <doc>Opens a new application to given Appium server.
 Capabilities of appium server, Android and iOS,
@@ -22,560 +22,217 @@ Please check https://github.com/appium/appium/blob/master/docs/en/writing-runnin
 | alias               | no     | alias             |</doc>
 <arguments>
 <arg>${REMOTE_URL}</arg>
+<arg>app=${APK_PATH}\\${APK_NAME}</arg>
 <arg>platformName=${PLATFORM_NAME}</arg>
 <arg>platformVersion=${PLATFORM_VERSION}</arg>
 <arg>deviceName=${DEVICE_NAME}</arg>
 <arg>automationName=UiAutomator2</arg>
 <arg>newCommandTimeout=2500</arg>
-<arg>appActivity=${ACTIVITY_NAME}</arg>
-<arg>appPackage=${PACKAGE_NAME}</arg>
 </arguments>
-<msg timestamp="20210126 16:52:43.595" level="TRACE">Arguments: [ 'http://127.0.0.1:4723/wd/hub' | platformName='Android' | platformVersion='8.1' | deviceName='emulator-5554' | automationName='UiAutomator2' | newCommandTimeout='2500' | appActivity='com.android.vending.AssetBrowserActivity' | appPackage='com.android.vending' ]</msg>
-<msg timestamp="20210126 16:52:43.610" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session {"capabilities": {"firstMatch": [{"platformName": "Android", "appium:platformVersion": "8.1", "appium:deviceName": "emulator-5554", "appium:automationName": "UiAutomator2", "appium:newCommandTimeout": "2500", "appium:appActivity": "com.android.vending.AssetBrowserActivity", "appium:appPackage": "com.android.vending"}]}, "desiredCapabilities": {"platformName": "Android", "platformVersion": "8.1", "deviceName": "emulator-5554", "automationName": "UiAutomator2", "newCommandTimeout": "2500", "appActivity": "com.android.vending.AssetBrowserActivity", "appPackage": "com.android.vending"}}</msg>
-<msg timestamp="20210126 16:52:43.612" level="DEBUG">Starting new HTTP connection (1): 127.0.0.1:4723</msg>
-<msg timestamp="20210126 16:53:03.780" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session HTTP/1.1" 200 1019</msg>
-<msg timestamp="20210126 16:53:03.781" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:53:03.785" level="DEBUG">Opened application with session id 4fe3299a-5f1c-4d28-8462-a26027b024f3</msg>
-<msg timestamp="20210126 16:53:03.786" level="TRACE">Return: 1</msg>
-<status status="PASS" starttime="20210126 16:52:43.593" endtime="20210126 16:53:03.786"></status>
+<msg timestamp="20210207 08:56:38.240" level="TRACE">Arguments: [ 'http://127.0.0.1:4723/wd/hub' | app='D:\\Robot Framework\\MobileTest\\TesCases\\..\\APK\\Sheypoor-PlayStoreDebug.apk' | platformName='Android' | platformVersion='8.1' | deviceName='emulator-5554' | automationName='UiAutomator2' | newCommandTimeout='2500' ]</msg>
+<msg timestamp="20210207 08:56:38.246" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session {"capabilities": {"firstMatch": [{"appium:app": "D:\\Robot Framework\\MobileTest\\TesCases\\..\\APK\\Sheypoor-PlayStoreDebug.apk", "platformName": "Android", "appium:platformVersion": "8.1", "appium:deviceName": "emulator-5554", "appium:automationName": "UiAutomator2", "appium:newCommandTimeout": "2500"}]}, "desiredCapabilities": {"app": "D:\\Robot Framework\\MobileTest\\TesCases\\..\\APK\\Sheypoor-PlayStoreDebug.apk", "platformName": "Android", "platformVersion": "8.1", "deviceName": "emulator-5554", "automationName": "UiAutomator2", "newCommandTimeout": "2500"}}</msg>
+<msg timestamp="20210207 08:56:38.247" level="DEBUG">Starting new HTTP connection (1): 127.0.0.1:4723</msg>
+<msg timestamp="20210207 08:57:06.049" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session HTTP/1.1" 200 1052</msg>
+<msg timestamp="20210207 08:57:06.051" level="DEBUG">Finished Request</msg>
+<msg timestamp="20210207 08:57:06.058" level="DEBUG">Opened application with session id 03cb6a7a-8f9d-4457-85e9-12df9a5c1d45</msg>
+<msg timestamp="20210207 08:57:06.058" level="TRACE">Return: 1</msg>
+<status status="PASS" starttime="20210207 08:56:38.239" endtime="20210207 08:57:06.059"></status>
 </kw>
-<msg timestamp="20210126 16:53:03.786" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20210126 16:52:43.592" endtime="20210126 16:53:03.786"></status>
+<msg timestamp="20210207 08:57:06.059" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210207 08:56:38.239" endtime="20210207 08:57:06.059"></status>
 </kw>
-<kw name="Make Sure The Page Is Fully Loaded">
-<msg timestamp="20210126 16:53:03.789" level="TRACE">Arguments: [  ]</msg>
-<kw name="Wait Until Page Contains Element" library="AppiumLibrary">
-<doc>Waits until element specified with `locator` appears on current page.</doc>
+<kw name="Launch Application">
+<msg timestamp="20210207 08:57:06.062" level="TRACE">Arguments: [  ]</msg>
+<kw name="Click By Selector">
 <arguments>
-<arg>${Search_Bar}</arg>
-<arg>timeout=20s</arg>
+<arg>${Environment}</arg>
 </arguments>
-<msg timestamp="20210126 16:53:03.790" level="TRACE">Arguments: [ 'android=UiSelector().resourceId("com.android.vending:id/0_resource_name_obfuscated").text("Search for apps &amp; games")' | timeout='20s' ]</msg>
-<msg timestamp="20210126 16:53:03.791" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements {"using": "-android uiautomator", "value": "UiSelector().resourceId(\"com.android.vending:id/0_resource_name_obfuscated\").text(\"Search for apps &amp; games\")"}</msg>
-<msg timestamp="20210126 16:53:04.806" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements HTTP/1.1" 200 12</msg>
-<msg timestamp="20210126 16:53:04.807" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:53:05.012" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements {"using": "-android uiautomator", "value": "UiSelector().resourceId(\"com.android.vending:id/0_resource_name_obfuscated\").text(\"Search for apps &amp; games\")"}</msg>
-<msg timestamp="20210126 16:53:07.326" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements HTTP/1.1" 200 12</msg>
-<msg timestamp="20210126 16:53:07.327" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:53:07.542" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements {"using": "-android uiautomator", "value": "UiSelector().resourceId(\"com.android.vending:id/0_resource_name_obfuscated\").text(\"Search for apps &amp; games\")"}</msg>
-<msg timestamp="20210126 16:53:07.832" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements HTTP/1.1" 200 12</msg>
-<msg timestamp="20210126 16:53:07.833" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:53:08.044" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements {"using": "-android uiautomator", "value": "UiSelector().resourceId(\"com.android.vending:id/0_resource_name_obfuscated\").text(\"Search for apps &amp; games\")"}</msg>
-<msg timestamp="20210126 16:53:08.317" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements HTTP/1.1" 200 12</msg>
-<msg timestamp="20210126 16:53:08.317" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:53:08.523" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements {"using": "-android uiautomator", "value": "UiSelector().resourceId(\"com.android.vending:id/0_resource_name_obfuscated\").text(\"Search for apps &amp; games\")"}</msg>
-<msg timestamp="20210126 16:53:08.782" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements HTTP/1.1" 200 12</msg>
-<msg timestamp="20210126 16:53:08.783" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:53:08.998" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements {"using": "-android uiautomator", "value": "UiSelector().resourceId(\"com.android.vending:id/0_resource_name_obfuscated\").text(\"Search for apps &amp; games\")"}</msg>
-<msg timestamp="20210126 16:53:09.298" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements HTTP/1.1" 200 12</msg>
-<msg timestamp="20210126 16:53:09.299" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:53:09.501" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements {"using": "-android uiautomator", "value": "UiSelector().resourceId(\"com.android.vending:id/0_resource_name_obfuscated\").text(\"Search for apps &amp; games\")"}</msg>
-<msg timestamp="20210126 16:53:09.743" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements HTTP/1.1" 200 12</msg>
-<msg timestamp="20210126 16:53:09.744" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:53:09.947" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements {"using": "-android uiautomator", "value": "UiSelector().resourceId(\"com.android.vending:id/0_resource_name_obfuscated\").text(\"Search for apps &amp; games\")"}</msg>
-<msg timestamp="20210126 16:53:10.190" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements HTTP/1.1" 200 12</msg>
-<msg timestamp="20210126 16:53:10.190" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:53:10.405" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements {"using": "-android uiautomator", "value": "UiSelector().resourceId(\"com.android.vending:id/0_resource_name_obfuscated\").text(\"Search for apps &amp; games\")"}</msg>
-<msg timestamp="20210126 16:53:11.875" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements HTTP/1.1" 200 12</msg>
-<msg timestamp="20210126 16:53:11.876" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:53:12.078" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements {"using": "-android uiautomator", "value": "UiSelector().resourceId(\"com.android.vending:id/0_resource_name_obfuscated\").text(\"Search for apps &amp; games\")"}</msg>
-<msg timestamp="20210126 16:53:12.351" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements HTTP/1.1" 200 12</msg>
-<msg timestamp="20210126 16:53:12.351" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:53:12.566" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements {"using": "-android uiautomator", "value": "UiSelector().resourceId(\"com.android.vending:id/0_resource_name_obfuscated\").text(\"Search for apps &amp; games\")"}</msg>
-<msg timestamp="20210126 16:53:13.668" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements HTTP/1.1" 200 12</msg>
-<msg timestamp="20210126 16:53:13.669" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:53:13.884" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements {"using": "-android uiautomator", "value": "UiSelector().resourceId(\"com.android.vending:id/0_resource_name_obfuscated\").text(\"Search for apps &amp; games\")"}</msg>
-<msg timestamp="20210126 16:53:14.117" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements HTTP/1.1" 200 12</msg>
-<msg timestamp="20210126 16:53:14.117" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:53:14.326" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements {"using": "-android uiautomator", "value": "UiSelector().resourceId(\"com.android.vending:id/0_resource_name_obfuscated\").text(\"Search for apps &amp; games\")"}</msg>
-<msg timestamp="20210126 16:53:14.553" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements HTTP/1.1" 200 12</msg>
-<msg timestamp="20210126 16:53:14.554" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:53:14.768" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements {"using": "-android uiautomator", "value": "UiSelector().resourceId(\"com.android.vending:id/0_resource_name_obfuscated\").text(\"Search for apps &amp; games\")"}</msg>
-<msg timestamp="20210126 16:53:16.222" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements HTTP/1.1" 200 12</msg>
-<msg timestamp="20210126 16:53:16.222" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:53:16.427" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements {"using": "-android uiautomator", "value": "UiSelector().resourceId(\"com.android.vending:id/0_resource_name_obfuscated\").text(\"Search for apps &amp; games\")"}</msg>
-<msg timestamp="20210126 16:53:16.551" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements HTTP/1.1" 200 12</msg>
-<msg timestamp="20210126 16:53:16.551" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:53:16.762" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements {"using": "-android uiautomator", "value": "UiSelector().resourceId(\"com.android.vending:id/0_resource_name_obfuscated\").text(\"Search for apps &amp; games\")"}</msg>
-<msg timestamp="20210126 16:53:16.876" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements HTTP/1.1" 200 12</msg>
-<msg timestamp="20210126 16:53:16.877" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:53:17.080" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements {"using": "-android uiautomator", "value": "UiSelector().resourceId(\"com.android.vending:id/0_resource_name_obfuscated\").text(\"Search for apps &amp; games\")"}</msg>
-<msg timestamp="20210126 16:53:17.242" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements HTTP/1.1" 200 12</msg>
-<msg timestamp="20210126 16:53:17.243" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:53:17.446" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements {"using": "-android uiautomator", "value": "UiSelector().resourceId(\"com.android.vending:id/0_resource_name_obfuscated\").text(\"Search for apps &amp; games\")"}</msg>
-<msg timestamp="20210126 16:53:17.540" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements HTTP/1.1" 200 12</msg>
-<msg timestamp="20210126 16:53:17.541" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:53:17.749" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements {"using": "-android uiautomator", "value": "UiSelector().resourceId(\"com.android.vending:id/0_resource_name_obfuscated\").text(\"Search for apps &amp; games\")"}</msg>
-<msg timestamp="20210126 16:53:17.862" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements HTTP/1.1" 200 12</msg>
-<msg timestamp="20210126 16:53:17.863" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:53:18.069" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements {"using": "-android uiautomator", "value": "UiSelector().resourceId(\"com.android.vending:id/0_resource_name_obfuscated\").text(\"Search for apps &amp; games\")"}</msg>
-<msg timestamp="20210126 16:53:18.202" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements HTTP/1.1" 200 12</msg>
-<msg timestamp="20210126 16:53:18.202" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:53:18.439" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements {"using": "-android uiautomator", "value": "UiSelector().resourceId(\"com.android.vending:id/0_resource_name_obfuscated\").text(\"Search for apps &amp; games\")"}</msg>
-<msg timestamp="20210126 16:53:18.583" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements HTTP/1.1" 200 12</msg>
-<msg timestamp="20210126 16:53:18.583" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:53:18.786" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements {"using": "-android uiautomator", "value": "UiSelector().resourceId(\"com.android.vending:id/0_resource_name_obfuscated\").text(\"Search for apps &amp; games\")"}</msg>
-<msg timestamp="20210126 16:53:18.945" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements HTTP/1.1" 200 12</msg>
-<msg timestamp="20210126 16:53:18.946" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:53:19.150" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements {"using": "-android uiautomator", "value": "UiSelector().resourceId(\"com.android.vending:id/0_resource_name_obfuscated\").text(\"Search for apps &amp; games\")"}</msg>
-<msg timestamp="20210126 16:53:20.715" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements HTTP/1.1" 200 139</msg>
-<msg timestamp="20210126 16:53:20.716" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:53:20.716" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20210126 16:53:03.789" endtime="20210126 16:53:20.716"></status>
-</kw>
-<msg timestamp="20210126 16:53:20.717" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20210126 16:53:03.788" endtime="20210126 16:53:20.717"></status>
-</kw>
-<kw name="Serach Desired App">
-<msg timestamp="20210126 16:53:20.719" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20210207 08:57:06.063" level="TRACE">Arguments: [ ${Selector}='android=UiSelector().resourceId("com.sheypoor.mobile.debug:id/fragmentDebugStaging").text("STAGING")' ]</msg>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>3x</arg>
+<arg>3s</arg>
+<arg>Click Element</arg>
+<arg>${Selector}</arg>
+</arguments>
+<msg timestamp="20210207 08:57:06.064" level="TRACE">Arguments: [ '3x' | '3s' | 'Click Element' | '${Selector}' ]</msg>
 <kw name="Click Element" library="AppiumLibrary">
 <doc>Click element identified by `locator`.</doc>
 <arguments>
-<arg>${Search_Bar}</arg>
+<arg>${Selector}</arg>
 </arguments>
-<msg timestamp="20210126 16:53:20.720" level="TRACE">Arguments: [ 'android=UiSelector().resourceId("com.android.vending:id/0_resource_name_obfuscated").text("Search for apps &amp; games")' ]</msg>
-<msg timestamp="20210126 16:53:20.723" level="INFO">Clicking element 'android=UiSelector().resourceId("com.android.vending:id/0_resource_name_obfuscated").text("Search for apps &amp; games")'.</msg>
-<msg timestamp="20210126 16:53:20.723" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements {"using": "-android uiautomator", "value": "UiSelector().resourceId(\"com.android.vending:id/0_resource_name_obfuscated\").text(\"Search for apps &amp; games\")"}</msg>
-<msg timestamp="20210126 16:53:20.993" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements HTTP/1.1" 200 139</msg>
-<msg timestamp="20210126 16:53:20.993" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:53:20.994" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/element/4d5ddbf0-17e0-49b6-8ccf-ef02cb23ac0a/click {"id": "4d5ddbf0-17e0-49b6-8ccf-ef02cb23ac0a"}</msg>
-<msg timestamp="20210126 16:53:21.155" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/element/4d5ddbf0-17e0-49b6-8ccf-ef02cb23ac0a/click HTTP/1.1" 200 14</msg>
-<msg timestamp="20210126 16:53:21.156" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:53:21.156" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20210126 16:53:20.719" endtime="20210126 16:53:21.156"></status>
+<msg timestamp="20210207 08:57:06.065" level="TRACE">Arguments: [ 'android=UiSelector().resourceId("com.sheypoor.mobile.debug:id/fragmentDebugStaging").text("STAGING")' ]</msg>
+<msg timestamp="20210207 08:57:06.071" level="INFO">Clicking element 'android=UiSelector().resourceId("com.sheypoor.mobile.debug:id/fragmentDebugStaging").text("STAGING")'.</msg>
+<msg timestamp="20210207 08:57:06.071" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/03cb6a7a-8f9d-4457-85e9-12df9a5c1d45/elements {"using": "-android uiautomator", "value": "UiSelector().resourceId(\"com.sheypoor.mobile.debug:id/fragmentDebugStaging\").text(\"STAGING\")"}</msg>
+<msg timestamp="20210207 08:57:06.943" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/03cb6a7a-8f9d-4457-85e9-12df9a5c1d45/elements HTTP/1.1" 200 139</msg>
+<msg timestamp="20210207 08:57:06.944" level="DEBUG">Finished Request</msg>
+<msg timestamp="20210207 08:57:06.944" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/03cb6a7a-8f9d-4457-85e9-12df9a5c1d45/element/d542ea9a-84d9-4b91-a4ba-143664741d91/click {"id": "d542ea9a-84d9-4b91-a4ba-143664741d91"}</msg>
+<msg timestamp="20210207 08:57:07.337" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/03cb6a7a-8f9d-4457-85e9-12df9a5c1d45/element/d542ea9a-84d9-4b91-a4ba-143664741d91/click HTTP/1.1" 200 14</msg>
+<msg timestamp="20210207 08:57:07.338" level="DEBUG">Finished Request</msg>
+<msg timestamp="20210207 08:57:07.338" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210207 08:57:06.064" endtime="20210207 08:57:07.339"></status>
 </kw>
-<kw name="Input Text" library="AppiumLibrary">
-<doc>Types the given `text` into text field identified by `locator`.</doc>
+<msg timestamp="20210207 08:57:07.339" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210207 08:57:06.064" endtime="20210207 08:57:07.339"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
 <arguments>
-<arg>${Search_Bar}</arg>
-<arg>${App_Name}</arg>
+<arg>300ms</arg>
 </arguments>
-<msg timestamp="20210126 16:53:21.157" level="TRACE">Arguments: [ 'android=UiSelector().resourceId("com.android.vending:id/0_resource_name_obfuscated").text("Search for apps &amp; games")' | 'شیپور' ]</msg>
-<msg timestamp="20210126 16:53:21.161" level="INFO">Typing text 'شیپور' into text field 'android=UiSelector().resourceId("com.android.vending:id/0_resource_name_obfuscated").text("Search for apps &amp; games")'</msg>
-<msg timestamp="20210126 16:53:21.161" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements {"using": "-android uiautomator", "value": "UiSelector().resourceId(\"com.android.vending:id/0_resource_name_obfuscated\").text(\"Search for apps &amp; games\")"}</msg>
-<msg timestamp="20210126 16:53:23.285" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements HTTP/1.1" 200 139</msg>
-<msg timestamp="20210126 16:53:23.286" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:53:23.286" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/element/d320184b-6abe-451e-875b-0805e6005a90/value {"text": "\u0634\u06cc\u067e\u0648\u0631", "value": ["\u0634", "\u06cc", "\u067e", "\u0648", "\u0631"], "id": "d320184b-6abe-451e-875b-0805e6005a90"}</msg>
-<msg timestamp="20210126 16:53:24.030" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/element/d320184b-6abe-451e-875b-0805e6005a90/value HTTP/1.1" 200 14</msg>
-<msg timestamp="20210126 16:53:24.031" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:53:24.031" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20210126 16:53:21.157" endtime="20210126 16:53:24.031"></status>
+<msg timestamp="20210207 08:57:07.339" level="TRACE">Arguments: [ '300ms' ]</msg>
+<msg timestamp="20210207 08:57:07.655" level="INFO">Slept 300 milliseconds</msg>
+<msg timestamp="20210207 08:57:07.655" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210207 08:57:07.339" endtime="20210207 08:57:07.655"></status>
 </kw>
-<kw name="Press Keycode" library="AppiumLibrary">
-<doc>Sends a press of keycode to the device.</doc>
+<msg timestamp="20210207 08:57:07.656" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210207 08:57:06.062" endtime="20210207 08:57:07.656"></status>
+</kw>
+<kw name="Click By Selector">
 <arguments>
-<arg>66</arg>
+<arg>${Cancel}</arg>
 </arguments>
-<msg timestamp="20210126 16:53:24.032" level="TRACE">Arguments: [ '66' ]</msg>
-<msg timestamp="20210126 16:53:24.033" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/appium/device/press_keycode {"keycode": "66"}</msg>
-<msg timestamp="20210126 16:53:24.270" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/appium/device/press_keycode HTTP/1.1" 200 14</msg>
-<msg timestamp="20210126 16:53:24.271" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:53:24.271" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20210126 16:53:24.032" endtime="20210126 16:53:24.271"></status>
-</kw>
-<msg timestamp="20210126 16:53:24.272" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20210126 16:53:20.718" endtime="20210126 16:53:24.272"></status>
-</kw>
-<kw name="Install App">
-<msg timestamp="20210126 16:53:24.274" level="TRACE">Arguments: [  ]</msg>
-<kw name="Get Text" library="AppiumLibrary">
-<doc>Get element text (for hybrid and mobile browser use `xpath` locator, others might cause problem)</doc>
+<msg timestamp="20210207 08:57:07.657" level="TRACE">Arguments: [ ${Selector}='android=UiSelector().resourceId("android:id/button2").text("انصراف")' ]</msg>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
 <arguments>
-<arg>${App_Status}</arg>
+<arg>3x</arg>
+<arg>3s</arg>
+<arg>Click Element</arg>
+<arg>${Selector}</arg>
 </arguments>
-<assign>
-<var>${Status}</var>
-</assign>
-<msg timestamp="20210126 16:53:24.275" level="TRACE">Arguments: [ 'class=android.widget.Button' ]</msg>
-<msg timestamp="20210126 16:53:24.276" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements {"using": "class name", "value": "android.widget.Button"}</msg>
-<msg timestamp="20210126 16:53:26.778" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/elements HTTP/1.1" 200 139</msg>
-<msg timestamp="20210126 16:53:26.779" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:53:26.779" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/element/95d5e9f8-31ff-41e1-97d0-89737bbaf68d/text {"id": "95d5e9f8-31ff-41e1-97d0-89737bbaf68d"}</msg>
-<msg timestamp="20210126 16:53:27.432" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3/element/95d5e9f8-31ff-41e1-97d0-89737bbaf68d/text HTTP/1.1" 200 67</msg>
-<msg timestamp="20210126 16:53:27.432" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:53:27.437" level="INFO">Element 'class=android.widget.Button' text is 'Open' </msg>
-<msg timestamp="20210126 16:53:27.437" level="TRACE">Return: 'Open'</msg>
-<msg timestamp="20210126 16:53:27.437" level="INFO">${Status} = Open</msg>
-<status status="PASS" starttime="20210126 16:53:24.275" endtime="20210126 16:53:27.438"></status>
-</kw>
-<kw name="Run Keyword If" library="BuiltIn">
-<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<arguments>
-<arg>'${Status}'=='Open'</arg>
-<arg>run keywords</arg>
-<arg>log to console</arg>
-<arg>\nThis program is already installed on the device.\nUninstallation Started......</arg>
-<arg>AND</arg>
-<arg>Uninstall App</arg>
-</arguments>
-<msg timestamp="20210126 16:53:27.438" level="TRACE">Arguments: [ "'Open'=='Open'" | 'run keywords' | 'log to console' | '\\nThis program is already installed on the device.\\nUninstallation Started......' | 'AND' | 'Uninstall App' ]</msg>
-<kw name="Run Keywords" library="BuiltIn">
-<doc>Executes all the given keywords in a sequence.</doc>
-<arguments>
-<arg>log to console</arg>
-<arg>\nThis program is already installed on the device.\nUninstallation Started......</arg>
-<arg>AND</arg>
-<arg>Uninstall App</arg>
-</arguments>
-<msg timestamp="20210126 16:53:27.439" level="TRACE">Arguments: [ 'log to console' | '\\nThis program is already installed on the device.\\nUninstallation Started......' | 'AND' | 'Uninstall App' ]</msg>
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
-<arguments>
-<arg>\nThis program is already installed on the device.\nUninstallation Started......</arg>
-</arguments>
-<msg timestamp="20210126 16:53:27.441" level="TRACE">Arguments: [ '\nThis program is already installed on the device.\nUninstallation Started......' ]</msg>
-<msg timestamp="20210126 16:53:27.441" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20210126 16:53:27.440" endtime="20210126 16:53:27.441"></status>
-</kw>
-<kw name="Uninstall App">
-<msg timestamp="20210126 16:53:27.442" level="TRACE">Arguments: [  ]</msg>
-<kw name="Open Application" library="AppiumLibrary">
-<doc>Opens a new application to given Appium server.
-Capabilities of appium server, Android and iOS,
-Please check https://github.com/appium/appium/blob/master/docs/en/writing-running-appium/server-args.md
-| *Option*            | *Man.* | *Description*     |
-| remote_url          | Yes    | Appium server url |
-| alias               | no     | alias             |</doc>
-<arguments>
-<arg>${REMOTE_URL}</arg>
-<arg>platformName=${PLATFORM_NAME}</arg>
-<arg>platformVersion=${PLATFORM_VERSION}</arg>
-<arg>deviceName=${DEVICE_NAME}</arg>
-<arg>automationName=UiAutomator2</arg>
-<arg>newCommandTimeout=2500</arg>
-<arg>appActivity=${App_Aativity}</arg>
-<arg>appPackage=${App_Package}</arg>
-</arguments>
-<msg timestamp="20210126 16:53:27.446" level="TRACE">Arguments: [ 'http://127.0.0.1:4723/wd/hub' | platformName='Android' | platformVersion='8.1' | deviceName='emulator-5554' | automationName='UiAutomator2' | newCommandTimeout='2500' | appActivity='com.sheypoor.mobile.MainActivity' | appPackage='com.sheypoor.mobile' ]</msg>
-<msg timestamp="20210126 16:53:27.448" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session {"capabilities": {"firstMatch": [{"platformName": "Android", "appium:platformVersion": "8.1", "appium:deviceName": "emulator-5554", "appium:automationName": "UiAutomator2", "appium:newCommandTimeout": "2500", "appium:appActivity": "com.sheypoor.mobile.MainActivity", "appium:appPackage": "com.sheypoor.mobile"}]}, "desiredCapabilities": {"platformName": "Android", "platformVersion": "8.1", "deviceName": "emulator-5554", "automationName": "UiAutomator2", "newCommandTimeout": "2500", "appActivity": "com.sheypoor.mobile.MainActivity", "appPackage": "com.sheypoor.mobile"}}</msg>
-<msg timestamp="20210126 16:53:27.450" level="DEBUG">Starting new HTTP connection (1): 127.0.0.1:4723</msg>
-<msg timestamp="20210126 16:54:19.474" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session HTTP/1.1" 200 1003</msg>
-<msg timestamp="20210126 16:54:19.475" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:54:19.481" level="DEBUG">Opened application with session id 267a6258-3806-42f1-b1fa-95532dadb3f8</msg>
-<msg timestamp="20210126 16:54:19.481" level="TRACE">Return: 2</msg>
-<status status="PASS" starttime="20210126 16:53:27.443" endtime="20210126 16:54:19.482"></status>
-</kw>
-<kw name="Remove Application" library="AppiumLibrary">
-<doc>Removes the application that is identified with an application id</doc>
-<arguments>
-<arg>${App_Package}</arg>
-</arguments>
-<msg timestamp="20210126 16:54:19.482" level="TRACE">Arguments: [ 'com.sheypoor.mobile' ]</msg>
-<msg timestamp="20210126 16:54:19.483" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/appium/device/remove_app {"appId": "com.sheypoor.mobile"}</msg>
-<msg timestamp="20210126 16:54:21.855" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/appium/device/remove_app HTTP/1.1" 200 14</msg>
-<msg timestamp="20210126 16:54:21.855" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:54:21.856" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20210126 16:54:19.482" endtime="20210126 16:54:21.856"></status>
-</kw>
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
-<arguments>
-<arg>\nUninstallation Finished.</arg>
-</arguments>
-<msg timestamp="20210126 16:54:21.857" level="TRACE">Arguments: [ '\nUninstallation Finished.' ]</msg>
-<msg timestamp="20210126 16:54:21.857" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20210126 16:54:21.856" endtime="20210126 16:54:21.857"></status>
-</kw>
-<msg timestamp="20210126 16:54:21.858" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20210126 16:53:27.442" endtime="20210126 16:54:21.858"></status>
-</kw>
-<msg timestamp="20210126 16:54:21.858" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20210126 16:53:27.439" endtime="20210126 16:54:21.858"></status>
-</kw>
-<msg timestamp="20210126 16:54:21.858" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20210126 16:53:27.438" endtime="20210126 16:54:21.858"></status>
-</kw>
-<kw name="Wait Until Page Contains" library="AppiumLibrary">
-<doc>Waits until `text` appears on current page.</doc>
-<arguments>
-<arg>Install</arg>
-<arg>timeout=30s</arg>
-</arguments>
-<msg timestamp="20210126 16:54:21.859" level="TRACE">Arguments: [ 'Install' | timeout='30s' ]</msg>
-<msg timestamp="20210126 16:54:21.860" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:54:24.378" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 39915</msg>
-<msg timestamp="20210126 16:54:24.380" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:54:24.603" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:54:25.317" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42003</msg>
-<msg timestamp="20210126 16:54:25.319" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:54:25.321" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20210126 16:54:21.859" endtime="20210126 16:54:25.321"></status>
-</kw>
-<kw name="Page Should Contain Text" library="AppiumLibrary">
-<doc>Verifies that current page contains `text`.</doc>
-<arguments>
-<arg>Install</arg>
-</arguments>
-<msg timestamp="20210126 16:54:25.322" level="TRACE">Arguments: [ 'Install' ]</msg>
-<msg timestamp="20210126 16:54:25.322" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:54:25.942" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42003</msg>
-<msg timestamp="20210126 16:54:25.944" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:54:25.947" level="INFO">Current page contains text 'Install'.</msg>
-<msg timestamp="20210126 16:54:25.947" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20210126 16:54:25.321" endtime="20210126 16:54:25.947"></status>
-</kw>
-<kw name="Click Text" library="AppiumLibrary">
-<doc>Click text identified by ``text``.</doc>
-<arguments>
-<arg>Install</arg>
-</arguments>
-<msg timestamp="20210126 16:54:25.947" level="TRACE">Arguments: [ 'Install' ]</msg>
-<msg timestamp="20210126 16:54:25.947" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/elements {"using": "xpath", "value": "//*[contains(@text,\"Install\")]"}</msg>
-<msg timestamp="20210126 16:54:26.512" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/elements HTTP/1.1" 200 139</msg>
-<msg timestamp="20210126 16:54:26.513" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:54:26.513" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/element/a770f28b-7f10-4daf-80bc-99b27d6c35ee/click {"id": "a770f28b-7f10-4daf-80bc-99b27d6c35ee"}</msg>
-<msg timestamp="20210126 16:54:28.104" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/element/a770f28b-7f10-4daf-80bc-99b27d6c35ee/click HTTP/1.1" 200 14</msg>
-<msg timestamp="20210126 16:54:28.105" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:54:28.105" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20210126 16:54:25.947" endtime="20210126 16:54:28.105"></status>
-</kw>
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
-<arguments>
-<arg>\nInstallation Started......</arg>
-</arguments>
-<msg timestamp="20210126 16:54:28.106" level="TRACE">Arguments: [ '\nInstallation Started......' ]</msg>
-<msg timestamp="20210126 16:54:28.108" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20210126 16:54:28.106" endtime="20210126 16:54:28.108"></status>
-</kw>
-<msg timestamp="20210126 16:54:28.108" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20210126 16:53:24.274" endtime="20210126 16:54:28.109"></status>
-</kw>
-<kw name="Make Sure The App Is Installed Successfully">
-<msg timestamp="20210126 16:54:28.110" level="TRACE">Arguments: [  ]</msg>
-<kw name="Wait Until Page Contains" library="AppiumLibrary">
-<doc>Waits until `text` appears on current page.</doc>
-<arguments>
-<arg>Open</arg>
-<arg>timeout=140s</arg>
-</arguments>
-<msg timestamp="20210126 16:54:28.110" level="TRACE">Arguments: [ 'Open' | timeout='140s' ]</msg>
-<msg timestamp="20210126 16:54:28.111" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:54:29.429" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42092</msg>
-<msg timestamp="20210126 16:54:29.432" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:54:29.648" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:54:30.678" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42091</msg>
-<msg timestamp="20210126 16:54:30.680" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:54:30.908" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:54:32.185" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42091</msg>
-<msg timestamp="20210126 16:54:32.187" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:54:32.389" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:54:34.264" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42091</msg>
-<msg timestamp="20210126 16:54:34.269" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:54:34.486" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:54:36.136" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42091</msg>
-<msg timestamp="20210126 16:54:36.139" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:54:36.357" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:54:38.080" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42091</msg>
-<msg timestamp="20210126 16:54:38.082" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:54:38.299" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:54:39.696" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42091</msg>
-<msg timestamp="20210126 16:54:39.698" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:54:39.910" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:54:40.578" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42086</msg>
-<msg timestamp="20210126 16:54:40.581" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:54:40.796" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:54:41.773" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42086</msg>
-<msg timestamp="20210126 16:54:41.776" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:54:41.989" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:54:42.535" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42086</msg>
-<msg timestamp="20210126 16:54:42.539" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:54:42.749" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:54:43.802" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42086</msg>
-<msg timestamp="20210126 16:54:43.807" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:54:44.010" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:54:44.815" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42086</msg>
-<msg timestamp="20210126 16:54:44.818" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:54:45.025" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:54:45.842" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42086</msg>
-<msg timestamp="20210126 16:54:45.846" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:54:46.059" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:54:46.562" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42086</msg>
-<msg timestamp="20210126 16:54:46.564" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:54:46.775" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:54:47.815" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42086</msg>
-<msg timestamp="20210126 16:54:47.817" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:54:48.030" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:54:49.655" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42082</msg>
-<msg timestamp="20210126 16:54:49.658" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:54:49.866" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:54:51.034" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42082</msg>
-<msg timestamp="20210126 16:54:51.037" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:54:51.253" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:54:52.572" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42082</msg>
-<msg timestamp="20210126 16:54:52.574" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:54:52.789" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:54:53.991" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42082</msg>
-<msg timestamp="20210126 16:54:53.994" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:54:54.209" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:54:55.422" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42082</msg>
-<msg timestamp="20210126 16:54:55.425" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:54:55.634" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:54:56.769" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42082</msg>
-<msg timestamp="20210126 16:54:56.773" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:54:56.991" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:54:58.080" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42082</msg>
-<msg timestamp="20210126 16:54:58.083" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:54:58.300" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:54:59.508" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42082</msg>
-<msg timestamp="20210126 16:54:59.512" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:54:59.723" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:55:00.959" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42082</msg>
-<msg timestamp="20210126 16:55:00.963" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:55:01.179" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:55:02.311" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42082</msg>
-<msg timestamp="20210126 16:55:02.314" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:55:02.525" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:55:03.476" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42082</msg>
-<msg timestamp="20210126 16:55:03.479" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:55:03.694" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:55:04.752" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42082</msg>
-<msg timestamp="20210126 16:55:04.755" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:55:04.961" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:55:05.963" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42082</msg>
-<msg timestamp="20210126 16:55:05.967" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:55:06.178" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:55:07.313" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42082</msg>
-<msg timestamp="20210126 16:55:07.315" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:55:07.524" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:55:08.654" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42082</msg>
-<msg timestamp="20210126 16:55:08.656" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:55:08.864" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:55:10.021" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42082</msg>
-<msg timestamp="20210126 16:55:10.025" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:55:10.237" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:55:11.287" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42082</msg>
-<msg timestamp="20210126 16:55:11.290" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:55:11.498" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:55:12.635" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42082</msg>
-<msg timestamp="20210126 16:55:12.639" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:55:12.848" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:55:13.996" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42082</msg>
-<msg timestamp="20210126 16:55:14.002" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:55:14.216" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:55:15.231" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42082</msg>
-<msg timestamp="20210126 16:55:15.234" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:55:15.446" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:55:16.402" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42082</msg>
-<msg timestamp="20210126 16:55:16.406" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:55:16.617" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:55:17.652" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42082</msg>
-<msg timestamp="20210126 16:55:17.656" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:55:17.863" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:55:18.808" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42082</msg>
-<msg timestamp="20210126 16:55:18.810" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:55:19.022" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:55:20.083" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42082</msg>
-<msg timestamp="20210126 16:55:20.086" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:55:20.294" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:55:22.262" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 42082</msg>
-<msg timestamp="20210126 16:55:22.264" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:55:22.482" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:55:23.733" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 39410</msg>
-<msg timestamp="20210126 16:55:23.735" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:55:23.736" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20210126 16:54:28.110" endtime="20210126 16:55:23.736"></status>
-</kw>
-<kw name="Page Should Contain Text" library="AppiumLibrary">
-<doc>Verifies that current page contains `text`.</doc>
-<arguments>
-<arg>Open</arg>
-</arguments>
-<msg timestamp="20210126 16:55:23.737" level="TRACE">Arguments: [ 'Open' ]</msg>
-<msg timestamp="20210126 16:55:23.738" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:55:24.228" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 39410</msg>
-<msg timestamp="20210126 16:55:24.229" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:55:24.233" level="INFO">Current page contains text 'Open'.</msg>
-<msg timestamp="20210126 16:55:24.233" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20210126 16:55:23.737" endtime="20210126 16:55:24.234"></status>
-</kw>
-<msg timestamp="20210126 16:55:24.234" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20210126 16:54:28.109" endtime="20210126 16:55:24.234"></status>
-</kw>
-<kw name="Open App">
-<msg timestamp="20210126 16:55:24.235" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20210207 08:57:07.658" level="TRACE">Arguments: [ '3x' | '3s' | 'Click Element' | '${Selector}' ]</msg>
 <kw name="Click Element" library="AppiumLibrary">
 <doc>Click element identified by `locator`.</doc>
 <arguments>
-<arg>${App_Status}</arg>
+<arg>${Selector}</arg>
 </arguments>
-<msg timestamp="20210126 16:55:24.236" level="TRACE">Arguments: [ 'class=android.widget.Button' ]</msg>
-<msg timestamp="20210126 16:55:24.238" level="INFO">Clicking element 'class=android.widget.Button'.</msg>
-<msg timestamp="20210126 16:55:24.239" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/elements {"using": "class name", "value": "android.widget.Button"}</msg>
-<msg timestamp="20210126 16:55:24.360" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/elements HTTP/1.1" 200 139</msg>
-<msg timestamp="20210126 16:55:24.360" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:55:24.361" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/element/bb8d8de8-9843-4b9c-bcb2-666aa5821c85/click {"id": "bb8d8de8-9843-4b9c-bcb2-666aa5821c85"}</msg>
-<msg timestamp="20210126 16:55:24.401" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/element/bb8d8de8-9843-4b9c-bcb2-666aa5821c85/click HTTP/1.1" 200 14</msg>
-<msg timestamp="20210126 16:55:24.402" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:55:24.402" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20210126 16:55:24.236" endtime="20210126 16:55:24.402"></status>
+<msg timestamp="20210207 08:57:07.659" level="TRACE">Arguments: [ 'android=UiSelector().resourceId("android:id/button2").text("انصراف")' ]</msg>
+<msg timestamp="20210207 08:57:07.666" level="INFO">Clicking element 'android=UiSelector().resourceId("android:id/button2").text("انصراف")'.</msg>
+<msg timestamp="20210207 08:57:07.666" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/03cb6a7a-8f9d-4457-85e9-12df9a5c1d45/elements {"using": "-android uiautomator", "value": "UiSelector().resourceId(\"android:id/button2\").text(\"\u0627\u0646\u0635\u0631\u0627\u0641\")"}</msg>
+<msg timestamp="20210207 08:57:14.562" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/03cb6a7a-8f9d-4457-85e9-12df9a5c1d45/elements HTTP/1.1" 200 12</msg>
+<msg timestamp="20210207 08:57:14.563" level="DEBUG">Finished Request</msg>
+<kw name="Capture Page Screenshot" library="AppiumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20210207 08:57:14.564" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20210207 08:57:14.570" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/03cb6a7a-8f9d-4457-85e9-12df9a5c1d45/screenshot {}</msg>
+<msg timestamp="20210207 08:57:16.779" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/03cb6a7a-8f9d-4457-85e9-12df9a5c1d45/screenshot HTTP/1.1" 200 93452</msg>
+<msg timestamp="20210207 08:57:16.782" level="DEBUG">Finished Request</msg>
+<msg timestamp="20210207 08:57:16.790" level="INFO" html="yes">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="appium-screenshot-1.png"&gt;&lt;img src="appium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg timestamp="20210207 08:57:16.791" level="TRACE">Return: 'D:\\Robot Framework\\MobileTest\\Results\\appium-screenshot-1.png'</msg>
+<status status="PASS" starttime="20210207 08:57:14.564" endtime="20210207 08:57:16.791"></status>
 </kw>
-<kw name="Wait Until Page Contains" library="AppiumLibrary">
-<doc>Waits until `text` appears on current page.</doc>
+<msg timestamp="20210207 08:57:16.793" level="FAIL">ValueError: Element locator 'android=UiSelector().resourceId("android:id/button2").text("انصراف")' did not match any elements.</msg>
+<msg timestamp="20210207 08:57:16.793" level="DEBUG">Traceback (most recent call last):
+  File "&lt;decorator-gen-3&gt;", line 2, in click_element
+  File "c:\users\forough\appdata\local\programs\python\python36\lib\site-packages\AppiumLibrary\keywords\keywordgroup.py", line 21, in _run_on_failure_decorator
+    raise err
+  File "c:\users\forough\appdata\local\programs\python\python36\lib\site-packages\AppiumLibrary\keywords\keywordgroup.py", line 16, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "c:\users\forough\appdata\local\programs\python\python36\lib\site-packages\AppiumLibrary\keywords\_element.py", line 42, in click_element
+    self._element_find(locator, True, True).click()
+  File "c:\users\forough\appdata\local\programs\python\python36\lib\site-packages\AppiumLibrary\keywords\_element.py", line 576, in _element_find
+    raise ValueError("Element locator '" + locator + "' did not match any elements.")</msg>
+<status status="FAIL" starttime="20210207 08:57:07.658" endtime="20210207 08:57:16.793"></status>
+</kw>
+<kw name="Click Element" library="AppiumLibrary">
+<doc>Click element identified by `locator`.</doc>
 <arguments>
-<arg>انصراف</arg>
-<arg>timeout=20s</arg>
+<arg>${Selector}</arg>
 </arguments>
-<msg timestamp="20210126 16:55:24.403" level="TRACE">Arguments: [ 'انصراف' | timeout='20s' ]</msg>
-<msg timestamp="20210126 16:55:24.403" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:55:25.406" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 6347</msg>
-<msg timestamp="20210126 16:55:25.408" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:55:25.622" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:55:31.011" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 7071</msg>
-<msg timestamp="20210126 16:55:31.012" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:55:31.012" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20210126 16:55:24.403" endtime="20210126 16:55:31.012"></status>
+<msg timestamp="20210207 08:57:19.803" level="TRACE">Arguments: [ 'android=UiSelector().resourceId("android:id/button2").text("انصراف")' ]</msg>
+<msg timestamp="20210207 08:57:19.808" level="INFO">Clicking element 'android=UiSelector().resourceId("android:id/button2").text("انصراف")'.</msg>
+<msg timestamp="20210207 08:57:19.809" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/03cb6a7a-8f9d-4457-85e9-12df9a5c1d45/elements {"using": "-android uiautomator", "value": "UiSelector().resourceId(\"android:id/button2\").text(\"\u0627\u0646\u0635\u0631\u0627\u0641\")"}</msg>
+<msg timestamp="20210207 08:57:20.969" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/03cb6a7a-8f9d-4457-85e9-12df9a5c1d45/elements HTTP/1.1" 200 139</msg>
+<msg timestamp="20210207 08:57:20.970" level="DEBUG">Finished Request</msg>
+<msg timestamp="20210207 08:57:20.971" level="DEBUG">POST http://127.0.0.1:4723/wd/hub/session/03cb6a7a-8f9d-4457-85e9-12df9a5c1d45/element/3cf2b322-ee53-4cb1-9b66-af3d4f186c96/click {"id": "3cf2b322-ee53-4cb1-9b66-af3d4f186c96"}</msg>
+<msg timestamp="20210207 08:57:21.208" level="DEBUG">http://127.0.0.1:4723 "POST /wd/hub/session/03cb6a7a-8f9d-4457-85e9-12df9a5c1d45/element/3cf2b322-ee53-4cb1-9b66-af3d4f186c96/click HTTP/1.1" 200 14</msg>
+<msg timestamp="20210207 08:57:21.209" level="DEBUG">Finished Request</msg>
+<msg timestamp="20210207 08:57:21.209" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210207 08:57:19.803" endtime="20210207 08:57:21.210"></status>
 </kw>
-<kw name="Page Should Contain Text" library="AppiumLibrary">
-<doc>Verifies that current page contains `text`.</doc>
+<msg timestamp="20210207 08:57:21.210" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210207 08:57:07.657" endtime="20210207 08:57:21.210"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
 <arguments>
-<arg>انصراف</arg>
+<arg>300ms</arg>
 </arguments>
-<msg timestamp="20210126 16:55:31.013" level="TRACE">Arguments: [ 'انصراف' ]</msg>
-<msg timestamp="20210126 16:55:31.013" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source {}</msg>
-<msg timestamp="20210126 16:55:31.708" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8/source HTTP/1.1" 200 7071</msg>
-<msg timestamp="20210126 16:55:31.708" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:55:31.714" level="INFO">Current page contains text 'انصراف'.</msg>
-<msg timestamp="20210126 16:55:31.714" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20210126 16:55:31.013" endtime="20210126 16:55:31.714"></status>
+<msg timestamp="20210207 08:57:21.211" level="TRACE">Arguments: [ '300ms' ]</msg>
+<msg timestamp="20210207 08:57:21.521" level="INFO">Slept 300 milliseconds</msg>
+<msg timestamp="20210207 08:57:21.521" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210207 08:57:21.210" endtime="20210207 08:57:21.521"></status>
 </kw>
-<kw name="Close Application" library="AppiumLibrary">
-<doc>Closes the current application and also close webdriver session.</doc>
-<msg timestamp="20210126 16:55:31.715" level="TRACE">Arguments: [  ]</msg>
-<msg timestamp="20210126 16:55:31.720" level="DEBUG">Closing application with session id 267a6258-3806-42f1-b1fa-95532dadb3f8</msg>
-<msg timestamp="20210126 16:55:31.721" level="DEBUG">DELETE http://127.0.0.1:4723/wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8 {}</msg>
-<msg timestamp="20210126 16:55:32.945" level="DEBUG">http://127.0.0.1:4723 "DELETE /wd/hub/session/267a6258-3806-42f1-b1fa-95532dadb3f8 HTTP/1.1" 200 14</msg>
-<msg timestamp="20210126 16:55:32.947" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:55:32.947" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20210126 16:55:31.715" endtime="20210126 16:55:32.948"></status>
+<msg timestamp="20210207 08:57:21.521" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210207 08:57:07.656" endtime="20210207 08:57:21.522"></status>
 </kw>
-<msg timestamp="20210126 16:55:32.948" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20210126 16:55:24.235" endtime="20210126 16:55:32.949"></status>
+<msg timestamp="20210207 08:57:21.522" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210207 08:57:06.061" endtime="20210207 08:57:21.522"></status>
 </kw>
-<kw name="Close All Applications" library="AppiumLibrary" type="teardown">
-<doc>Closes all open applications.</doc>
-<msg timestamp="20210126 16:55:32.953" level="TRACE">Arguments: [  ]</msg>
-<msg timestamp="20210126 16:55:32.958" level="DEBUG">Closing all applications</msg>
-<msg timestamp="20210126 16:55:32.959" level="DEBUG">DELETE http://127.0.0.1:4723/wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3 {}</msg>
-<msg timestamp="20210126 16:55:33.863" level="DEBUG">http://127.0.0.1:4723 "DELETE /wd/hub/session/4fe3299a-5f1c-4d28-8462-a26027b024f3 HTTP/1.1" 200 14</msg>
-<msg timestamp="20210126 16:55:33.863" level="DEBUG">Finished Request</msg>
-<msg timestamp="20210126 16:55:33.864" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20210126 16:55:32.953" endtime="20210126 16:55:33.864"></status>
+<kw name="Insert Photo From Listing Images To Device">
+<msg timestamp="20210207 08:57:21.524" level="TRACE">Arguments: [  ]</msg>
+<kw name="Push File" library="AppiumLibrary">
+<doc>Puts the data in the file specified as `path`.</doc>
+<arguments>
+<arg>mnt/sdcard/Pictures/1.jpg</arg>
+<arg>${Image_Path}\\1.jpg</arg>
+</arguments>
+<msg timestamp="20210207 08:57:21.524" level="TRACE">Arguments: [ 'mnt/sdcard/Pictures/1.jpg' | 'D:\\Robot Framework\\MobileTest\\TesCases\\..\\TestData\\Images\\1.jpg' ]</msg>
+<kw name="Capture Page Screenshot" library="AppiumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20210207 08:57:21.525" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20210207 08:57:21.527" level="DEBUG">GET http://127.0.0.1:4723/wd/hub/session/03cb6a7a-8f9d-4457-85e9-12df9a5c1d45/screenshot {}</msg>
+<msg timestamp="20210207 08:57:24.277" level="DEBUG">http://127.0.0.1:4723 "GET /wd/hub/session/03cb6a7a-8f9d-4457-85e9-12df9a5c1d45/screenshot HTTP/1.1" 200 188092</msg>
+<msg timestamp="20210207 08:57:24.280" level="DEBUG">Finished Request</msg>
+<msg timestamp="20210207 08:57:24.290" level="INFO" html="yes">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="appium-screenshot-2.png"&gt;&lt;img src="appium-screenshot-2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg timestamp="20210207 08:57:24.290" level="TRACE">Return: 'D:\\Robot Framework\\MobileTest\\Results\\appium-screenshot-2.png'</msg>
+<status status="PASS" starttime="20210207 08:57:21.525" endtime="20210207 08:57:24.290"></status>
 </kw>
-<status status="PASS" starttime="20210126 16:52:43.590" endtime="20210126 16:55:33.865" critical="yes"></status>
+<msg timestamp="20210207 08:57:24.297" level="FAIL">TypeError: Object of type 'bytes' is not JSON serializable</msg>
+<msg timestamp="20210207 08:57:24.297" level="DEBUG">Traceback (most recent call last):
+  File "&lt;decorator-gen-87&gt;", line 2, in push_file
+  File "c:\users\forough\appdata\local\programs\python\python36\lib\site-packages\AppiumLibrary\keywords\keywordgroup.py", line 21, in _run_on_failure_decorator
+    raise err
+  File "c:\users\forough\appdata\local\programs\python\python36\lib\site-packages\AppiumLibrary\keywords\keywordgroup.py", line 16, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "c:\users\forough\appdata\local\programs\python\python36\lib\site-packages\AppiumLibrary\keywords\_android_utils.py", line 78, in push_file
+    driver.push_file(path, data)
+  File "c:\users\forough\appdata\local\programs\python\python36\lib\site-packages\appium\webdriver\extensions\remote_fs.py", line 90, in push_file
+    self.execute(Command.PUSH_FILE, data)
+  File "c:\users\forough\appdata\local\programs\python\python36\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 319, in execute
+    response = self.command_executor.execute(driver_command, params)
+  File "c:\users\forough\appdata\local\programs\python\python36\lib\site-packages\selenium\webdriver\remote\remote_connection.py", line 372, in execute
+    data = utils.dump_json(params)
+  File "c:\users\forough\appdata\local\programs\python\python36\lib\site-packages\selenium\webdriver\remote\utils.py", line 33, in dump_json
+    return json.dumps(json_struct)
+  File "c:\users\forough\appdata\local\programs\python\python36\lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+  File "c:\users\forough\appdata\local\programs\python\python36\lib\json\encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "c:\users\forough\appdata\local\programs\python\python36\lib\json\encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "c:\users\forough\appdata\local\programs\python\python36\lib\json\encoder.py", line 180, in default
+    o.__class__.__name__)</msg>
+<status status="FAIL" starttime="20210207 08:57:21.524" endtime="20210207 08:57:24.297"></status>
+</kw>
+<status status="FAIL" starttime="20210207 08:57:21.523" endtime="20210207 08:57:24.298"></status>
+</kw>
+<status status="FAIL" starttime="20210207 08:56:38.237" endtime="20210207 08:57:24.303" critical="yes">TypeError: Object of type 'bytes' is not JSON serializable</status>
 </test>
 <doc>A test suite with a single test for testing Install and Run Sheypoor App.</doc>
-<status status="PASS" starttime="20210126 16:52:43.106" endtime="20210126 16:55:33.867"></status>
+<status status="FAIL" starttime="20210207 08:56:37.877" endtime="20210207 08:57:24.308"></status>
 </suite>
 <statistics>
 <total>
-<stat pass="1" fail="0">Critical Tests</stat>
-<stat pass="1" fail="0">All Tests</stat>
+<stat pass="0" fail="1">Critical Tests</stat>
+<stat pass="0" fail="1">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="1" fail="0" id="s1" name="InstallApp">InstallApp</stat>
+<stat pass="0" fail="1" id="s1" name="InstallApp2">InstallApp2</stat>
 </suite>
 </statistics>
 <errors>
