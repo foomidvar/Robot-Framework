@@ -2,6 +2,7 @@
 Documentation                               A test suite with a single test for testing Install and Run Sheypoor App.
 Library                                     AppiumLibrary
 Library                                     BuiltIn
+Library                                     ${CURDIR}${/}../Lib/Appium_Extended.py
 Test Setup                                  Set Log Level               TRACE
 #Test Teardown                               close all applications
 
@@ -46,12 +47,15 @@ ${District}                                 android=UiSelector().resourceId("com
 ${Images_Element}                           android=UiSelector().resourceId("com.sheypoor.mobile.debug:id/postAdAttachImage")
 ${Image_Type}                               android=UiSelector().text("انتخاب از گالری")
 ${Permission}                               android=UiSelector().resourceId("com.android.packageinstaller:id/permission_allow_button").text("ALLOW")
-${Contact_Number}                           ///android.widget.LinearLayout[@content-desc="شماره تماس آگهی"]/android.widget.LinearLayout/android.view.ViewGroup[1]/android.widget.EditText
-${Submit_Btn}                               android=UiSelector().resourceId("com.sheypoor.mobile.debug:id/fragmentPostAdButton").text("ثبت آگهی")
-${Mobile}
-${Next}
-${Code}
-${Verification}
+${Image_Checkbox}                           android=UiSelector().resourceId("com.sheypoor.mobile.debug:id/postAddGalleryImageCheckBox")
+${Confirmation}                             android=UiSelector().resourceId("com.sheypoor.mobile.debug:id/phoneGalleryAdButton")
+${Loaded_Listing_Image}                     android=UiSelector().resourceId("com.sheypoor.mobile.debug:id/adapterPostAdCapture")
+${Contact_Number}                           //android.widget.LinearLayout[@content-desc="شماره تماس آگهی"]/android.widget.LinearLayout/android.view.ViewGroup[1]/android.widget.EditText
+${Submit_Btn}                               android=UiSelector().resourceId("com.sheypoor.mobile.debug:id/fragmentPostAdButton")
+${Mobile}                                   android=UiSelector().resourceId("com.sheypoor.mobile.debug:id/numberInput").text("شماره تلفن همراه")
+${Next}                                     android=UiSelector().resourceId("com.sheypoor.mobile.debug:id/loginButton").text("ورود یا ثبت نام در شیپور")
+${Code}                                     android=UiSelector().resourceId("com.sheypoor.mobile.debug:id/pinCodeInput")
+${Verification}                             android=UiSelector().resourceId("com.sheypoor.mobile.debug:id/verifyButton").text("تایید نهایی")
 
 *** Test Cases ***
 Install Sheypoor On The Mobile
@@ -73,9 +77,8 @@ Install Sheypoor On The Mobile
     Input Title And Description
     Select Location
     Input Contact Number
-#    Validate Image Is Upload
     Submit Post Listing
-#    Enter Mobile Number And Verification Code
+    Enter Mobile Number And Verification Code
 
 *** Keywords ***
 Install Application
@@ -101,6 +104,12 @@ Add Images
     Click By Selector                       ${Images_Element}
     Click By Selector                       ${Image_Type}
     Click By Selector                       ${Permission}
+    Click By Selector                       ${Image_Checkbox}
+    Wait Until Page Contains Element        ${Confirmation}                 timeout=5s
+    Page Should Contain Text                 انتخاب 1 از 8 عکس
+    click by selector                        ${Confirmation}
+    sleep       10s
+    Page Should Contain Element              ${Loaded_Listing_Image}
 
 Select Car Brand
     Click By Selector                        ${Categories}
@@ -169,33 +178,20 @@ Select Location
     Click By Selector                        ${District}
 
 Input Contact Number
-    Scroll Down If Element Not Found
     Click By Selector                       ${Contact_Number}
     Input Text                              ${Contact_Number}               09371008676
 
-Validate Image Is Upload
-    FOR    ${INDEX}                          IN RANGE    0   5
-      ${isUploading}                         Execute Javascript             return window.bee('.fine-uploader .qq-upload-spinner-selector, .fine-uploader .qq-upload-retry-selector').is(':visible')
-      Exit For Loop If                       not ${isUploading}
-      Sleep                                  2s
-    END
-    Run Keyword If                           ${isUploading}    Fail         image can not be uploaded
-    Page Should Not Contain                  لطفا این قسمت را تکمیل کنید
-    Page Should Not Contain                  عکس ها در حال بارگذاری هستند
-    Page Should Not Contain                  این فیلد اجباریست
-
 Submit Post Listing
-    Wait Until Element Is Enabled            ${Submit_Btn}                  timeout=5s
-    Click Button                             ${Submit_Btn}
+    Scroll Down If Element Not Found
+    Click By Selector                        ${Submit_Btn}
 
 Enter Mobile Number And Verification Code
-    Wait Until Page Contains                 اطلاعات شما                     timeout=10s
+    Wait Until Page Contains                 لطفاً برای ثبت نام یا ورود، شماره تلفن همراه خود را وارد نمایید.                     timeout=10s
     Input Text                               ${Mobile}                      09001111111
-    Click Button                             ${Next}
+    Click By Selector                        ${Next}
     Wait Until Page Contains                 کد چهار رقمی پیامک شده به 09001111111 را وارد کنید.
     Input Text                               ${Code}                        1111
-    Click Button                             ${Verification}
-    Page Should Contain                      کد تایید صحیح نمی باشد
+    Click By Selector                        ${Verification}
 
 Click By Selector
     [Arguments]                              ${Selector}
@@ -207,7 +203,8 @@ Scroll Down If Element Not Found
 
 
 Insert Photo From Listing Images To Device
-    push file           mnt/sdcard/Pictures/1.jpg     ${Image_Path}\\1.jpg
-    adb shell           am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d file:///mnt/sdcard/Pictures/1.jpg
+    Push File To Device   /mnt/sdcard/Pictures/1.jpg   source_path=${Image_Path}//1.jpg
+    adb shell              am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d file:///mnt/sdcard/Pictures/1.jpg
+
 
 
