@@ -4,7 +4,7 @@ Library                                     AppiumLibrary
 Library                                     BuiltIn
 Library                                     ${CURDIR}${/}../Lib/Appium_Extended.py
 Test Setup                                  Set Log Level               TRACE
-#Test Teardown                               close all applications
+Test Teardown                               close all applications
 
 *** Variables ***
 ${REMOTE_URL}                               http://127.0.0.1:4723/wd/hub
@@ -89,7 +89,7 @@ Install Application
     ...                                      deviceName=${DEVICE_NAME}
     ...                                      automationName=UiAutomator2
     ...                                      newCommandTimeout=2500
-#    ...                                      fullReset=True
+    ...                                      fullReset=True
 
 Launch Application
     Click By Selector                        ${Environment}
@@ -201,10 +201,9 @@ Click By Selector
 Scroll Down If Element Not Found
     swipe   15    600    15    200
 
-
 Insert Photo From Listing Images To Device
-    Push File To Device   /mnt/sdcard/Pictures/1.jpg   source_path=${Image_Path}//1.jpg
-    adb shell              am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d file:///mnt/sdcard/Pictures/1.jpg
+    Push File To Device                      /mnt/sdcard/Pictures/1.jpg     source_path=${Image_Path}//1.jpg
+    adb shell             am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d file:///mnt/sdcard/Pictures/1.jpg
 
 
 
